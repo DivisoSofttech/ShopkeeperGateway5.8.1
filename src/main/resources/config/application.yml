@@ -25,6 +25,7 @@ eureka:
         registry-fetch-interval-seconds: 10
     instance:
         appname: graeshoppegateway
+        hostname: dev.ci1.divisosofttech.com
         instanceId: graeshoppegateway:${spring.application.instance-id:${random.value}}
         lease-renewal-interval-in-seconds: 5
         lease-expiration-duration-in-seconds: 10
@@ -40,6 +41,13 @@ eureka:
 ribbon:
     eureka:
         enabled: true
+feign:
+   client:
+      config:
+         default:
+            connectTimeout: 160000000
+   hystrix:
+      enabled: false
 # See http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
 zuul: # those values must be configured depending on the application specific needs
     sensitive-headers: Cookie,Set-Cookie #see https://github.com/spring-cloud/spring-cloud-netflix/issues/3126
@@ -51,12 +59,14 @@ zuul: # those values must be configured depending on the application specific ne
 
 # See https://github.com/Netflix/Hystrix/wiki/Configuration
 hystrix:
-    command:
-        default:
-            execution:
-                isolation:
-                    thread:
-                        timeoutInMilliseconds: 10000
+   command:
+      default:
+         execution:
+            timeout:
+               enabled: false
+            isolation:
+               thread:
+                  timeoutInMilliseconds: 999999999999999999999999999999999999999999999999999999
 
 management:
     endpoints:
@@ -216,7 +226,8 @@ customer:
 order:
    url: dev.ci2.divisosofttech.com:8088
    
-product: 
+product:
+   name: PRODUCT 
    url: dev.ci1.divisosofttech.com:8084
    
 sale:
