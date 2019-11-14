@@ -1,5 +1,6 @@
 package com.diviso.graeshoppe.web.rest;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -799,6 +800,15 @@ public class QueryResource {
 		pdf.setContentType("application/pdf");
 		return ResponseEntity.ok().body(pdf);
 	}
+	
+	@GetMapping("/order/findOrderCountByDateAndStatusName/{statusName}/{date}")
+	public Long findOrderCountByDateAndStatusName(String statusName, Instant date) {
+	
+		return orderQueryService.findOrderCountByDateAndStatusName(statusName, date);
+	
+	
+	}
+	
 
 
 }
