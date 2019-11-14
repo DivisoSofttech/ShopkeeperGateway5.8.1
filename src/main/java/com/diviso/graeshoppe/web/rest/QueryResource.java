@@ -113,10 +113,7 @@ public class QueryResource {
 	QueryService queryService;
 
 	@Autowired
-	OrderQueryResourceApi orderQueryService;
-	
-	@Autowired
-	OrderQueryService orderQueryServic;
+	OrderQueryService orderQueryService;
 	
 	@Autowired
 	ProductQueryService productQueryService;
@@ -807,7 +804,7 @@ public class QueryResource {
 	@GetMapping("/order/countByCustomerIdAndStatusName/{customerId}/{statusName}")
 	public Long countByCustomerIdAndStatusName(@PathVariable String customerId, @PathVariable String statusName) {
 	
-		return orderQueryServic.countByCustomerIdAndStatusName(customerId, statusName);
+		return orderQueryService.countByCustomerIdAndStatusName(customerId, statusName);
 	
 	
 	}
