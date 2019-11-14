@@ -3,14 +3,18 @@ package com.diviso.graeshoppe.service;
 import java.time.Instant;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 
 import com.diviso.graeshoppe.client.order.model.Notification;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.order.model.OrderLine;
 
 public interface OrderQueryService {
+	
+
 	
 	/**
 	 * @param statusName
@@ -42,6 +46,8 @@ public interface OrderQueryService {
 	 * @param orderId
 	 */
 	public Order findOrderByOrderId(String orderId);
+
+	Long countByCustomerIdAndStatusName(String customerId, String statusName);
 	
 	
 

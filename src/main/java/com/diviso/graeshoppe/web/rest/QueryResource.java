@@ -113,7 +113,10 @@ public class QueryResource {
 	QueryService queryService;
 
 	@Autowired
-	OrderQueryService orderQueryService;
+	OrderQueryResourceApi orderQueryService;
+	
+	@Autowired
+	OrderQueryService orderQueryServic;
 	
 	@Autowired
 	ProductQueryService productQueryService;
@@ -801,10 +804,10 @@ public class QueryResource {
 		return ResponseEntity.ok().body(pdf);
 	}
 	
-	@GetMapping("/order/findOrderCountByDateAndStatusName/{statusName}/{date}")
-	public Long findOrderCountByDateAndStatusName(String statusName, Instant date) {
+	@GetMapping("/order/countByCustomerIdAndStatusName/{customerId}/{statusName}")
+	public Long countByCustomerIdAndStatusName(@PathVariable String customerId, @PathVariable String statusName) {
 	
-		return orderQueryService.findOrderCountByDateAndStatusName(statusName, date);
+		return orderQueryServic.countByCustomerIdAndStatusName(customerId, statusName);
 	
 	
 	}

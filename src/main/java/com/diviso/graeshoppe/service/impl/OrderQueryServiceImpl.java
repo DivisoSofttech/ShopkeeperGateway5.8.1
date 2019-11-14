@@ -23,8 +23,10 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.elasticsearch.core.query.StringQuery;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.diviso.graeshoppe.client.order.api.OrderQueryResourceApi;
 import com.diviso.graeshoppe.client.order.model.Notification;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.order.model.OrderLine;
@@ -42,6 +44,8 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	int i = 0;
 	Long count = 0L;
 
+	@Autowired
+	OrderQueryResourceApi orderQueryResourceApi;
 	
 	@Autowired
 	ElasticsearchOperations elasticsearchOperations;
@@ -229,6 +233,11 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	}
 
 
+	@Override
+	public Long countByCustomerIdAndStatusName(String customerId, String statusName) {
+	
+		return orderQueryResourceApi.countByCustomerIdAndStatusNameUsingGET(customerId, statusName).getBody();
+	}
 
 
 
