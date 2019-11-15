@@ -367,6 +367,7 @@ public class CommandResource {
 		orderDTO.setGrandTotal(order.getGrandTotal());
 		orderDTO.setEmail(order.getEmail());
 		orderDTO.setDeliveryInfoId(order.getDeliveryInfo().getId());
+		orderDTO.setSubTotal(order.getSubTotal());
 		if(order.getApprovalDetails()!=null) {
 			orderDTO.setApprovalDetailsId(order.getApprovalDetails().getId());
 		}

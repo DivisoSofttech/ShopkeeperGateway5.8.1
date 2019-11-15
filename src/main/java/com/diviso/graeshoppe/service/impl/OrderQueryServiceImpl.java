@@ -242,5 +242,12 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
 
 
+	@Override
+	public Long countByStoreIdAndCustomerId(String storeId, String customerId) {
+		return orderQueryResourceApi.countByStoreIdAndCustomerIdUsingGET(customerId, storeId).getBody();
+	}
+
+
+
 
 }
