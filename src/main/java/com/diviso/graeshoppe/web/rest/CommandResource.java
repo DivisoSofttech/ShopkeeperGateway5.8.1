@@ -111,6 +111,8 @@ public class CommandResource {
 	private StoreResourceApi storeResourceApi;
 
 	@Autowired
+	private NotificationResourceApi notificationResource;
+	@Autowired
 	private ReplyResourceApi replyResourceApi;
 
 	@Autowired
@@ -374,6 +376,15 @@ public class CommandResource {
 		orderDTO.setPaymentRef(order.getPaymentRef());
 		orderDTO.setStatusId(5l);
 		orderCommandResourceApi.updateOrderUsingPUT(orderDTO);
+		NotificationDTO notificationDTO=new NotificationDTO();
+		notificationDTO.setTitle("Order Delivered");
+		notificationDTO.setMessage("Hi, Your order has been delivered successfuly!");
+		notificationDTO.setReceiverId(orderDTO.getCustomerId());
+		notificationDTO.setStatus("unread");
+		notificationDTO.setDate(OffsetDateTime.now());
+		notificationDTO.setTargetId(orderDTO.getOrderId());
+		notificationDTO.setType("Order-Delivered");
+		notificationResource.createNotificationUsingPOST(notificationDTO);
 	}
 	
 	@PostMapping("/acceptOrder/{taskId}")
