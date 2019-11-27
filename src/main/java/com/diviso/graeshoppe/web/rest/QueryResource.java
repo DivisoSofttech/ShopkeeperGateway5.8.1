@@ -801,10 +801,10 @@ public class QueryResource {
 		return ResponseEntity.ok().body(pdf);
 	}
 	
-	@GetMapping("/order/countByCustomerIdAndStatusName/{customerId}/{statusName}")
-	public Long countByCustomerIdAndStatusName(@PathVariable String customerId, @PathVariable String statusName) {
+	@GetMapping("/order/countByStoreIdAndCustomerId/{storeId}/{customerId}")
+	public Long countByCustomerIdAndStatusName(@PathVariable String storeId, @PathVariable String customerId) {
 	
-		return orderQueryService.countByCustomerIdAndStatusName(customerId, statusName);
+		return orderQueryService.countByStoreIdAndCustomerId(storeId, customerId);
 	
 	
 	}

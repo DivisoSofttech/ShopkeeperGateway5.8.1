@@ -48,6 +48,8 @@ public interface OrderQueryService {
 	public Order findOrderByOrderId(String orderId);
 
 	Long countByCustomerIdAndStatusName(String customerId, String statusName);
+
+	public Long countByStoreIdAndCustomerId(String storeId, String customerId);
 	
 	
 

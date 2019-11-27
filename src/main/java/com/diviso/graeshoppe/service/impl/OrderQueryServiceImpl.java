@@ -23,6 +23,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.elasticsearch.core.query.StringQuery;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -237,6 +238,13 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	public Long countByCustomerIdAndStatusName(String customerId, String statusName) {
 	
 		return orderQueryResourceApi.countByCustomerIdAndStatusNameUsingGET(customerId, statusName).getBody();
+	}
+
+
+
+	@Override
+	public Long countByStoreIdAndCustomerId(String storeId, String customerId) {
+		return orderQueryResourceApi.countByStoreIdAndCustomerIdUsingGET(customerId, storeId).getBody();
 	}
 
 
