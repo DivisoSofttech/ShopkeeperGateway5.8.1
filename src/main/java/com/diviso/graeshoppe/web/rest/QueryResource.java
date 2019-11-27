@@ -77,6 +77,7 @@ import com.diviso.graeshoppe.client.sale.model.SaleDTO;
 import com.diviso.graeshoppe.client.sale.model.TicketLineDTO;
 import com.diviso.graeshoppe.client.store.api.BannerResourceApi;
 import com.diviso.graeshoppe.client.store.api.DeliveryInfoResourceApi;
+import com.diviso.graeshoppe.client.store.api.PreOrderSettingsResourceApi;
 import com.diviso.graeshoppe.client.store.api.StoreAddressResourceApi;
 import com.diviso.graeshoppe.client.store.api.StoreResourceApi;
 import com.diviso.graeshoppe.client.store.api.StoreSettingsResourceApi;
@@ -159,6 +160,9 @@ public class QueryResource {
 
 	@Autowired
 	private StoreResourceApi storeResourceApi;
+	
+	@Autowired
+	private PreOrderSettingsResourceApi preOrderSettingsResourceApi;
 
 	@Autowired
 	private DeliveryInfoResourceApi deliveryInfoResourceApi;

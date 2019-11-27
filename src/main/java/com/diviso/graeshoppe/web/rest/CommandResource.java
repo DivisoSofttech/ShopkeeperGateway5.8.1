@@ -60,6 +60,7 @@ import com.diviso.graeshoppe.client.sale.model.SaleDTO;
 import com.diviso.graeshoppe.client.sale.model.TicketLineDTO;
 import com.diviso.graeshoppe.client.store.api.BannerResourceApi;
 import com.diviso.graeshoppe.client.store.api.DeliveryInfoResourceApi;
+import com.diviso.graeshoppe.client.store.api.PreOrderSettingsResourceApi;
 import com.diviso.graeshoppe.client.store.api.ReplyResourceApi;
 import com.diviso.graeshoppe.client.store.api.ReviewResourceApi;
 import com.diviso.graeshoppe.client.store.api.StoreAddressResourceApi;
@@ -70,6 +71,7 @@ import com.diviso.graeshoppe.client.store.api.TypeResourceApi;
 import com.diviso.graeshoppe.client.store.api.UserRatingResourceApi;
 import com.diviso.graeshoppe.client.store.model.BannerDTO;
 import com.diviso.graeshoppe.client.store.model.DeliveryInfoDTO;
+import com.diviso.graeshoppe.client.store.model.PreOrderSettingsDTO;
 import com.diviso.graeshoppe.client.store.model.ReplyDTO;
 import com.diviso.graeshoppe.client.store.model.ReviewDTO;
 import com.diviso.graeshoppe.client.store.model.StoreAddressDTO;
@@ -114,6 +116,9 @@ public class CommandResource {
 	private NotificationResourceApi notificationResource;
 	@Autowired
 	private ReplyResourceApi replyResourceApi;
+	
+	@Autowired
+	private PreOrderSettingsResourceApi preOrderSettingsResourceApi;
 
 	@Autowired
 	private UserRatingResourceApi userRatingResourceApi;
@@ -619,6 +624,23 @@ public class CommandResource {
 	@DeleteMapping("/product/address/{id}")
 	public ResponseEntity<Void> deleteProductAddress(@PathVariable Long id) {
 		return this.addressResourceApi.deleteAddressUsingDELETE(id);
+	}
+	
+	@PostMapping("/store/preOrderSettings")
+	public ResponseEntity<PreOrderSettingsDTO> createPreOrderSettings(@RequestBody PreOrderSettingsDTO preOrderSettingsDTO) {
+		return this.preOrderSettingsResourceApi.createPreOrderSettingsUsingPOST(preOrderSettingsDTO);
+	}
+	
+	@PutMapping("/store/preOrderSettings")
+	public ResponseEntity<PreOrderSettingsDTO> updatePreOrderSettings(@RequestBody PreOrderSettingsDTO preOrderSettingsDTO) {
+		return this.preOrderSettingsResourceApi.updatePreOrderSettingsUsingPUT(preOrderSettingsDTO);
+	}
+
+
+	@DeleteMapping("/store/preOrderSettings")
+	public ResponseEntity<Void> deletePreOrderSettings(@PathVariable Long id) {
+		return this.preOrderSettingsResourceApi.deletePreOrderSettingsUsingDELETE(id);
+				
 	}
 	
 	@PostMapping("/discount")
