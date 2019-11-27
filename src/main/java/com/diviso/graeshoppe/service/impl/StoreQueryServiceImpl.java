@@ -16,13 +16,13 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 
-import com.diviso.graeshoppe.client.store.domain.Banner;
-import com.diviso.graeshoppe.client.store.domain.DeliveryInfo;
-import com.diviso.graeshoppe.client.store.domain.Review;
-import com.diviso.graeshoppe.client.store.domain.Store;
-import com.diviso.graeshoppe.client.store.domain.StoreType;
-import com.diviso.graeshoppe.client.store.domain.Type;
-import com.diviso.graeshoppe.client.store.domain.UserRating;
+import com.diviso.graeshoppe.client.store.model.Banner;
+import com.diviso.graeshoppe.client.store.model.DeliveryInfo;
+import com.diviso.graeshoppe.client.store.model.Review;
+import com.diviso.graeshoppe.client.store.model.Store;
+import com.diviso.graeshoppe.client.store.model.StoreType;
+import com.diviso.graeshoppe.client.store.model.Type;
+import com.diviso.graeshoppe.client.store.model.UserRating;
 import com.diviso.graeshoppe.service.StoreQueryService;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 

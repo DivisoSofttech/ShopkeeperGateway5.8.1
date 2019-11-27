@@ -28,7 +28,7 @@ import com.diviso.graeshoppe.client.report.model.OrderMaster;
 
 import com.diviso.graeshoppe.client.sale.domain.Sale;
 import com.diviso.graeshoppe.client.sale.domain.TicketLine;
-import com.diviso.graeshoppe.client.store.domain.Banner;
+import com.diviso.graeshoppe.client.store.model.Banner;
 import com.diviso.graeshoppe.client.store.domain.DeliveryInfo;
 import com.diviso.graeshoppe.client.store.domain.Review;
 import com.diviso.graeshoppe.client.store.domain.Store;
