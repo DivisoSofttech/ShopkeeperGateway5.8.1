@@ -758,6 +758,7 @@ public class CommandResource {
 		storeBundle.setStoreSettings(storeSettingsDTO);
 		//do this added in if
 		storeDTO.setStoreSettingsId(storeSettingsDTO.getId());
+		storeDTO.setPreOrderSettingsId(preOrderSettingsDTO.getId());
 		storeDTO.setStoreAddressId(storeAddressDTO.getId());
 
 		if (storeDTO != null) {
