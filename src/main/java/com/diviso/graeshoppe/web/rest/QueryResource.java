@@ -90,6 +90,8 @@ import com.diviso.graeshoppe.client.store.model.StoreSettings;
 import com.diviso.graeshoppe.client.store.model.Type;
 import com.diviso.graeshoppe.client.store.model.BannerDTO;
 import com.diviso.graeshoppe.client.store.model.DeliveryInfoDTO;
+import com.diviso.graeshoppe.client.store.model.PreOrderSettings;
+import com.diviso.graeshoppe.client.store.model.PreOrderSettingsDTO;
 import com.diviso.graeshoppe.client.store.model.StoreAddressDTO;
 import com.diviso.graeshoppe.client.store.model.StoreBundleDTO;
 import com.diviso.graeshoppe.client.store.model.StoreDTO;
@@ -443,6 +445,8 @@ public class QueryResource {
 		List<TypeDTO> typeDTOs = new ArrayList<TypeDTO>();
 
 		List<StoreTypeDTO> storeTypeDTO = new ArrayList<StoreTypeDTO>();
+		
+		PreOrderSettings preOrderSettings = store.getPreOrderSettings();
 
 		List<BannerDTO> bannerDTO = new ArrayList<BannerDTO>();
 
@@ -487,6 +491,8 @@ public class QueryResource {
 		bundle.setStoreType(storeTypeDTO);
 
 		bundle.setStoreSettings(storeSettingsDTO);
+		
+		bundle.setPreOrderSettings(preOrderSettings);
 
 		bundle.setStoreAddress(storeAddressDTO);
 

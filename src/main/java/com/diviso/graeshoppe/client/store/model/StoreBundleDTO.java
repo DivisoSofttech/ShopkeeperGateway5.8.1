@@ -1,87 +1,110 @@
- /*
- * Copyright 2002-2016 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/*
+* Copyright 2002-2016 the original author or authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package com.diviso.graeshoppe.client.store.model;
 
 import java.util.List;
 
 /**
- * TODO Provide a detailed description here 
- * @author MayaSanjeev
- * mayabytatech, maya.k.k@lxisoft.com
+ * TODO Provide a detailed description here
+ * 
+ * @author MayaSanjeev mayabytatech, maya.k.k@lxisoft.com
  */
 public class StoreBundleDTO {
 
-	
 	StoreDTO store;
 	StoreAddressDTO storeAddress;
 	StoreSettingsDTO storeSettings;
+	PreOrderSettings preOrderSettings;
+
 	List<DeliveryInfoDTO> deliveryInfos;
-    List<TypeDTO> types;
-    List<StoreTypeDTO> storeType;
-    List<BannerDTO> banners;
-    
+	List<TypeDTO> types;
+	List<StoreTypeDTO> storeType;
+	List<BannerDTO> banners;
+
 	public StoreAddressDTO getStoreAddress() {
 		return storeAddress;
 	}
+
 	public void setStoreAddress(StoreAddressDTO storeAddress) {
 		this.storeAddress = storeAddress;
 	}
+
 	public StoreSettingsDTO getStoreSettings() {
 		return storeSettings;
 	}
+
 	public void setStoreSettings(StoreSettingsDTO storeSettings) {
 		this.storeSettings = storeSettings;
 	}
+
 	public StoreDTO getStore() {
 		return store;
 	}
+
 	public void setStore(StoreDTO store) {
 		this.store = store;
 	}
+
 	public List<DeliveryInfoDTO> getDeliveryInfos() {
 		return deliveryInfos;
 	}
+
 	public void setDeliveryInfos(List<DeliveryInfoDTO> deliveryInfos) {
 		this.deliveryInfos = deliveryInfos;
 	}
+
 	public List<TypeDTO> getTypes() {
 		return types;
 	}
+
 	public void setTypes(List<TypeDTO> types) {
 		this.types = types;
 	}
+
 	public List<StoreTypeDTO> getStoreType() {
 		return storeType;
 	}
+
 	public void setStoreType(List<StoreTypeDTO> storeType) {
 		this.storeType = storeType;
 	}
+	
+	public PreOrderSettings getPreOrderSettings() {
+		return preOrderSettings;
+	}
+
+	public void setPreOrderSettings(PreOrderSettings preOrderSettings) {
+		this.preOrderSettings = preOrderSettings;
+	}
+
 	public List<BannerDTO> getBanners() {
 		return banners;
 	}
+
 	public void setBanners(List<BannerDTO> banners) {
 		this.banners = banners;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "StoreBundleDTO [store=" + store + ", storeAddress=" + storeAddress + ", storeSettings=" + storeSettings
 				+ ", deliveryInfos=" + deliveryInfos + ", types=" + types + ", storeType=" + storeType + ", banners="
 				+ banners + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,6 +118,7 @@ public class StoreBundleDTO {
 		result = prime * result + ((types == null) ? 0 : types.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -141,8 +165,5 @@ public class StoreBundleDTO {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }
