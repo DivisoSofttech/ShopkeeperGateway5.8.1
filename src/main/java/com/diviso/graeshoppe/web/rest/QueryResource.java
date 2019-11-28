@@ -477,6 +477,12 @@ public class QueryResource {
 		if (storeSettings != null) {
 			storeSettingsDTO = storeSettingsResourceApi.getStoreSettingsUsingGET(storeSettings.getId()).getBody();
 		}
+		
+		PreOrderSettingsDTO preOrderSettingsDTO = new PreOrderSettingsDTO();
+
+		if (preOrderSettings != null) {
+			preOrderSettingsDTO = preOrderSettingsResourceApi.getPreOrderSettingsUsingGET(preOrderSettings.getId()).getBody();
+		}
 
 		StoreBundleDTO bundle = new StoreBundleDTO();
 
@@ -492,7 +498,7 @@ public class QueryResource {
 
 		bundle.setStoreSettings(storeSettingsDTO);
 		
-		bundle.setPreOrderSettings(preOrderSettings);
+		bundle.setPreOrderSettings(preOrderSettingsDTO);
 
 		bundle.setStoreAddress(storeAddressDTO);
 
