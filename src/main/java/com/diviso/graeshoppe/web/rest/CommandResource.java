@@ -681,6 +681,15 @@ public class CommandResource {
 			}
 		}
 
+		PreOrderSettingsDTO preOrderSettingsDTO = storeBundleDTO.getPreOrderSettings();
+		
+		if (preOrderSettingsDTO != null) {
+			if (preOrderSettingsDTO.getId() == null) {
+				preOrderSettingsDTO = preOrderSettingsResourceApi.createPreOrderSettingsUsingPOST(preOrderSettingsDTO).getBody();
+				preOrderSettingsDTO = preOrderSettingsResourceApi.updatePreOrderSettingsUsingPUT(preOrderSettingsDTO).getBody();
+			}
+		}
+		
 		List<DeliveryInfoDTO> deliveryInfos = storeBundleDTO.getDeliveryInfos();
 		List<DeliveryInfoDTO> savedDeliveryInfos = new ArrayList<DeliveryInfoDTO>();
 

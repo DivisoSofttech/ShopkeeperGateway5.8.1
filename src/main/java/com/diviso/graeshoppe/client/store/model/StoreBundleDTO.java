@@ -27,7 +27,7 @@ public class StoreBundleDTO {
 	StoreDTO store;
 	StoreAddressDTO storeAddress;
 	StoreSettingsDTO storeSettings;
-	PreOrderSettings preOrderSettings;
+	PreOrderSettingsDTO preOrderSettings;
 
 	List<DeliveryInfoDTO> deliveryInfos;
 	List<TypeDTO> types;
@@ -44,6 +44,14 @@ public class StoreBundleDTO {
 
 	public StoreSettingsDTO getStoreSettings() {
 		return storeSettings;
+	}
+
+	public void setPreOrderSettings(PreOrderSettingsDTO preOrderSettings) {
+		this.preOrderSettings = preOrderSettings;
+	}
+	
+	public PreOrderSettingsDTO getPreOrderSettings() {
+		return preOrderSettings;
 	}
 
 	public void setStoreSettings(StoreSettingsDTO storeSettings) {
@@ -81,14 +89,7 @@ public class StoreBundleDTO {
 	public void setStoreType(List<StoreTypeDTO> storeType) {
 		this.storeType = storeType;
 	}
-	
-	public PreOrderSettings getPreOrderSettings() {
-		return preOrderSettings;
-	}
 
-	public void setPreOrderSettings(PreOrderSettings preOrderSettings) {
-		this.preOrderSettings = preOrderSettings;
-	}
 
 	public List<BannerDTO> getBanners() {
 		return banners;

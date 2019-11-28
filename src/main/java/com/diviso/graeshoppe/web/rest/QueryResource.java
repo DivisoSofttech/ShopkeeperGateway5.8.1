@@ -500,17 +500,6 @@ public class QueryResource {
 
 	}
 	
-	/*
-	 * @PostMapping("/createStore/{regNo}") public ResponseEntity<Createstore>
-	 * createStore(Createstore store) {
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
-
 	@GetMapping("/productBundle/{id}")
 	public ResponseEntity<ProductBundle> getProductBundle(@PathVariable Long id) {
 
