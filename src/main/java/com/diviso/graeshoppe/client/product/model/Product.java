@@ -50,8 +50,19 @@ public class Product   {
 
   @JsonProperty("discount")
   private Discount discount = null;
+  
+  @JsonProperty("imagelink")
+  private String imageLink = null;
 
-  @JsonProperty("iDPcode")
+  public String getImageLink() {
+	return imageLink;
+}
+
+public void setImageLink(String imageLink) {
+	this.imageLink = imageLink;
+}
+
+@JsonProperty("iDPcode")
   private String iDPcode = null;
 
   @JsonProperty("id")
