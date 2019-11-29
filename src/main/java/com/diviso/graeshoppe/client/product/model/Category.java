@@ -24,11 +24,23 @@ public class Category   {
   @JsonProperty("description")
   private String description = null;
 
-  @JsonProperty("iDPcode")
+  public String getImageLink() {
+	return imageLink;
+}
+
+public void setImageLink(String imageLink) {
+	this.imageLink = imageLink;
+}
+
+@JsonProperty("iDPcode")
   private String iDPcode = null;
 
   @JsonProperty("id")
   private Long id = null;
+  
+  
+  @JsonProperty("imagelink")
+  private String imageLink = null;
 
   @JsonProperty("image")
   private byte[] image = null;

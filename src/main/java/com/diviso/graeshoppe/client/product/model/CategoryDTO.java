@@ -27,6 +27,18 @@ public class CategoryDTO   {
 
   @JsonProperty("image")
   private byte[] image = null;
+  
+  
+  public String getImageLink() {
+	return imageLink;
+}
+
+public void setImageLink(String imageLink) {
+	this.imageLink = imageLink;
+}
+
+@JsonProperty("imagelink")
+  private String imageLink = null;
 
   @JsonProperty("imageContentType")
   private String imageContentType = null;
