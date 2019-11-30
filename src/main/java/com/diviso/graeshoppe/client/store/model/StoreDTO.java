@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+
+import org.springframework.data.elasticsearch.annotations.GeoPointField;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -41,6 +43,7 @@ public class StoreDTO   {
   @JsonProperty("info")
   private String info = null;
 
+  @GeoPointField
   @JsonProperty("location")
   private String location = null;
 
