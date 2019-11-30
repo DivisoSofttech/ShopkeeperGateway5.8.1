@@ -686,6 +686,7 @@ public class CommandResource {
 		if (preOrderSettingsDTO != null) {
 			if (preOrderSettingsDTO.getId() == null) {
 				preOrderSettingsDTO = preOrderSettingsResourceApi.createPreOrderSettingsUsingPOST(preOrderSettingsDTO).getBody();
+			} else {
 				preOrderSettingsDTO = preOrderSettingsResourceApi.updatePreOrderSettingsUsingPUT(preOrderSettingsDTO).getBody();
 			}
 		}

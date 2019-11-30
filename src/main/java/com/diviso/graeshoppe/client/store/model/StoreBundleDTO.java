@@ -100,18 +100,12 @@ public class StoreBundleDTO {
 	}
 
 	@Override
-	public String toString() {
-		return "StoreBundleDTO [store=" + store + ", storeAddress=" + storeAddress + ", storeSettings=" + storeSettings
-				+ ", deliveryInfos=" + deliveryInfos + ", types=" + types + ", storeType=" + storeType + ", banners="
-				+ banners + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((banners == null) ? 0 : banners.hashCode());
 		result = prime * result + ((deliveryInfos == null) ? 0 : deliveryInfos.hashCode());
+		result = prime * result + ((preOrderSettings == null) ? 0 : preOrderSettings.hashCode());
 		result = prime * result + ((store == null) ? 0 : store.hashCode());
 		result = prime * result + ((storeAddress == null) ? 0 : storeAddress.hashCode());
 		result = prime * result + ((storeSettings == null) ? 0 : storeSettings.hashCode());
@@ -138,6 +132,11 @@ public class StoreBundleDTO {
 			if (other.deliveryInfos != null)
 				return false;
 		} else if (!deliveryInfos.equals(other.deliveryInfos))
+			return false;
+		if (preOrderSettings == null) {
+			if (other.preOrderSettings != null)
+				return false;
+		} else if (!preOrderSettings.equals(other.preOrderSettings))
 			return false;
 		if (store == null) {
 			if (other.store != null)
@@ -166,5 +165,14 @@ public class StoreBundleDTO {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "StoreBundleDTO [store=" + store + ", storeAddress=" + storeAddress + ", storeSettings=" + storeSettings
+				+ ", preOrderSettings=" + preOrderSettings + ", deliveryInfos=" + deliveryInfos + ", types=" + types
+				+ ", storeType=" + storeType + ", banners=" + banners + "]";
+	}
+
+
 
 }

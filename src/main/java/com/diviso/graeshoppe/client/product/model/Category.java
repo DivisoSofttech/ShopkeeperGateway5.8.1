@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -205,46 +206,80 @@ public void setImageLink(String imageLink) {
   }
 
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Category category = (Category) o;
-    return Objects.equals(this.description, category.description) &&
-        Objects.equals(this.iDPcode, category.iDPcode) &&
-        Objects.equals(this.id, category.id) &&
-        Objects.equals(this.image, category.image) &&
-        Objects.equals(this.imageContentType, category.imageContentType) &&
-        Objects.equals(this.name, category.name) &&
-        Objects.equals(this.products, category.products);
-  }
+
 
   @Override
-  public int hashCode() {
-    return Objects.hash(description, iDPcode, id, image, imageContentType, name, products);
-  }
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((description == null) ? 0 : description.hashCode());
+	result = prime * result + ((iDPcode == null) ? 0 : iDPcode.hashCode());
+	result = prime * result + ((id == null) ? 0 : id.hashCode());
+	result = prime * result + Arrays.hashCode(image);
+	result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
+	result = prime * result + ((imageLink == null) ? 0 : imageLink.hashCode());
+	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	result = prime * result + ((products == null) ? 0 : products.hashCode());
+	return result;
+}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Category {\n");
-    
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    iDPcode: ").append(toIndentedString(iDPcode)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    products: ").append(toIndentedString(products)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Category other = (Category) obj;
+	if (description == null) {
+		if (other.description != null)
+			return false;
+	} else if (!description.equals(other.description))
+		return false;
+	if (iDPcode == null) {
+		if (other.iDPcode != null)
+			return false;
+	} else if (!iDPcode.equals(other.iDPcode))
+		return false;
+	if (id == null) {
+		if (other.id != null)
+			return false;
+	} else if (!id.equals(other.id))
+		return false;
+	if (!Arrays.equals(image, other.image))
+		return false;
+	if (imageContentType == null) {
+		if (other.imageContentType != null)
+			return false;
+	} else if (!imageContentType.equals(other.imageContentType))
+		return false;
+	if (imageLink == null) {
+		if (other.imageLink != null)
+			return false;
+	} else if (!imageLink.equals(other.imageLink))
+		return false;
+	if (name == null) {
+		if (other.name != null)
+			return false;
+	} else if (!name.equals(other.name))
+		return false;
+	if (products == null) {
+		if (other.products != null)
+			return false;
+	} else if (!products.equals(other.products))
+		return false;
+	return true;
+}
 
-  /**
+@Override
+public String toString() {
+	return "Category [description=" + description + ", iDPcode=" + iDPcode + ", id=" + id + ", imageLink=" + imageLink
+			+ ", image=" + Arrays.toString(image) + ", imageContentType=" + imageContentType + ", name=" + name
+			+ ", products=" + products + "]";
+}
+
+/**
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
