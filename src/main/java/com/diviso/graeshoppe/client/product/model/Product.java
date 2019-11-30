@@ -1,6 +1,8 @@
 package com.diviso.graeshoppe.client.product.model;
 
 import java.util.Objects;
+import java.util.Set;
+
 import com.diviso.graeshoppe.client.product.model.AuxilaryLineItem;
 import com.diviso.graeshoppe.client.product.model.Brand;
 import com.diviso.graeshoppe.client.product.model.Category;
@@ -18,6 +20,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -32,7 +35,7 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-10-28T15:55:43.394+05:30[Asia/Kolkata]")
 @Document(indexName = "product")
 public class Product   {
-  @JsonProperty("auxilaryLineItems")
+ /* @JsonProperty("auxilaryLineItems")
   @Valid
   private List<AuxilaryLineItem> auxilaryLineItems = null;
 
@@ -140,10 +143,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get auxilaryLineItems
    * @return auxilaryLineItems
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -161,10 +164,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get brand
    * @return brand
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -182,10 +185,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get buyPrice
    * @return buyPrice
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -202,10 +205,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get category
    * @return category
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -231,10 +234,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get comboLineItems
    * @return comboLineItems
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -252,10 +255,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get discount
    * @return discount
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -273,10 +276,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get iDPcode
    * @return iDPcode
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -293,10 +296,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get id
    * @return id
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -313,10 +316,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get image
    * @return image
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 @Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
@@ -333,10 +336,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get imageContentType
    * @return imageContentType
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -353,10 +356,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get isActive
    * @return isActive
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -373,10 +376,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get isAuxilaryItem
    * @return isAuxilaryItem
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -393,10 +396,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get isServiceItem
    * @return isServiceItem
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -421,10 +424,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get labels
    * @return labels
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -442,10 +445,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get location
    * @return location
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -463,10 +466,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get manufacturer
    * @return manufacturer
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -484,10 +487,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get maxQuantityLevel
    * @return maxQuantityLevel
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -504,10 +507,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get minQuantityLevel
    * @return minQuantityLevel
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -524,10 +527,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get name
    * @return name
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -544,10 +547,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get reference
    * @return reference
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -564,10 +567,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get sellingPrice
    * @return sellingPrice
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -584,10 +587,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get showInCatalogue
    * @return showInCatalogue
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -604,10 +607,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get sku
    * @return sku
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -624,10 +627,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get storageCost
    * @return storageCost
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
 
@@ -644,10 +647,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get supplier
    * @return supplier
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -665,10 +668,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get taxCategory
    * @return taxCategory
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -686,10 +689,10 @@ public void setImageLink(String imageLink) {
     return this;
   }
 
-  /**
+  *//**
    * Get unit
    * @return unit
-  **/
+  **//*
   @ApiModelProperty(value = "")
 
   @Valid
@@ -901,15 +904,533 @@ public boolean equals(Object obj) {
 	return true;
 }
 
-/**
+*//**
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
-   */
+   *//*
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
-  }
+  }*/
+	  private Long id;
+
+	    
+	    private String reference;
+
+	 
+	    private String name;
+
+	
+	    private Boolean showInCatalogue;
+
+	    private byte[] image;
+
+	 
+	    private String imageContentType;
+
+	
+	    private String imageLink;
+
+	  
+	    private Boolean isActive;
+
+	   
+	    private String sku;
+
+	  
+	    private String iDPcode;
+
+	   
+	    private Boolean isServiceItem;
+
+	   
+	    private Boolean isAuxilaryItem;
+
+	 
+	    private Double minQuantityLevel;
+
+	   
+	    private Double maxQuantityLevel;
+
+	 
+	    private Double storageCost;
+
+	  
+	    private Double sellingPrice;
+
+	  
+	    private Double buyPrice;
+
+	   
+	    private Set<AuxilaryLineItem> auxilaryLineItems = new HashSet<>();
+	  
+	    private Set<ComboLineItem> comboLineItems = new HashSet<>();
+	  
+	    private Set<Label> labels = new HashSet<>();
+	    
+	    private TaxCategory taxCategory;
+
+	   
+	    private UOM unit;
+
+	  
+	    private Location location;
+
+	   
+	    private Supplier supplier;
+
+	  
+	    private Manufacturer manufacturer;
+
+	   
+	    private Brand brand;
+
+	 
+	    private Discount discount;
+
+	   
+	    private Category category;
+
+	    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+	    public Long getId() {
+	        return id;
+	    }
+
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
+
+	    public String getReference() {
+	        return reference;
+	    }
+
+	    public Product reference(String reference) {
+	        this.reference = reference;
+	        return this;
+	    }
+
+	    public void setReference(String reference) {
+	        this.reference = reference;
+	    }
+
+	    public String getName() {
+	        return name;
+	    }
+
+	    public Product name(String name) {
+	        this.name = name;
+	        return this;
+	    }
+
+	    public void setName(String name) {
+	        this.name = name;
+	    }
+
+	    public Boolean isShowInCatalogue() {
+	        return showInCatalogue;
+	    }
+
+	    public Product showInCatalogue(Boolean showInCatalogue) {
+	        this.showInCatalogue = showInCatalogue;
+	        return this;
+	    }
+
+	    public void setShowInCatalogue(Boolean showInCatalogue) {
+	        this.showInCatalogue = showInCatalogue;
+	    }
+
+	    public byte[] getImage() {
+	        return image;
+	    }
+
+	    public Product image(byte[] image) {
+	        this.image = image;
+	        return this;
+	    }
+
+	    public void setImage(byte[] image) {
+	        this.image = image;
+	    }
+
+	    public String getImageContentType() {
+	        return imageContentType;
+	    }
+
+	    public Product imageContentType(String imageContentType) {
+	        this.imageContentType = imageContentType;
+	        return this;
+	    }
+
+	    public void setImageContentType(String imageContentType) {
+	        this.imageContentType = imageContentType;
+	    }
+
+	    public String getImageLink() {
+	        return imageLink;
+	    }
+
+	    public Product imageLink(String imageLink) {
+	        this.imageLink = imageLink;
+	        return this;
+	    }
+
+	    public void setImageLink(String imageLink) {
+	        this.imageLink = imageLink;
+	    }
+
+	    public Boolean isIsActive() {
+	        return isActive;
+	    }
+
+	    public Product isActive(Boolean isActive) {
+	        this.isActive = isActive;
+	        return this;
+	    }
+
+	    public void setIsActive(Boolean isActive) {
+	        this.isActive = isActive;
+	    }
+
+	    public String getSku() {
+	        return sku;
+	    }
+
+	    public Product sku(String sku) {
+	        this.sku = sku;
+	        return this;
+	    }
+
+	    public void setSku(String sku) {
+	        this.sku = sku;
+	    }
+
+	    public String getiDPcode() {
+	        return iDPcode;
+	    }
+
+	    public Product iDPcode(String iDPcode) {
+	        this.iDPcode = iDPcode;
+	        return this;
+	    }
+
+	    public void setiDPcode(String iDPcode) {
+	        this.iDPcode = iDPcode;
+	    }
+
+	    public Boolean isIsServiceItem() {
+	        return isServiceItem;
+	    }
+
+	    public Product isServiceItem(Boolean isServiceItem) {
+	        this.isServiceItem = isServiceItem;
+	        return this;
+	    }
+
+	    public void setIsServiceItem(Boolean isServiceItem) {
+	        this.isServiceItem = isServiceItem;
+	    }
+
+	    public Boolean isIsAuxilaryItem() {
+	        return isAuxilaryItem;
+	    }
+
+	    public Product isAuxilaryItem(Boolean isAuxilaryItem) {
+	        this.isAuxilaryItem = isAuxilaryItem;
+	        return this;
+	    }
+
+	    public void setIsAuxilaryItem(Boolean isAuxilaryItem) {
+	        this.isAuxilaryItem = isAuxilaryItem;
+	    }
+
+	    public Double getMinQuantityLevel() {
+	        return minQuantityLevel;
+	    }
+
+	    public Product minQuantityLevel(Double minQuantityLevel) {
+	        this.minQuantityLevel = minQuantityLevel;
+	        return this;
+	    }
+
+	    public void setMinQuantityLevel(Double minQuantityLevel) {
+	        this.minQuantityLevel = minQuantityLevel;
+	    }
+
+	    public Double getMaxQuantityLevel() {
+	        return maxQuantityLevel;
+	    }
+
+	    public Product maxQuantityLevel(Double maxQuantityLevel) {
+	        this.maxQuantityLevel = maxQuantityLevel;
+	        return this;
+	    }
+
+	    public void setMaxQuantityLevel(Double maxQuantityLevel) {
+	        this.maxQuantityLevel = maxQuantityLevel;
+	    }
+
+	    public Double getStorageCost() {
+	        return storageCost;
+	    }
+
+	    public Product storageCost(Double storageCost) {
+	        this.storageCost = storageCost;
+	        return this;
+	    }
+
+	    public void setStorageCost(Double storageCost) {
+	        this.storageCost = storageCost;
+	    }
+
+	    public Double getSellingPrice() {
+	        return sellingPrice;
+	    }
+
+	    public Product sellingPrice(Double sellingPrice) {
+	        this.sellingPrice = sellingPrice;
+	        return this;
+	    }
+
+	    public void setSellingPrice(Double sellingPrice) {
+	        this.sellingPrice = sellingPrice;
+	    }
+
+	    public Double getBuyPrice() {
+	        return buyPrice;
+	    }
+
+	    public Product buyPrice(Double buyPrice) {
+	        this.buyPrice = buyPrice;
+	        return this;
+	    }
+
+	    public void setBuyPrice(Double buyPrice) {
+	        this.buyPrice = buyPrice;
+	    }
+
+	    public Set<AuxilaryLineItem> getAuxilaryLineItems() {
+	        return auxilaryLineItems;
+	    }
+
+	    public Product auxilaryLineItems(Set<AuxilaryLineItem> auxilaryLineItems) {
+	        this.auxilaryLineItems = auxilaryLineItems;
+	        return this;
+	    }
+
+	    public Product addAuxilaryLineItems(AuxilaryLineItem auxilaryLineItem) {
+	        this.auxilaryLineItems.add(auxilaryLineItem);
+	        auxilaryLineItem.setProduct(this);
+	        return this;
+	    }
+
+	    public Product removeAuxilaryLineItems(AuxilaryLineItem auxilaryLineItem) {
+	        this.auxilaryLineItems.remove(auxilaryLineItem);
+	        auxilaryLineItem.setProduct(null);
+	        return this;
+	    }
+
+	    public void setAuxilaryLineItems(Set<AuxilaryLineItem> auxilaryLineItems) {
+	        this.auxilaryLineItems = auxilaryLineItems;
+	    }
+
+	    public Set<ComboLineItem> getComboLineItems() {
+	        return comboLineItems;
+	    }
+
+	    public Product comboLineItems(Set<ComboLineItem> comboLineItems) {
+	        this.comboLineItems = comboLineItems;
+	        return this;
+	    }
+
+	    public Product addComboLineItems(ComboLineItem comboLineItem) {
+	        this.comboLineItems.add(comboLineItem);
+	        comboLineItem.setProduct(this);
+	        return this;
+	    }
+
+	    public Product removeComboLineItems(ComboLineItem comboLineItem) {
+	        this.comboLineItems.remove(comboLineItem);
+	        comboLineItem.setProduct(null);
+	        return this;
+	    }
+
+	    public void setComboLineItems(Set<ComboLineItem> comboLineItems) {
+	        this.comboLineItems = comboLineItems;
+	    }
+
+	    public Set<Label> getLabels() {
+	        return labels;
+	    }
+
+	    public Product labels(Set<Label> labels) {
+	        this.labels = labels;
+	        return this;
+	    }
+
+	    public Product addLabels(Label label) {
+	        this.labels.add(label);
+	        label.setProduct(this);
+	        return this;
+	    }
+
+	    public Product removeLabels(Label label) {
+	        this.labels.remove(label);
+	        label.setProduct(null);
+	        return this;
+	    }
+
+	    public void setLabels(Set<Label> labels) {
+	        this.labels = labels;
+	    }
+
+	    public TaxCategory getTaxCategory() {
+	        return taxCategory;
+	    }
+
+	    public Product taxCategory(TaxCategory taxCategory) {
+	        this.taxCategory = taxCategory;
+	        return this;
+	    }
+
+	    public void setTaxCategory(TaxCategory taxCategory) {
+	        this.taxCategory = taxCategory;
+	    }
+
+	    public UOM getUnit() {
+	        return unit;
+	    }
+
+	    public Product unit(UOM uOM) {
+	        this.unit = uOM;
+	        return this;
+	    }
+
+	    public void setUnit(UOM uOM) {
+	        this.unit = uOM;
+	    }
+
+	    public Location getLocation() {
+	        return location;
+	    }
+
+	    public Product location(Location location) {
+	        this.location = location;
+	        return this;
+	    }
+
+	    public void setLocation(Location location) {
+	        this.location = location;
+	    }
+
+	    public Supplier getSupplier() {
+	        return supplier;
+	    }
+
+	    public Product supplier(Supplier supplier) {
+	        this.supplier = supplier;
+	        return this;
+	    }
+
+	    public void setSupplier(Supplier supplier) {
+	        this.supplier = supplier;
+	    }
+
+	    public Manufacturer getManufacturer() {
+	        return manufacturer;
+	    }
+
+	    public Product manufacturer(Manufacturer manufacturer) {
+	        this.manufacturer = manufacturer;
+	        return this;
+	    }
+
+	    public void setManufacturer(Manufacturer manufacturer) {
+	        this.manufacturer = manufacturer;
+	    }
+
+	    public Brand getBrand() {
+	        return brand;
+	    }
+
+	    public Product brand(Brand brand) {
+	        this.brand = brand;
+	        return this;
+	    }
+
+	    public void setBrand(Brand brand) {
+	        this.brand = brand;
+	    }
+
+	    public Discount getDiscount() {
+	        return discount;
+	    }
+
+	    public Product discount(Discount discount) {
+	        this.discount = discount;
+	        return this;
+	    }
+
+	    public void setDiscount(Discount discount) {
+	        this.discount = discount;
+	    }
+
+	    public Category getCategory() {
+	        return category;
+	    }
+
+	    public Product category(Category category) {
+	        this.category = category;
+	        return this;
+	    }
+
+	    public void setCategory(Category category) {
+	        this.category = category;
+	    }
+	    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+	    @Override
+	    public boolean equals(Object o) {
+	        if (this == o) {
+	            return true;
+	        }
+	        if (o == null || getClass() != o.getClass()) {
+	            return false;
+	        }
+	        Product product = (Product) o;
+	        if (product.getId() == null || getId() == null) {
+	            return false;
+	        }
+	        return Objects.equals(getId(), product.getId());
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        return Objects.hashCode(getId());
+	    }
+
+	    @Override
+	    public String toString() {
+	        return "Product{" +
+	            "id=" + getId() +
+	            ", reference='" + getReference() + "'" +
+	            ", name='" + getName() + "'" +
+	            ", showInCatalogue='" + isShowInCatalogue() + "'" +
+	            ", image='" + getImage() + "'" +
+	            ", imageContentType='" + getImageContentType() + "'" +
+	            ", imageLink='" + getImageLink() + "'" +
+	            ", isActive='" + isIsActive() + "'" +
+	            ", sku='" + getSku() + "'" +
+	            ", iDPcode='" + getiDPcode() + "'" +
+	            ", isServiceItem='" + isIsServiceItem() + "'" +
+	            ", isAuxilaryItem='" + isIsAuxilaryItem() + "'" +
+	            ", minQuantityLevel=" + getMinQuantityLevel() +
+	            ", maxQuantityLevel=" + getMaxQuantityLevel() +
+	            ", storageCost=" + getStorageCost() +
+	            ", sellingPrice=" + getSellingPrice() +
+	            ", buyPrice=" + getBuyPrice() +
+	            "}";
+	    }
 }
 
