@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -52,7 +53,7 @@ public class Product   {
   private Discount discount = null;
   
   @JsonProperty("imagelink")
-  private String imageLink = null;
+  private String imageLink;
 
   public String getImageLink() {
 	return imageLink;
@@ -702,86 +703,205 @@ public void setImageLink(String imageLink) {
   }
 
 
+  
   @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Product product = (Product) o;
-    return Objects.equals(this.auxilaryLineItems, product.auxilaryLineItems) &&
-        Objects.equals(this.brand, product.brand) &&
-        Objects.equals(this.buyPrice, product.buyPrice) &&
-        Objects.equals(this.category, product.category) &&
-        Objects.equals(this.comboLineItems, product.comboLineItems) &&
-        Objects.equals(this.discount, product.discount) &&
-        Objects.equals(this.iDPcode, product.iDPcode) &&
-        Objects.equals(this.id, product.id) &&
-        Objects.equals(this.image, product.image) &&
-        Objects.equals(this.imageContentType, product.imageContentType) &&
-        Objects.equals(this.isActive, product.isActive) &&
-        Objects.equals(this.isAuxilaryItem, product.isAuxilaryItem) &&
-        Objects.equals(this.isServiceItem, product.isServiceItem) &&
-        Objects.equals(this.labels, product.labels) &&
-        Objects.equals(this.location, product.location) &&
-        Objects.equals(this.manufacturer, product.manufacturer) &&
-        Objects.equals(this.maxQuantityLevel, product.maxQuantityLevel) &&
-        Objects.equals(this.minQuantityLevel, product.minQuantityLevel) &&
-        Objects.equals(this.name, product.name) &&
-        Objects.equals(this.reference, product.reference) &&
-        Objects.equals(this.sellingPrice, product.sellingPrice) &&
-        Objects.equals(this.showInCatalogue, product.showInCatalogue) &&
-        Objects.equals(this.sku, product.sku) &&
-        Objects.equals(this.storageCost, product.storageCost) &&
-        Objects.equals(this.supplier, product.supplier) &&
-        Objects.equals(this.taxCategory, product.taxCategory) &&
-        Objects.equals(this.unit, product.unit);
-  }
+public String toString() {
+	return "Product [auxilaryLineItems=" + auxilaryLineItems + ", brand=" + brand + ", buyPrice=" + buyPrice
+			+ ", category=" + category + ", comboLineItems=" + comboLineItems + ", discount=" + discount
+			+ ", imageLink=" + imageLink + ", iDPcode=" + iDPcode + ", id=" + id + ", image=" + Arrays.toString(image)
+			+ ", imageContentType=" + imageContentType + ", isActive=" + isActive + ", isAuxilaryItem=" + isAuxilaryItem
+			+ ", isServiceItem=" + isServiceItem + ", labels=" + labels + ", location=" + location + ", manufacturer="
+			+ manufacturer + ", maxQuantityLevel=" + maxQuantityLevel + ", minQuantityLevel=" + minQuantityLevel
+			+ ", name=" + name + ", reference=" + reference + ", sellingPrice=" + sellingPrice + ", showInCatalogue="
+			+ showInCatalogue + ", sku=" + sku + ", storageCost=" + storageCost + ", supplier=" + supplier
+			+ ", taxCategory=" + taxCategory + ", unit=" + unit + "]";
+}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(auxilaryLineItems, brand, buyPrice, category, comboLineItems, discount, iDPcode, id, image, imageContentType, isActive, isAuxilaryItem, isServiceItem, labels, location, manufacturer, maxQuantityLevel, minQuantityLevel, name, reference, sellingPrice, showInCatalogue, sku, storageCost, supplier, taxCategory, unit);
-  }
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((auxilaryLineItems == null) ? 0 : auxilaryLineItems.hashCode());
+	result = prime * result + ((brand == null) ? 0 : brand.hashCode());
+	result = prime * result + ((buyPrice == null) ? 0 : buyPrice.hashCode());
+	result = prime * result + ((category == null) ? 0 : category.hashCode());
+	result = prime * result + ((comboLineItems == null) ? 0 : comboLineItems.hashCode());
+	result = prime * result + ((discount == null) ? 0 : discount.hashCode());
+	result = prime * result + ((iDPcode == null) ? 0 : iDPcode.hashCode());
+	result = prime * result + ((id == null) ? 0 : id.hashCode());
+	result = prime * result + Arrays.hashCode(image);
+	result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
+	result = prime * result + ((imageLink == null) ? 0 : imageLink.hashCode());
+	result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
+	result = prime * result + ((isAuxilaryItem == null) ? 0 : isAuxilaryItem.hashCode());
+	result = prime * result + ((isServiceItem == null) ? 0 : isServiceItem.hashCode());
+	result = prime * result + ((labels == null) ? 0 : labels.hashCode());
+	result = prime * result + ((location == null) ? 0 : location.hashCode());
+	result = prime * result + ((manufacturer == null) ? 0 : manufacturer.hashCode());
+	result = prime * result + ((maxQuantityLevel == null) ? 0 : maxQuantityLevel.hashCode());
+	result = prime * result + ((minQuantityLevel == null) ? 0 : minQuantityLevel.hashCode());
+	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	result = prime * result + ((reference == null) ? 0 : reference.hashCode());
+	result = prime * result + ((sellingPrice == null) ? 0 : sellingPrice.hashCode());
+	result = prime * result + ((showInCatalogue == null) ? 0 : showInCatalogue.hashCode());
+	result = prime * result + ((sku == null) ? 0 : sku.hashCode());
+	result = prime * result + ((storageCost == null) ? 0 : storageCost.hashCode());
+	result = prime * result + ((supplier == null) ? 0 : supplier.hashCode());
+	result = prime * result + ((taxCategory == null) ? 0 : taxCategory.hashCode());
+	result = prime * result + ((unit == null) ? 0 : unit.hashCode());
+	return result;
+}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Product {\n");
-    
-    sb.append("    auxilaryLineItems: ").append(toIndentedString(auxilaryLineItems)).append("\n");
-    sb.append("    brand: ").append(toIndentedString(brand)).append("\n");
-    sb.append("    buyPrice: ").append(toIndentedString(buyPrice)).append("\n");
-    sb.append("    category: ").append(toIndentedString(category)).append("\n");
-    sb.append("    comboLineItems: ").append(toIndentedString(comboLineItems)).append("\n");
-    sb.append("    discount: ").append(toIndentedString(discount)).append("\n");
-    sb.append("    iDPcode: ").append(toIndentedString(iDPcode)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
-    sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
-    sb.append("    isAuxilaryItem: ").append(toIndentedString(isAuxilaryItem)).append("\n");
-    sb.append("    isServiceItem: ").append(toIndentedString(isServiceItem)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    location: ").append(toIndentedString(location)).append("\n");
-    sb.append("    manufacturer: ").append(toIndentedString(manufacturer)).append("\n");
-    sb.append("    maxQuantityLevel: ").append(toIndentedString(maxQuantityLevel)).append("\n");
-    sb.append("    minQuantityLevel: ").append(toIndentedString(minQuantityLevel)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
-    sb.append("    sellingPrice: ").append(toIndentedString(sellingPrice)).append("\n");
-    sb.append("    showInCatalogue: ").append(toIndentedString(showInCatalogue)).append("\n");
-    sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
-    sb.append("    storageCost: ").append(toIndentedString(storageCost)).append("\n");
-    sb.append("    supplier: ").append(toIndentedString(supplier)).append("\n");
-    sb.append("    taxCategory: ").append(toIndentedString(taxCategory)).append("\n");
-    sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Product other = (Product) obj;
+	if (auxilaryLineItems == null) {
+		if (other.auxilaryLineItems != null)
+			return false;
+	} else if (!auxilaryLineItems.equals(other.auxilaryLineItems))
+		return false;
+	if (brand == null) {
+		if (other.brand != null)
+			return false;
+	} else if (!brand.equals(other.brand))
+		return false;
+	if (buyPrice == null) {
+		if (other.buyPrice != null)
+			return false;
+	} else if (!buyPrice.equals(other.buyPrice))
+		return false;
+	if (category == null) {
+		if (other.category != null)
+			return false;
+	} else if (!category.equals(other.category))
+		return false;
+	if (comboLineItems == null) {
+		if (other.comboLineItems != null)
+			return false;
+	} else if (!comboLineItems.equals(other.comboLineItems))
+		return false;
+	if (discount == null) {
+		if (other.discount != null)
+			return false;
+	} else if (!discount.equals(other.discount))
+		return false;
+	if (iDPcode == null) {
+		if (other.iDPcode != null)
+			return false;
+	} else if (!iDPcode.equals(other.iDPcode))
+		return false;
+	if (id == null) {
+		if (other.id != null)
+			return false;
+	} else if (!id.equals(other.id))
+		return false;
+	if (!Arrays.equals(image, other.image))
+		return false;
+	if (imageContentType == null) {
+		if (other.imageContentType != null)
+			return false;
+	} else if (!imageContentType.equals(other.imageContentType))
+		return false;
+	if (imageLink == null) {
+		if (other.imageLink != null)
+			return false;
+	} else if (!imageLink.equals(other.imageLink))
+		return false;
+	if (isActive == null) {
+		if (other.isActive != null)
+			return false;
+	} else if (!isActive.equals(other.isActive))
+		return false;
+	if (isAuxilaryItem == null) {
+		if (other.isAuxilaryItem != null)
+			return false;
+	} else if (!isAuxilaryItem.equals(other.isAuxilaryItem))
+		return false;
+	if (isServiceItem == null) {
+		if (other.isServiceItem != null)
+			return false;
+	} else if (!isServiceItem.equals(other.isServiceItem))
+		return false;
+	if (labels == null) {
+		if (other.labels != null)
+			return false;
+	} else if (!labels.equals(other.labels))
+		return false;
+	if (location == null) {
+		if (other.location != null)
+			return false;
+	} else if (!location.equals(other.location))
+		return false;
+	if (manufacturer == null) {
+		if (other.manufacturer != null)
+			return false;
+	} else if (!manufacturer.equals(other.manufacturer))
+		return false;
+	if (maxQuantityLevel == null) {
+		if (other.maxQuantityLevel != null)
+			return false;
+	} else if (!maxQuantityLevel.equals(other.maxQuantityLevel))
+		return false;
+	if (minQuantityLevel == null) {
+		if (other.minQuantityLevel != null)
+			return false;
+	} else if (!minQuantityLevel.equals(other.minQuantityLevel))
+		return false;
+	if (name == null) {
+		if (other.name != null)
+			return false;
+	} else if (!name.equals(other.name))
+		return false;
+	if (reference == null) {
+		if (other.reference != null)
+			return false;
+	} else if (!reference.equals(other.reference))
+		return false;
+	if (sellingPrice == null) {
+		if (other.sellingPrice != null)
+			return false;
+	} else if (!sellingPrice.equals(other.sellingPrice))
+		return false;
+	if (showInCatalogue == null) {
+		if (other.showInCatalogue != null)
+			return false;
+	} else if (!showInCatalogue.equals(other.showInCatalogue))
+		return false;
+	if (sku == null) {
+		if (other.sku != null)
+			return false;
+	} else if (!sku.equals(other.sku))
+		return false;
+	if (storageCost == null) {
+		if (other.storageCost != null)
+			return false;
+	} else if (!storageCost.equals(other.storageCost))
+		return false;
+	if (supplier == null) {
+		if (other.supplier != null)
+			return false;
+	} else if (!supplier.equals(other.supplier))
+		return false;
+	if (taxCategory == null) {
+		if (other.taxCategory != null)
+			return false;
+	} else if (!taxCategory.equals(other.taxCategory))
+		return false;
+	if (unit == null) {
+		if (other.unit != null)
+			return false;
+	} else if (!unit.equals(other.unit))
+		return false;
+	return true;
+}
 
-  /**
+/**
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */

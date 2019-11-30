@@ -87,7 +87,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		if (findProducts(pageable) == null) {
 			throw new BadRequestAlertException("NO products exist", "Product", "no products");
 		}
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("iDPcode", storeId))
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("iDPcode.keyword", storeId))
 				.withSort(SortBuilders.fieldSort("id").order(SortOrder.DESC)).withPageable(pageable).build();
 
 		return elasticsearchOperations.queryForPage(searchQuery, Product.class);
@@ -452,7 +452,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	@Override
 	public Page<Category> findAllCategories(String iDPcode, Pageable pageable) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder()
-				.withQuery(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("iDPcode", iDPcode))).build();
+				.withQuery(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("iDPcode.keyword", iDPcode))).build();
 		return elasticsearchOperations.queryForPage(searchQuery, Category.class);
 	}
 
