@@ -89,7 +89,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		}
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("iDPcode.keyword", storeId))
 				.withSort(SortBuilders.fieldSort("id").order(SortOrder.DESC)).withPageable(pageable).build();
-
+		System.out.println("PPP"+elasticsearchOperations.queryForPage(searchQuery, Product.class).getContent().get(0));
 		return elasticsearchOperations.queryForPage(searchQuery, Product.class);
 	}
 	
