@@ -87,9 +87,10 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		if (findProducts(pageable) == null) {
 			throw new BadRequestAlertException("NO products exist", "Product", "no products");
 		}
-		StringQuery stringQuery = new StringQuery(QueryBuilders.termQuery("iDPcode.keyword", storeId).toString());
-		System.out.println("PPP"+
-		elasticsearchOperations.queryForObject(stringQuery, Product.class).getImageLink());
+		SearchQuery stringQuery = new  NativeSearchQueryBuilder().withQuery(QueryBuilders.termQuery("iDPcode.keyword", storeId)).build();
+		Product p=elasticsearchOperations.queryForPage(stringQuery, Product.class).getContent().get(0);
+		System.out.println("PPP"+p.getImageLink());
+		
 		//System.out.println("PPP"+elasticsearchOperations.queryForPage(searchQuery, Product.class).getContent().get(0));
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("iDPcode.keyword", storeId))
 				.withSort(SortBuilders.fieldSort("id").order(SortOrder.DESC)).withPageable(pageable).build();
