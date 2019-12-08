@@ -384,6 +384,15 @@ public class QueryResource {
 		PageImpl<SaleAggregate> res = new PageImpl<SaleAggregate>(sales);
 		return ResponseEntity.ok().body(res);
 	}
+	
+	@GetMapping("/printSale/{saleId}/{idpCode}")
+	public ResponseEntity<PdfDTO> printSale(@PathVariable Long saleId,@PathVariable String idpCode) {
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.saleResourceApi.printSaleUsingGET(idpCode, saleId).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
+		
+	}
 
 	//////////////////////////
 
