@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.diviso.graeshoppe.client.sale.domain.Sale;
-import com.diviso.graeshoppe.client.sale.domain.TicketLine;
+import com.diviso.graeshoppe.client.sale.model.Sale;
+import com.diviso.graeshoppe.client.sale.model.TicketLine;
 
 public interface SaleQueryService {
 

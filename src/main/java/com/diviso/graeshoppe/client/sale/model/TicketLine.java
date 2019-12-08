@@ -1,19 +1,5 @@
- /*
- * Copyright 2002-2016 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.diviso.graeshoppe.client.sale.domain;
+package com.diviso.graeshoppe.client.sale.model;
+
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -21,28 +7,26 @@ import java.util.Objects;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
- * TODO Provide a detailed description here 
- * @author MayaSanjeev
- * mayabytatech, maya.k.k@lxisoft.com
+ * A TicketLine.
  */
+
 @Document(indexName = "ticketline")
 public class TicketLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
-   
+    
+
     private Long id;
 
-    private Long productId;
+
+    private String productName;
 
 
     private Integer quantity;
 
-
     private Double price;
 
- 
     private Double total;
-
 
     private Sale sale;
 
@@ -55,17 +39,17 @@ public class TicketLine implements Serializable {
         this.id = id;
     }
 
-    public Long getProductId() {
-        return productId;
+    public String getProductName() {
+        return productName;
     }
 
-    public TicketLine productId(Long productId) {
-        this.productId = productId;
+    public TicketLine productName(String productName) {
+        this.productName = productName;
         return this;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Integer getQuantity() {
@@ -99,12 +83,12 @@ public class TicketLine implements Serializable {
     }
 
     public TicketLine total(Double total) {
-        this.total =  price*quantity;
+        this.total = total;
         return this;
     }
 
     public void setTotal(Double total) {
-        this.total = price*quantity;
+        this.total = total;
     }
 
     public Sale getSale() {
@@ -145,11 +129,10 @@ public class TicketLine implements Serializable {
     public String toString() {
         return "TicketLine{" +
             "id=" + getId() +
-            ", productId=" + getProductId() +
+            ", productName='" + getProductName() + "'" +
             ", quantity=" + getQuantity() +
             ", price=" + getPrice() +
             ", total=" + getTotal() +
             "}";
     }
 }
-

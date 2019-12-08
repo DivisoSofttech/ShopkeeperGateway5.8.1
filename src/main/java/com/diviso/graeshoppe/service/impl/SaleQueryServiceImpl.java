@@ -16,8 +16,8 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
-import com.diviso.graeshoppe.client.sale.domain.Sale;
-import com.diviso.graeshoppe.client.sale.domain.TicketLine;
+import com.diviso.graeshoppe.client.sale.model.Sale;
+import com.diviso.graeshoppe.client.sale.model.TicketLine;
 import com.diviso.graeshoppe.service.SaleQueryService;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 
@@ -42,7 +42,7 @@ public class SaleQueryServiceImpl implements SaleQueryService {
 	
 	@Override
 	public Page<Sale> findSales(String storeId, Pageable pageable) {
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("userId", storeId))
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("idpCode", storeId))
 				.withSort(SortBuilders.fieldSort("date").order(SortOrder.DESC)).withPageable(pageable).build();
 		return elasticsearchOperations.queryForPage(searchQuery, Sale.class);
 
