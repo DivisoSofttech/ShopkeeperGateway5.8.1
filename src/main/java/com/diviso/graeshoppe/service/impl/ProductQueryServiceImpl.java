@@ -460,6 +460,8 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 				.withQuery(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("iDPcode.keyword", iDPcode))).build();
 		return elasticsearchOperations.queryForPage(searchQuery, Category.class);
 	}
+	
+	
 
 }
 

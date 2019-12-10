@@ -314,15 +314,20 @@ public class QueryResource {
 	}
 
 	@GetMapping("/findAllCategoriesWithOutImage/{iDPcode}")
-	public ResponseEntity<List<CategoryDTO>> findAllCategoriesWithOutImage(@PathVariable String iDPcode,
+	public ResponseEntity<Page<CategoryDTO>> findAllCategoriesWithOutImage(@PathVariable String iDPcode,
 			Pageable pageable) {
+		
+		List<CategoryDTO> categoryDTO=categoryResourceApi
+		.listToDToUsingPOST(productQueryService.findAllCategories(iDPcode, pageable).getContent()).getBody()
+		.stream().map(c -> {
+			c.setImage(null);
+			return c;
+		}).collect(Collectors.toList());
+		
+	
+		
 		return ResponseEntity.ok()
-				.body(categoryResourceApi
-						.listToDToUsingPOST(productQueryService.findAllCategories(iDPcode, pageable).getContent()).getBody()
-						.stream().map(c -> {
-							c.setImage(null);
-							return c;
-						}).collect(Collectors.toList()));
+				.body(new PageImpl(categoryDTO,pageable,categoryDTO.size()));
 	}
 
 	@PutMapping("/categories")
