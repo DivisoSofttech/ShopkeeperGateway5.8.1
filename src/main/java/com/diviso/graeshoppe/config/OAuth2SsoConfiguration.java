@@ -86,3 +86,4 @@ public class OAuth2SsoConfiguration extends WebSecurityConfigurerAdapter {
     }
 }
 
+

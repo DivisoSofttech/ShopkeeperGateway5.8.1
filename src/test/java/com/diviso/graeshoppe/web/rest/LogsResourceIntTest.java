@@ -1,6 +1,6 @@
 package com.diviso.graeshoppe.web.rest;
 
-import com.diviso.graeshoppe.GraeshoppegatewayApp;
+import com.diviso.graeshoppe.ShopkeepergatewayApp;
 import com.diviso.graeshoppe.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = GraeshoppegatewayApp.class)
+@SpringBootTest(classes = ShopkeepergatewayApp.class)
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

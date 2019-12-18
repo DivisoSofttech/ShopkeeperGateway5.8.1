@@ -1,7 +1,7 @@
 package com.diviso.graeshoppe.service.mapper;
 
 
-import com.diviso.graeshoppe.GraeshoppegatewayApp;
+import com.diviso.graeshoppe.ShopkeepergatewayApp;
 import com.diviso.graeshoppe.domain.User;
 import com.diviso.graeshoppe.service.dto.UserDTO;
 import org.junit.Before;
@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see UserMapper
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = GraeshoppegatewayApp.class)
+@SpringBootTest(classes = ShopkeepergatewayApp.class)
 public class UserMapperTest {
 
     private static final String DEFAULT_LOGIN = "johndoe";

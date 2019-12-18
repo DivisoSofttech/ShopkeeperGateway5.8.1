@@ -4,13 +4,13 @@ package com.diviso.graeshoppe.client.sale.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+
 
 /**
  * A TicketLine.
  */
 
-@Document(indexName = "ticketline")
+
 public class TicketLine implements Serializable {
 
     private static final long serialVersionUID = 1L;

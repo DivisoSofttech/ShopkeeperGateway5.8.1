@@ -1,5 +1,4 @@
 package com.diviso.graeshoppe.config;
-
 import java.io.InputStream;
 
 import org.springframework.beans.factory.annotation.Value;

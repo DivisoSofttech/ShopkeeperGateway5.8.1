@@ -2,19 +2,19 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbDateMomentAdapter } from './util/datepicker-adapter';
-import { GraeshoppegatewaySharedLibsModule, GraeshoppegatewaySharedCommonModule, HasAnyAuthorityDirective } from './';
+import { ShopkeepergatewaySharedLibsModule, ShopkeepergatewaySharedCommonModule, HasAnyAuthorityDirective } from './';
 
 @NgModule({
-    imports: [GraeshoppegatewaySharedLibsModule, GraeshoppegatewaySharedCommonModule],
+    imports: [ShopkeepergatewaySharedLibsModule, ShopkeepergatewaySharedCommonModule],
     declarations: [HasAnyAuthorityDirective],
     providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
-    exports: [GraeshoppegatewaySharedCommonModule, HasAnyAuthorityDirective],
+    exports: [ShopkeepergatewaySharedCommonModule, HasAnyAuthorityDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class GraeshoppegatewaySharedModule {
+export class ShopkeepergatewaySharedModule {
     static forRoot() {
         return {
-            ngModule: GraeshoppegatewaySharedModule
+            ngModule: ShopkeepergatewaySharedModule
         };
     }
 }

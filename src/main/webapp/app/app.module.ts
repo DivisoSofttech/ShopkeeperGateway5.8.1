@@ -10,14 +10,14 @@ import { NgJhipsterModule } from 'ng-jhipster';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { GraeshoppegatewaySharedModule } from 'app/shared';
-import { GraeshoppegatewayCoreModule } from 'app/core';
-import { GraeshoppegatewayAppRoutingModule } from './app-routing.module';
-import { GraeshoppegatewayHomeModule } from './home/home.module';
-import { GraeshoppegatewayEntityModule } from './entities/entity.module';
+import { ShopkeepergatewaySharedModule } from 'app/shared';
+import { ShopkeepergatewayCoreModule } from 'app/core';
+import { ShopkeepergatewayAppRoutingModule } from './app-routing.module';
+import { ShopkeepergatewayHomeModule } from './home/home.module';
+import { ShopkeepergatewayEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
 @NgModule({
     imports: [
@@ -26,16 +26,18 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         NgJhipsterModule.forRoot({
             // set below to true to make alerts look like toast
             alertAsToast: false,
-            alertTimeout: 5000
+            alertTimeout: 5000,
+            i18nEnabled: true,
+            defaultI18nLang: 'en'
         }),
-        GraeshoppegatewaySharedModule.forRoot(),
-        GraeshoppegatewayCoreModule,
-        GraeshoppegatewayHomeModule,
+        ShopkeepergatewaySharedModule.forRoot(),
+        ShopkeepergatewayCoreModule,
+        ShopkeepergatewayHomeModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
-        GraeshoppegatewayEntityModule,
-        GraeshoppegatewayAppRoutingModule
+        ShopkeepergatewayEntityModule,
+        ShopkeepergatewayAppRoutingModule
     ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
@@ -55,7 +57,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     ],
     bootstrap: [JhiMainComponent]
 })
-export class GraeshoppegatewayAppModule {
+export class ShopkeepergatewayAppModule {
     constructor(private dpConfig: NgbDatepickerConfig) {
         this.dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
     }

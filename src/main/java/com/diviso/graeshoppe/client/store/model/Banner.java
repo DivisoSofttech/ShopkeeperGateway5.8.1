@@ -1,23 +1,22 @@
 package com.diviso.graeshoppe.client.store.model;
 
 import java.util.Objects;
-import com.diviso.graeshoppe.client.store.model.Store;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Banner
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-27T14:30:41.015+05:30[Asia/Kolkata]")
-@Document(indexName = "banner")
+
 public class Banner   {
   @JsonProperty("file")
   private byte[] file = null;
@@ -45,7 +44,7 @@ public class Banner   {
   **/
   @ApiModelProperty(value = "")
 
-@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
+//@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
   public byte[] getFile() {
     return file;
   }

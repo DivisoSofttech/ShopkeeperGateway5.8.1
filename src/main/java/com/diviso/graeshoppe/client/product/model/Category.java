@@ -16,7 +16,7 @@ import java.util.List;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
+
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.Column;
@@ -33,174 +33,172 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-10-28T15:55:43.394+05:30[Asia/Kolkata]")
-@Document(indexName = "category")
-public class Category   {
-	  private static final long serialVersionUID = 1L;
-	    
 
-	    private Long id;
+public class Category{
+private Long id;
 
-	    private String iDPcode;
 
-	    private String name;
+private String iDPcode;
 
-	    private byte[] image;
 
-	    private String imageContentType;
+private String name;
 
-	    private String imageLink;
+private byte[] image;
 
-	    private String description;
 
-	    @OneToMany(mappedBy = "category")
-	    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-	    private Set<Product> products = new HashSet<>();
-	    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-	    public Long getId() {
-	        return id;
-	    }
+private String imageContentType;
 
-	    public void setId(Long id) {
-	        this.id = id;
-	    }
 
-	    public String getiDPcode() {
-	        return iDPcode;
-	    }
+private String imageLink;
 
-	    public Category iDPcode(String iDPcode) {
-	        this.iDPcode = iDPcode;
-	        return this;
-	    }
 
-	    public void setiDPcode(String iDPcode) {
-	        this.iDPcode = iDPcode;
-	    }
+private String description;
 
-	    public String getName() {
-	        return name;
-	    }
 
-	    public Category name(String name) {
-	        this.name = name;
-	        return this;
-	    }
+private Set<Product> products = new HashSet<>();
+// jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+public Long getId() {
+    return id;
+}
 
-	    public void setName(String name) {
-	        this.name = name;
-	    }
+public void setId(Long id) {
+    this.id = id;
+}
 
-	    @ApiModelProperty(value = "")
+public String getiDPcode() {
+    return iDPcode;
+}
 
-	    @Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
-	      public byte[] getImage() {
-	        return image;
-	      }
+public Category iDPcode(String iDPcode) {
+    this.iDPcode = iDPcode;
+    return this;
+}
 
-	    public Category image(byte[] image) {
-	        this.image = image;
-	        return this;
-	    }
+public void setiDPcode(String iDPcode) {
+    this.iDPcode = iDPcode;
+}
 
-	    public void setImage(byte[] image) {
-	        this.image = image;
-	    }
+public String getName() {
+    return name;
+}
 
-	    public String getImageContentType() {
-	        return imageContentType;
-	    }
+public Category name(String name) {
+    this.name = name;
+    return this;
+}
 
-	    public Category imageContentType(String imageContentType) {
-	        this.imageContentType = imageContentType;
-	        return this;
-	    }
+public void setName(String name) {
+    this.name = name;
+}
 
-	    public void setImageContentType(String imageContentType) {
-	        this.imageContentType = imageContentType;
-	    }
+public byte[] getImage() {
+    return image;
+}
 
-	    public String getImageLink() {
-	        return imageLink;
-	    }
+public Category image(byte[] image) {
+    this.image = image;
+    return this;
+}
 
-	    public Category imageLink(String imageLink) {
-	        this.imageLink = imageLink;
-	        return this;
-	    }
+public void setImage(byte[] image) {
+    this.image = image;
+}
 
-	    public void setImageLink(String imageLink) {
-	        this.imageLink = imageLink;
-	    }
+public String getImageContentType() {
+    return imageContentType;
+}
 
-	    public String getDescription() {
-	        return description;
-	    }
+public Category imageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+    return this;
+}
 
-	    public Category description(String description) {
-	        this.description = description;
-	        return this;
-	    }
+public void setImageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+}
 
-	    public void setDescription(String description) {
-	        this.description = description;
-	    }
+public String getImageLink() {
+    return imageLink;
+}
 
-	    public Set<Product> getProducts() {
-	        return products;
-	    }
+public Category imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+}
 
-	    public Category products(Set<Product> products) {
-	        this.products = products;
-	        return this;
-	    }
+public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
+}
 
-	    public Category addProducts(Product product) {
-	        this.products.add(product);
-	        product.setCategory(this);
-	        return this;
-	    }
+public String getDescription() {
+    return description;
+}
 
-	    public Category removeProducts(Product product) {
-	        this.products.remove(product);
-	        product.setCategory(null);
-	        return this;
-	    }
+public Category description(String description) {
+    this.description = description;
+    return this;
+}
 
-	    public void setProducts(Set<Product> products) {
-	        this.products = products;
-	    }
-	    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+public void setDescription(String description) {
+    this.description = description;
+}
 
-	    @Override
-	    public boolean equals(Object o) {
-	        if (this == o) {
-	            return true;
-	        }
-	        if (o == null || getClass() != o.getClass()) {
-	            return false;
-	        }
-	        Category category = (Category) o;
-	        if (category.getId() == null || getId() == null) {
-	            return false;
-	        }
-	        return Objects.equals(getId(), category.getId());
-	    }
+public Set<Product> getProducts() {
+    return products;
+}
 
-	    @Override
-	    public int hashCode() {
-	        return Objects.hashCode(getId());
-	    }
+public Category products(Set<Product> products) {
+    this.products = products;
+    return this;
+}
 
-	    @Override
-	    public String toString() {
-	        return "Category{" +
-	            "id=" + getId() +
-	            ", iDPcode='" + getiDPcode() + "'" +
-	            ", name='" + getName() + "'" +
-	            ", image='" + getImage() + "'" +
-	            ", imageContentType='" + getImageContentType() + "'" +
-	            ", imageLink='" + getImageLink() + "'" +
-	            ", description='" + getDescription() + "'" +
-	            "}";
-	    }
-	}
+public Category addProducts(Product product) {
+    this.products.add(product);
+    product.setCategory(this);
+    return this;
+}
+
+public Category removeProducts(Product product) {
+    this.products.remove(product);
+    product.setCategory(null);
+    return this;
+}
+
+public void setProducts(Set<Product> products) {
+    this.products = products;
+}
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+        return false;
+    }
+    Category category = (Category) o;
+    if (category.getId() == null || getId() == null) {
+        return false;
+    }
+    return Objects.equals(getId(), category.getId());
+}
+
+@Override
+public int hashCode() {
+    return Objects.hashCode(getId());
+}
+
+@Override
+public String toString() {
+    return "Category{" +
+        "id=" + getId() +
+        ", iDPcode='" + getiDPcode() + "'" +
+        ", name='" + getName() + "'" +
+        ", image='" + getImage() + "'" +
+        ", imageContentType='" + getImageContentType() + "'" +
+        ", imageLink='" + getImageLink() + "'" +
+        ", description='" + getDescription() + "'" +
+        "}";
+}
+}

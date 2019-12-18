@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { GraeshoppegatewaySharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent } from './';
+import { ShopkeepergatewaySharedLibsModule, FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent } from './';
 
 @NgModule({
-    imports: [GraeshoppegatewaySharedLibsModule],
-    declarations: [JhiAlertComponent, JhiAlertErrorComponent],
-    exports: [GraeshoppegatewaySharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent]
+    imports: [ShopkeepergatewaySharedLibsModule],
+    declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent],
+    exports: [ShopkeepergatewaySharedLibsModule, FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent]
 })
-export class GraeshoppegatewaySharedCommonModule {}
+export class ShopkeepergatewaySharedCommonModule {}

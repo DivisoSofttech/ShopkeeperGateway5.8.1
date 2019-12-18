@@ -24,8 +24,8 @@ eureka:
         instance-info-replication-interval-seconds: 10
         registry-fetch-interval-seconds: 10
     instance:
-        appname: graeshoppegateway
-        instanceId: graeshoppegateway:${spring.application.instance-id:${random.value}}
+        appname: shopkeepergateway
+        instanceId: shopkeepergateway:${spring.application.instance-id:${random.value}}
         lease-renewal-interval-in-seconds: 5
         lease-expiration-duration-in-seconds: 10
         status-page-url-path: ${management.endpoints.web.base-path}/info
@@ -105,9 +105,9 @@ management:
 
 spring:
     autoconfigure:
-        exclude: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
+        exclude: org.springframework.boot.actuate.autoconfigure.metrics.jdbc.DataSourcePoolMetricsAutoConfiguration
     application:
-        name: graeshoppegateway
+        name: shopkeepergateway
     jpa:
         open-in-view: false
         properties:
@@ -186,11 +186,11 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: graeshoppegateway@localhost
+        from: shopkeepergateway@localhost
     swagger:
         default-include-pattern: /api/.*
-        title: graeshoppegateway API
-        description: graeshoppegateway API documentation
+        title: shopkeepergateway API
+        description: shopkeepergateway API documentation
         version: 0.0.1
         terms-of-service-url:
         contact-name:
@@ -223,7 +223,7 @@ sale:
    url: dev.ci1.divisosofttech.com:8086
    
 store:
-   url: dev.ci1.divisosofttech.com:8071
+   url: dev.ci1.divisosofttech.com:8071		# 35.238.35.19:8071
    
 report:
    url: dev.ci2.divisosofttech.com:8077

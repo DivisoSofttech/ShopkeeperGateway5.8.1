@@ -1,6 +1,6 @@
 package com.diviso.graeshoppe.web.rest;
 
-import com.diviso.graeshoppe.GraeshoppegatewayApp;
+import com.diviso.graeshoppe.ShopkeepergatewayApp;
 import com.diviso.graeshoppe.config.audit.AuditEventConverter;
 import com.diviso.graeshoppe.domain.PersistentAuditEvent;
 import com.diviso.graeshoppe.repository.PersistenceAuditEventRepository;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = GraeshoppegatewayApp.class)
+@SpringBootTest(classes = ShopkeepergatewayApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

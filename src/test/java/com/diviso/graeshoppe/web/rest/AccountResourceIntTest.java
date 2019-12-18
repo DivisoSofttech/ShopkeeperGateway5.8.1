@@ -1,6 +1,6 @@
 package com.diviso.graeshoppe.web.rest;
 
-import com.diviso.graeshoppe.GraeshoppegatewayApp;
+import com.diviso.graeshoppe.ShopkeepergatewayApp;
 import com.diviso.graeshoppe.domain.Authority;
 import com.diviso.graeshoppe.domain.User;
 import com.diviso.graeshoppe.repository.UserRepository;
@@ -38,7 +38,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @see AccountResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = GraeshoppegatewayApp.class)
+@SpringBootTest(classes = ShopkeepergatewayApp.class)
 public class AccountResourceIntTest{
 
     @Autowired

@@ -11,7 +11,7 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
             [
                 {
                     path: 'admin',
-                    loadChildren: './admin/admin.module#GraeshoppegatewayAdminModule'
+                    loadChildren: './admin/admin.module#ShopkeepergatewayAdminModule'
                 },
                 ...LAYOUT_ROUTES
             ],
@@ -20,4 +20,4 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
     ],
     exports: [RouterModule]
 })
-export class GraeshoppegatewayAppRoutingModule {}
+export class ShopkeepergatewayAppRoutingModule {}

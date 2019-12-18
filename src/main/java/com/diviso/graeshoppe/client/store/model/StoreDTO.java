@@ -1,16 +1,17 @@
 package com.diviso.graeshoppe.client.store.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
-import org.springframework.data.elasticsearch.annotations.GeoPointField;
-import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * StoreDTO
@@ -43,7 +44,6 @@ public class StoreDTO   {
   @JsonProperty("info")
   private String info = null;
 
-  @GeoPointField
   @JsonProperty("location")
   private String location = null;
 
@@ -175,7 +175,7 @@ public class StoreDTO   {
   **/
   @ApiModelProperty(value = "")
 
-@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
+//@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
   public byte[] getImage() {
     return image;
   }

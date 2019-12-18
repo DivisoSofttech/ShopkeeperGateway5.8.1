@@ -1,36 +1,26 @@
 package com.diviso.graeshoppe.client.store.model;
 
-import java.util.Objects;
-import com.diviso.graeshoppe.client.store.model.Banner;
-import com.diviso.graeshoppe.client.store.model.DeliveryInfo;
-import com.diviso.graeshoppe.client.store.model.PreOrderSettings;
-import com.diviso.graeshoppe.client.store.model.Propreitor;
-import com.diviso.graeshoppe.client.store.model.Review;
-import com.diviso.graeshoppe.client.store.model.StoreAddress;
-import com.diviso.graeshoppe.client.store.model.StoreSettings;
-import com.diviso.graeshoppe.client.store.model.StoreType;
-import com.diviso.graeshoppe.client.store.model.UserRating;
-import com.diviso.graeshoppe.client.store.model.UserRatingReview;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.GeoPointField;
-import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Store
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-27T14:30:41.015+05:30[Asia/Kolkata]")
-@Document(indexName = "store")
+
 public class Store   {
   @JsonProperty("banners")
   @Valid
@@ -64,7 +54,6 @@ public class Store   {
   @JsonProperty("info")
   private String info = null;
 
-  @GeoPointField
   @JsonProperty("location")
   private String location = null;
 
@@ -270,7 +259,7 @@ public class Store   {
   **/
   @ApiModelProperty(value = "")
 
-@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
+//@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
   public byte[] getImage() {
     return image;
   }

@@ -17,17 +17,26 @@ eureka:
     client:
         enabled: false
     instance:
-        appname: graeshoppegateway
-        instanceId: graeshoppegateway:${spring.application.instance-id:${random.value}}
+        appname: shopkeepergateway
+        instanceId: shopkeepergateway:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
-        name: graeshoppegateway
+        name: shopkeepergateway
     cache:
         type: simple
+    cloud:
+        stream:
+            kafka:
+                binder:
+                    brokers: localhost
+                    zk-nodes: localhost
+            bindings:
+                output:
+                    destination: topic-jhipster
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:graeshoppegateway;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:mem:shopkeepergateway;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
         name:
         username:
         password:
@@ -51,11 +60,6 @@ spring:
             hibernate.generate_statistics: false
             hibernate.hbm2ddl.auto: validate
             hibernate.jdbc.time_zone: UTC
-    data:
-        elasticsearch:
-            properties:
-                path:
-                    home: target/elasticsearch
     liquibase:
         contexts: test
     mail:
