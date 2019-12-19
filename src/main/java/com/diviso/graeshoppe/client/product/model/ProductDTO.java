@@ -26,7 +26,7 @@ public class ProductDTO   {
   @JsonProperty("categoryId")
   private Long categoryId = null;
   
-	@JsonProperty("imagelink")
+	@JsonProperty("imageLink")
 	private String imageLink = null;
 
   public String getImageLink() {
