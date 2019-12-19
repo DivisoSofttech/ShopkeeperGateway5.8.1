@@ -197,7 +197,7 @@ public class QueryResource {
 	@GetMapping("/findAllProductByNameAndStoreId/{name}/{storeId}") // 26 11 19 it,s working
 	public Page<Product> findAllProductByNameAndStoreId(@PathVariable String name, @PathVariable String storeId,
 			Pageable pageable) {
-		return productQueryService.findAllProductByNameAndStoreId(name, storeId, pageable);
+		return productQueryService.findAllProductByNameAndIdpCode(name, storeId, pageable);
 	}
 
 	/**

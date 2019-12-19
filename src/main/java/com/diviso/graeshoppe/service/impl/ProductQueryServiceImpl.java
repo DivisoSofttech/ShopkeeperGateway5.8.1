@@ -132,8 +132,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	
 	private Page<Product> findProductByCategoryId(Long categoryId, String storeId, Pageable pageable) {
 		log.debug("<<<<<<<<< findProductByCategoryId >>>>>>>>>", categoryId, storeId);
-		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
-				.filter(termQuery("categoryId", categoryId)).must(termQuery("storeId.keyword", storeId));
+		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("category.id", categoryId)) .must(QueryBuilders.termQuery("iDPcode.keyword", storeId));
 
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryDsl);
@@ -156,10 +155,9 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	 * 
 	 */
 	@Override
-	public Page<Product> findAllProductByNameAndStoreId(String name, String storeId, Pageable pageable) {
-		log.debug("<<<<<<<<<< findAllProductBySearchTerm >>>>>>>>>", name, storeId);
-		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
-				.filter(QueryBuilders.matchQuery("name", name)).must(QueryBuilders.matchQuery(storeId, storeId));
+	public Page<Product> findAllProductByNameAndIdpCode(String name, String storeId, Pageable pageable) {
+		log.debug("<<<<<<<<<< findAllProductByNameAndIdpCode >>>>>>>>>", name, storeId);
+		QueryBuilder queryDsl =QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("name",name).prefixLength(3)) .must(QueryBuilders.termQuery("iDPcode.keyword",storeId));
 
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryDsl);
