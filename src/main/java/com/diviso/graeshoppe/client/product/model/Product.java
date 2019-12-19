@@ -1,31 +1,12 @@
 package com.diviso.graeshoppe.client.product.model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.diviso.graeshoppe.client.product.model.AuxilaryLineItem;
-import com.diviso.graeshoppe.client.product.model.Brand;
-import com.diviso.graeshoppe.client.product.model.Category;
-import com.diviso.graeshoppe.client.product.model.ComboLineItem;
-import com.diviso.graeshoppe.client.product.model.Discount;
-import com.diviso.graeshoppe.client.product.model.Label;
-import com.diviso.graeshoppe.client.product.model.Location;
-import com.diviso.graeshoppe.client.product.model.Manufacturer;
-import com.diviso.graeshoppe.client.product.model.Supplier;
-import com.diviso.graeshoppe.client.product.model.TaxCategory;
-import com.diviso.graeshoppe.client.product.model.UOM;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import javax.persistence.Lob;
 
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * Product
@@ -34,83 +15,67 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-10-28T15:55:43.394+05:30[Asia/Kolkata]")
 
 public class Product   {
-   private Long id;
+	   private Long id;
 
-	    
 	    private String reference;
 
-	 
 	    private String name;
 
-	
 	    private Boolean showInCatalogue;
 
+	    @Lob
 	    private byte[] image;
 
-	 
+
 	    private String imageContentType;
 
-	
+
 	    private String imageLink;
 
-	  
+
 	    private Boolean isActive;
 
-	   
 	    private String sku;
 
-	  
 	    private String iDPcode;
 
-	   
 	    private Boolean isServiceItem;
 
-	   
 	    private Boolean isAuxilaryItem;
 
-	 
 	    private Double minQuantityLevel;
 
-	   
 	    private Double maxQuantityLevel;
 
-	 
 	    private Double storageCost;
 
-	  
 	    private Double sellingPrice;
 
-	  
 	    private Double buyPrice;
 
-	   
 	    private Set<AuxilaryLineItem> auxilaryLineItems = new HashSet<>();
-	  
+
 	    private Set<ComboLineItem> comboLineItems = new HashSet<>();
-	  
+
 	    private Set<Label> labels = new HashSet<>();
-	    
+
 	    private TaxCategory taxCategory;
 
-	   
+
 	    private UOM unit;
 
-	  
 	    private Location location;
 
-	   
+
 	    private Supplier supplier;
 
-	  
 	    private Manufacturer manufacturer;
 
-	   
+
 	    private Brand brand;
 
-	 
 	    private Discount discount;
 
-	   
 	    private Category category;
 
 	    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
