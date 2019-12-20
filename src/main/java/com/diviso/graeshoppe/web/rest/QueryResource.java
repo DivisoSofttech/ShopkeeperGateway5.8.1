@@ -833,10 +833,12 @@ public class QueryResource {
 		return reportQueryService.getCurrentStock(idpcode);
 
 	}
-	@GetMapping("/orderaggregator/{orderNumber}")
-	public ResponseEntity<com.diviso.graeshoppe.client.report.model.OrderAggregator> getOrderAggregator(@PathVariable String orderNumber) {
-		return reportQueryService.getOrderAggregator(orderNumber);
-	}
+	/*
+	 * @GetMapping("/orderaggregator/{orderNumber}") public
+	 * ResponseEntity<com.diviso.graeshoppe.client.report.model.OrderAggregator>
+	 * getOrderAggregator(@PathVariable String orderNumber) { return
+	 * reportQueryService.getOrderAggregator(orderNumber); }
+	 */
 
 
 	// ***********************Order related end Points*************************

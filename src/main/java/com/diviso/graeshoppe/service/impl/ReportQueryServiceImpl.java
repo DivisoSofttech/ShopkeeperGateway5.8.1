@@ -56,9 +56,8 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	ProductResourceApi productResourceApi;
 	@Autowired
 	StockCurrentResourceApi stockCurrentResourceApi;
-	@Autowired
-	private ReportResourceApi reportResourceApi;
 
+	
 	@Autowired
 	QueryResourceApi queryResourceApi;
 
@@ -225,34 +224,34 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	public ResponseEntity<byte[]> exportOrderDocket(String orderNumber) {
-		return reportResourceApi.getReportAsPdfUsingGET(orderNumber);
+		return queryResourceApi.getReportAsPdfUsingGET(orderNumber);
 
 	}
 
 	public ResponseEntity<PdfDTO> getOrderDocket(String orderNumber) {
 		PdfDTO pdf = new PdfDTO();
-		pdf.setPdf(this.reportResourceApi.getReportWithAuxAndComboAsPdfUsingGET(orderNumber).getBody());
+		pdf.setPdf(this.queryResourceApi.getReportWithAuxAndComboAsPdfUsingGET(orderNumber).getBody());
 		pdf.setContentType("application/pdf");
 		return ResponseEntity.ok().body(pdf);
 	}
 
 	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId) {
 		PdfDTO pdf = new PdfDTO();
-		pdf.setPdf(this.reportResourceApi.getReportSummaryAsPdfUsingGET(date, storeId).getBody());
+		pdf.setPdf(this.queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId).getBody());
 		pdf.setContentType("application/pdf");
 		return ResponseEntity.ok().body(pdf);
 	}
 
 	public ResponseEntity<ReportSummary> createReportSummary(String expectedDelivery, String storeName) {
-		return reportResourceApi.createReportSummaryUsingGET1(expectedDelivery, storeName);
+		return queryResourceApi.createReportSummaryUsingGET1(expectedDelivery, storeName);
 	}
 
-	@Override
-	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber) {
-
-		return queryResourceApi.getOrderAggregatorUsingGET(orderNumber);
-	}
-
+	/*
+	 * @Override public ResponseEntity<OrderAggregator> getOrderAggregator(String
+	 * orderNumber) {
+	 * 
+	 * return queryResourceApi.getOrderAggregatorUsingGET(orderNumber); }
+	 */
 	@Override
 	public Page<OrderLine> findOrderLineByOrderMasterId(Long orderMasterId, Pageable pageable) {
 		QueryBuilder queryBuilder = QueryBuilders.termQuery("orderMaster.id", orderMasterId);

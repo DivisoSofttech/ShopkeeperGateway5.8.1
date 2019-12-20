@@ -10,28 +10,34 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * OrderLineDTO
+ * TicketLineDTO
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T09:19:42.298+05:30[Asia/Kolkata]")
 
-public class OrderLineDTO   {
+public class TicketLineDTO   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("item")
-  private String item = null;
+  @JsonProperty("price")
+  private Double price = null;
 
-  @JsonProperty("orderMasterId")
-  private Long orderMasterId = null;
+  @JsonProperty("productId")
+  private Long productId = null;
+
+  @JsonProperty("productName")
+  private String productName = null;
 
   @JsonProperty("quantity")
   private Integer quantity = null;
 
+  @JsonProperty("saleId")
+  private Long saleId = null;
+
   @JsonProperty("total")
   private Double total = null;
 
-  public OrderLineDTO id(Long id) {
+  public TicketLineDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -51,47 +57,67 @@ public class OrderLineDTO   {
     this.id = id;
   }
 
-  public OrderLineDTO item(String item) {
-    this.item = item;
+  public TicketLineDTO price(Double price) {
+    this.price = price;
     return this;
   }
 
   /**
-   * Get item
-   * @return item
+   * Get price
+   * @return price
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getItem() {
-    return item;
+  public Double getPrice() {
+    return price;
   }
 
-  public void setItem(String item) {
-    this.item = item;
+  public void setPrice(Double price) {
+    this.price = price;
   }
 
-  public OrderLineDTO orderMasterId(Long orderMasterId) {
-    this.orderMasterId = orderMasterId;
+  public TicketLineDTO productId(Long productId) {
+    this.productId = productId;
     return this;
   }
 
   /**
-   * Get orderMasterId
-   * @return orderMasterId
+   * Get productId
+   * @return productId
   **/
   @ApiModelProperty(value = "")
 
 
-  public Long getOrderMasterId() {
-    return orderMasterId;
+  public Long getProductId() {
+    return productId;
   }
 
-  public void setOrderMasterId(Long orderMasterId) {
-    this.orderMasterId = orderMasterId;
+  public void setProductId(Long productId) {
+    this.productId = productId;
   }
 
-  public OrderLineDTO quantity(Integer quantity) {
+  public TicketLineDTO productName(String productName) {
+    this.productName = productName;
+    return this;
+  }
+
+  /**
+   * Get productName
+   * @return productName
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getProductName() {
+    return productName;
+  }
+
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
+
+  public TicketLineDTO quantity(Integer quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -111,7 +137,27 @@ public class OrderLineDTO   {
     this.quantity = quantity;
   }
 
-  public OrderLineDTO total(Double total) {
+  public TicketLineDTO saleId(Long saleId) {
+    this.saleId = saleId;
+    return this;
+  }
+
+  /**
+   * Get saleId
+   * @return saleId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getSaleId() {
+    return saleId;
+  }
+
+  public void setSaleId(Long saleId) {
+    this.saleId = saleId;
+  }
+
+  public TicketLineDTO total(Double total) {
     this.total = total;
     return this;
   }
@@ -140,28 +186,32 @@ public class OrderLineDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrderLineDTO orderLineDTO = (OrderLineDTO) o;
-    return Objects.equals(this.id, orderLineDTO.id) &&
-        Objects.equals(this.item, orderLineDTO.item) &&
-        Objects.equals(this.orderMasterId, orderLineDTO.orderMasterId) &&
-        Objects.equals(this.quantity, orderLineDTO.quantity) &&
-        Objects.equals(this.total, orderLineDTO.total);
+    TicketLineDTO ticketLineDTO = (TicketLineDTO) o;
+    return Objects.equals(this.id, ticketLineDTO.id) &&
+        Objects.equals(this.price, ticketLineDTO.price) &&
+        Objects.equals(this.productId, ticketLineDTO.productId) &&
+        Objects.equals(this.productName, ticketLineDTO.productName) &&
+        Objects.equals(this.quantity, ticketLineDTO.quantity) &&
+        Objects.equals(this.saleId, ticketLineDTO.saleId) &&
+        Objects.equals(this.total, ticketLineDTO.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, item, orderMasterId, quantity, total);
+    return Objects.hash(id, price, productId, productName, quantity, saleId, total);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrderLineDTO {\n");
+    sb.append("class TicketLineDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    item: ").append(toIndentedString(item)).append("\n");
-    sb.append("    orderMasterId: ").append(toIndentedString(orderMasterId)).append("\n");
+    sb.append("    price: ").append(toIndentedString(price)).append("\n");
+    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
+    sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
+    sb.append("    saleId: ").append(toIndentedString(saleId)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
