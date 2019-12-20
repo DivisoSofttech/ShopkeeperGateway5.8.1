@@ -35,5 +35,5 @@ public interface ReportQueryService {
 	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId);
 	public ResponseEntity<ReportSummary> createReportSummary( String expectedDelivery, String storeName);
 
-	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber);
+//	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber);
 }

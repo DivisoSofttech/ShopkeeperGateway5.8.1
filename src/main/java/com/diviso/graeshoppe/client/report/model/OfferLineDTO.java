@@ -10,28 +10,45 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * OrderLineDTO
+ * OfferLineDTO
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T09:19:42.298+05:30[Asia/Kolkata]")
 
-public class OrderLineDTO   {
+public class OfferLineDTO   {
+  @JsonProperty("discountAmount")
+  private Double discountAmount = null;
+
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("item")
-  private String item = null;
+  @JsonProperty("offerRef")
+  private String offerRef = null;
 
   @JsonProperty("orderMasterId")
   private Long orderMasterId = null;
 
-  @JsonProperty("quantity")
-  private Integer quantity = null;
+  public OfferLineDTO discountAmount(Double discountAmount) {
+    this.discountAmount = discountAmount;
+    return this;
+  }
 
-  @JsonProperty("total")
-  private Double total = null;
+  /**
+   * Get discountAmount
+   * @return discountAmount
+  **/
+  @ApiModelProperty(value = "")
 
-  public OrderLineDTO id(Long id) {
+
+  public Double getDiscountAmount() {
+    return discountAmount;
+  }
+
+  public void setDiscountAmount(Double discountAmount) {
+    this.discountAmount = discountAmount;
+  }
+
+  public OfferLineDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -51,27 +68,27 @@ public class OrderLineDTO   {
     this.id = id;
   }
 
-  public OrderLineDTO item(String item) {
-    this.item = item;
+  public OfferLineDTO offerRef(String offerRef) {
+    this.offerRef = offerRef;
     return this;
   }
 
   /**
-   * Get item
-   * @return item
+   * Get offerRef
+   * @return offerRef
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getItem() {
-    return item;
+  public String getOfferRef() {
+    return offerRef;
   }
 
-  public void setItem(String item) {
-    this.item = item;
+  public void setOfferRef(String offerRef) {
+    this.offerRef = offerRef;
   }
 
-  public OrderLineDTO orderMasterId(Long orderMasterId) {
+  public OfferLineDTO orderMasterId(Long orderMasterId) {
     this.orderMasterId = orderMasterId;
     return this;
   }
@@ -91,46 +108,6 @@ public class OrderLineDTO   {
     this.orderMasterId = orderMasterId;
   }
 
-  public OrderLineDTO quantity(Integer quantity) {
-    this.quantity = quantity;
-    return this;
-  }
-
-  /**
-   * Get quantity
-   * @return quantity
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Integer getQuantity() {
-    return quantity;
-  }
-
-  public void setQuantity(Integer quantity) {
-    this.quantity = quantity;
-  }
-
-  public OrderLineDTO total(Double total) {
-    this.total = total;
-    return this;
-  }
-
-  /**
-   * Get total
-   * @return total
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Double getTotal() {
-    return total;
-  }
-
-  public void setTotal(Double total) {
-    this.total = total;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -140,29 +117,27 @@ public class OrderLineDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrderLineDTO orderLineDTO = (OrderLineDTO) o;
-    return Objects.equals(this.id, orderLineDTO.id) &&
-        Objects.equals(this.item, orderLineDTO.item) &&
-        Objects.equals(this.orderMasterId, orderLineDTO.orderMasterId) &&
-        Objects.equals(this.quantity, orderLineDTO.quantity) &&
-        Objects.equals(this.total, orderLineDTO.total);
+    OfferLineDTO offerLineDTO = (OfferLineDTO) o;
+    return Objects.equals(this.discountAmount, offerLineDTO.discountAmount) &&
+        Objects.equals(this.id, offerLineDTO.id) &&
+        Objects.equals(this.offerRef, offerLineDTO.offerRef) &&
+        Objects.equals(this.orderMasterId, offerLineDTO.orderMasterId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, item, orderMasterId, quantity, total);
+    return Objects.hash(discountAmount, id, offerRef, orderMasterId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrderLineDTO {\n");
+    sb.append("class OfferLineDTO {\n");
     
+    sb.append("    discountAmount: ").append(toIndentedString(discountAmount)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    item: ").append(toIndentedString(item)).append("\n");
+    sb.append("    offerRef: ").append(toIndentedString(offerRef)).append("\n");
     sb.append("    orderMasterId: ").append(toIndentedString(orderMasterId)).append("\n");
-    sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }

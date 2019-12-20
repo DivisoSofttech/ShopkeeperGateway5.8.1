@@ -1,6 +1,7 @@
 package com.diviso.graeshoppe.client.report.model;
 
 import java.util.Objects;
+import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -13,11 +14,17 @@ import javax.validation.constraints.*;
  * AuxItem
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-10-15T16:42:27.055+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T09:19:42.298+05:30[Asia/Kolkata]")
 
 public class AuxItem   {
   @JsonProperty("auxItem")
   private String auxItem = null;
+
+  @JsonProperty("id")
+  private Long id = null;
+
+  @JsonProperty("orderLine")
+  private OrderLine orderLine = null;
 
   @JsonProperty("quantity")
   private Integer quantity = null;
@@ -43,6 +50,47 @@ public class AuxItem   {
 
   public void setAuxItem(String auxItem) {
     this.auxItem = auxItem;
+  }
+
+  public AuxItem id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public AuxItem orderLine(OrderLine orderLine) {
+    this.orderLine = orderLine;
+    return this;
+  }
+
+  /**
+   * Get orderLine
+   * @return orderLine
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public OrderLine getOrderLine() {
+    return orderLine;
+  }
+
+  public void setOrderLine(OrderLine orderLine) {
+    this.orderLine = orderLine;
   }
 
   public AuxItem quantity(Integer quantity) {
@@ -96,13 +144,15 @@ public class AuxItem   {
     }
     AuxItem auxItem = (AuxItem) o;
     return Objects.equals(this.auxItem, auxItem.auxItem) &&
+        Objects.equals(this.id, auxItem.id) &&
+        Objects.equals(this.orderLine, auxItem.orderLine) &&
         Objects.equals(this.quantity, auxItem.quantity) &&
         Objects.equals(this.total, auxItem.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(auxItem, quantity, total);
+    return Objects.hash(auxItem, id, orderLine, quantity, total);
   }
 
   @Override
@@ -111,6 +161,8 @@ public class AuxItem   {
     sb.append("class AuxItem {\n");
     
     sb.append("    auxItem: ").append(toIndentedString(auxItem)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    orderLine: ").append(toIndentedString(orderLine)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");

@@ -3,6 +3,7 @@ package com.diviso.graeshoppe.client.report.model;
 import java.util.Objects;
 import com.diviso.graeshoppe.client.report.model.AuxItem;
 import com.diviso.graeshoppe.client.report.model.ComboItem;
+import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -17,19 +18,25 @@ import javax.validation.constraints.*;
  * OrderLine
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-10-15T16:42:27.055+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T09:19:42.298+05:30[Asia/Kolkata]")
 
 public class OrderLine   {
   @JsonProperty("auxItems")
   @Valid
   private List<AuxItem> auxItems = null;
 
-  @JsonProperty("combos")
+  @JsonProperty("comboItems")
   @Valid
-  private List<ComboItem> combos = null;
+  private List<ComboItem> comboItems = null;
+
+  @JsonProperty("id")
+  private Long id = null;
 
   @JsonProperty("item")
   private String item = null;
+
+  @JsonProperty("orderMaster")
+  private OrderMaster orderMaster = null;
 
   @JsonProperty("quantity")
   private Integer quantity = null;
@@ -66,33 +73,53 @@ public class OrderLine   {
     this.auxItems = auxItems;
   }
 
-  public OrderLine combos(List<ComboItem> combos) {
-    this.combos = combos;
+  public OrderLine comboItems(List<ComboItem> comboItems) {
+    this.comboItems = comboItems;
     return this;
   }
 
-  public OrderLine addCombosItem(ComboItem combosItem) {
-    if (this.combos == null) {
-      this.combos = new ArrayList<ComboItem>();
+  public OrderLine addComboItemsItem(ComboItem comboItemsItem) {
+    if (this.comboItems == null) {
+      this.comboItems = new ArrayList<ComboItem>();
     }
-    this.combos.add(combosItem);
+    this.comboItems.add(comboItemsItem);
     return this;
   }
 
   /**
-   * Get combos
-   * @return combos
+   * Get comboItems
+   * @return comboItems
   **/
   @ApiModelProperty(value = "")
 
   @Valid
 
-  public List<ComboItem> getCombos() {
-    return combos;
+  public List<ComboItem> getComboItems() {
+    return comboItems;
   }
 
-  public void setCombos(List<ComboItem> combos) {
-    this.combos = combos;
+  public void setComboItems(List<ComboItem> comboItems) {
+    this.comboItems = comboItems;
+  }
+
+  public OrderLine id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public OrderLine item(String item) {
@@ -113,6 +140,27 @@ public class OrderLine   {
 
   public void setItem(String item) {
     this.item = item;
+  }
+
+  public OrderLine orderMaster(OrderMaster orderMaster) {
+    this.orderMaster = orderMaster;
+    return this;
+  }
+
+  /**
+   * Get orderMaster
+   * @return orderMaster
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public OrderMaster getOrderMaster() {
+    return orderMaster;
+  }
+
+  public void setOrderMaster(OrderMaster orderMaster) {
+    this.orderMaster = orderMaster;
   }
 
   public OrderLine quantity(Integer quantity) {
@@ -166,15 +214,17 @@ public class OrderLine   {
     }
     OrderLine orderLine = (OrderLine) o;
     return Objects.equals(this.auxItems, orderLine.auxItems) &&
-        Objects.equals(this.combos, orderLine.combos) &&
+        Objects.equals(this.comboItems, orderLine.comboItems) &&
+        Objects.equals(this.id, orderLine.id) &&
         Objects.equals(this.item, orderLine.item) &&
+        Objects.equals(this.orderMaster, orderLine.orderMaster) &&
         Objects.equals(this.quantity, orderLine.quantity) &&
         Objects.equals(this.total, orderLine.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(auxItems, combos, item, quantity, total);
+    return Objects.hash(auxItems, comboItems, id, item, orderMaster, quantity, total);
   }
 
   @Override
@@ -183,8 +233,10 @@ public class OrderLine   {
     sb.append("class OrderLine {\n");
     
     sb.append("    auxItems: ").append(toIndentedString(auxItems)).append("\n");
-    sb.append("    combos: ").append(toIndentedString(combos)).append("\n");
+    sb.append("    comboItems: ").append(toIndentedString(comboItems)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    item: ").append(toIndentedString(item)).append("\n");
+    sb.append("    orderMaster: ").append(toIndentedString(orderMaster)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
