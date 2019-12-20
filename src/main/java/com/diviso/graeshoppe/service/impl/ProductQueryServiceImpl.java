@@ -303,7 +303,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	@Override
 	public Page<Product> findAllAuxilaryProducts(String storeId, Pageable pageable) {
 
-		QueryBuilder  filterQuery = QueryBuilders.boolQuery().must(termQuery("iDPcode.keyword", storeId)).must(termQuery(" isAuxilaryItem", true));
+		QueryBuilder  filterQuery = QueryBuilders.boolQuery().must(termQuery("iDPcode.keyword", storeId)).must(termQuery("isAuxilaryItem","true"));
 		// QueryBuilder queryDsl = QueryBuilders.termsQuery("storeId.keyword", storeId);
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
 				.filter(/*termQuery("iDPcode.keyword", storeId)*/filterQuery);
