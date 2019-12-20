@@ -305,7 +305,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 
 		// QueryBuilder queryDsl = QueryBuilders.termsQuery("storeId.keyword", storeId);
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
-				.filter(termQuery("storeId.keyword", storeId));
+				.filter(termQuery("iDPcode.keyword", storeId));
 
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryDsl);
