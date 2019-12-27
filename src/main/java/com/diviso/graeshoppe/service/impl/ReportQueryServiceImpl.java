@@ -3,6 +3,7 @@ package com.diviso.graeshoppe.service.impl;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -20,7 +21,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.diviso.graeshoppe.client.order.model.aggregator.OrderLine;
+//import com.diviso.graeshoppe.client.order.model.aggregator.OrderLine;
+import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.product.api.CategoryResourceApi;
 import com.diviso.graeshoppe.client.product.api.ProductResourceApi;
 import com.diviso.graeshoppe.client.product.api.StockCurrentResourceApi;
@@ -30,6 +32,7 @@ import com.diviso.graeshoppe.client.report.api.QueryResourceApi;
 import com.diviso.graeshoppe.client.report.api.ReportResourceApi;
 import com.diviso.graeshoppe.client.report.model.AuxItem;
 import com.diviso.graeshoppe.client.report.model.ComboItem;
+import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderAggregator;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
@@ -46,6 +49,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class ReportQueryServiceImpl implements ReportQueryService {
 
+	private final Logger log = LoggerFactory.getLogger(ReportQueryServiceImpl.class);
+
 	@Autowired
 	private ServiceUtility serviceUtility;
 
@@ -57,7 +62,6 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	@Autowired
 	StockCurrentResourceApi stockCurrentResourceApi;
 
-	
 	@Autowired
 	QueryResourceApi queryResourceApi;
 
@@ -223,10 +227,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return ResponseEntity.ok().body(pdf);
 	}
 
-	public ResponseEntity<byte[]> exportOrderDocket(String orderNumber) {
-		return queryResourceApi.getReportAsPdfUsingGET(orderNumber);
 
-	}
 
 	public ResponseEntity<PdfDTO> getOrderDocket(String orderNumber) {
 		PdfDTO pdf = new PdfDTO();
@@ -243,7 +244,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	public ResponseEntity<ReportSummary> createReportSummary(String expectedDelivery, String storeName) {
-		return queryResourceApi.createReportSummaryUsingGET1(expectedDelivery, storeName);
+		return queryResourceApi.createReportSummaryUsingGET(expectedDelivery, storeName);
 	}
 
 	/*
@@ -253,14 +254,33 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	 * return queryResourceApi.getOrderAggregatorUsingGET(orderNumber); }
 	 */
 	@Override
-	public Page<OrderLine> findOrderLineByOrderMasterId(Long orderMasterId, Pageable pageable) {
+	public Page<com.diviso.graeshoppe.client.order.model.aggregator.OrderLine> findOrderLineByOrderMasterId(Long orderMasterId, Pageable pageable) {
 		QueryBuilder queryBuilder = QueryBuilders.termQuery("orderMaster.id", orderMasterId);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
 		SearchResponse response = serviceUtility.searchResponseForPage("comboitem", builder, pageable);
-		//please check indexname(entity class name)may be change please change searchResponsePage 'indexname
-		//and getPageresult classname 
+		// please check indexname(entity class name)may be change please change
+		// searchResponsePage 'indexname
+		// and getPageresult classname
 		return serviceUtility.getPageResult(response, pageable, new OrderLine());
+	}
+
+	@Override
+	public ResponseEntity<List<OrderLine>> findOrderLinesByOrderNumber(String orderId) {
+		log.debug("<<<<<<<< findOrderLinesByOrderNumber >>>>>>{}", orderId);
+		return queryResourceApi.findOrderLineByOrderNumberUsingGET(orderId);
+	}
+
+	@Override
+	public ResponseEntity<List<OfferLine>> findOfferLineByOrderNumber(String orderId) {
+		log.debug("<<<<< findOfferLineByOrderNumber >>>>>>>>{}",orderId);
+		return queryResourceApi.findOfferLinesByOrderNumberUsingGET(orderId);
+	}
+
+	@Override
+	public ResponseEntity<List<AuxItem>> findAuxItemsById(Long id) {
+		log.debug("<<<<<<<findAuxItemsById >>>>>>>{}",id);
+		return queryResourceApi.findAuxItemByidUsingGET(id);
 	}
 
 }

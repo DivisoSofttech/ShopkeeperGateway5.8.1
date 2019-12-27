@@ -39,6 +39,7 @@ import com.diviso.graeshoppe.client.order.model.Notification;
 import com.diviso.graeshoppe.client.order.model.OpenTask;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.order.model.aggregator.OrderLine;
+//import com.diviso.graeshoppe.client.report.model.OrderLine;
 
 import com.diviso.graeshoppe.client.order.model.aggregator.AuxilaryOrderLine;
 import com.diviso.graeshoppe.client.order.model.aggregator.Offer;
@@ -318,8 +319,6 @@ public class QueryResource {
 	@GetMapping("/getProductBundle/{id}") // its working
 	public ResponseEntity<ProductBundle> getProductBundleById(@PathVariable Long id) {
 
-	
-
 		return ResponseEntity.ok().body(productQueryService.getProductBundleById(id));
 	}
 
@@ -331,7 +330,6 @@ public class QueryResource {
 	@GetMapping("/getStockEntryBundleById/{id}") // not tested getStockEntryBundle
 	public ResponseEntity<StockEntryBundle> getStockEntryBundleById(@PathVariable Long id) {
 
-	
 		return ResponseEntity.ok().body(productQueryService.getStockEntryBundleById(id));
 	}
 
@@ -592,6 +590,7 @@ public class QueryResource {
 	public ResponseEntity<SaleDTO> findSaleById(@PathVariable Long id) {
 		return saleQueryService.findSaleById(id);
 	}
+
 	@GetMapping("/printSale/{saleId}/{idpCode}")
 	public ResponseEntity<PdfDTO> printSale(@PathVariable Long saleId, @PathVariable String idpCode) {
 		PdfDTO pdf = new PdfDTO();
@@ -768,11 +767,7 @@ public class QueryResource {
 	 * @param orderNumber
 	 * @return
 	 */
-	@GetMapping("/exportDocket/{orderNumber}") // tested working
-	public ResponseEntity<byte[]> exportOrderDocket(@PathVariable String orderNumber) {
-		return reportQueryService.exportOrderDocket(orderNumber);
 
-	}
 
 	/**
 	 * 
@@ -839,7 +834,6 @@ public class QueryResource {
 	 * getOrderAggregator(@PathVariable String orderNumber) { return
 	 * reportQueryService.getOrderAggregator(orderNumber); }
 	 */
-
 
 	// ***********************Order related end Points*************************
 	/**
@@ -952,7 +946,7 @@ public class QueryResource {
 	 * @param pageable
 	 * @return
 	 */
-	@GetMapping("/notification/{receiverId}") //  working
+	@GetMapping("/notification/{receiverId}") // working
 	public ResponseEntity<Page<Notification>> findNotificationByReceiverId(@PathVariable String receiverId,
 			Pageable pageable) {
 		return ResponseEntity.ok().body(orderQueryService.findNotificationByReceiverId(receiverId, pageable));
@@ -965,7 +959,7 @@ public class QueryResource {
 	 * @param receiverId
 	 * @return
 	 */
-	@GetMapping("/notification/{status}/{receiverId}") //  working
+	@GetMapping("/notification/{status}/{receiverId}") // working
 	public Long getNotificationCountByReceiveridAndStatus(@PathVariable String status,
 			@PathVariable String receiverId) {
 
@@ -985,9 +979,6 @@ public class QueryResource {
 		return orderQueryService.getNotificationCountByReceiveridAndStatus(receiverId, status);
 	}
 
-	
-
-	
 	@GetMapping("/findAllOrderLinesByOrderId/{orderId}")
 	public Page<OrderLine> findAllOrderLinesByOrderId(@PathVariable Long orderId, Pageable pageable) {
 		log.debug("<<<<<<<<<findAllOrderLinesByOrderId >>>>>>>>>>>", orderId);
@@ -995,18 +986,36 @@ public class QueryResource {
 		return page;
 	}
 
-	
-
 	@GetMapping("/findAuxilaryOrderLineByOrderLineId/{orderLineId}")
 	public Page<AuxilaryOrderLine> findAuxilaryOrderLineByOrderLineId(@PathVariable Long orderLineId,
 			Pageable pageable) {
 		log.debug("<<<<<<<<findAuxilaryOrderLineByOrderLineId >>>>>>>>>>", orderLineId);
-		return orderQueryService.findAuxilaryOrderLineByOrderLineId(orderLineId,pageable);
+		return orderQueryService.findAuxilaryOrderLineByOrderLineId(orderLineId, pageable);
 	}
-	//***********************Offer related end points**********************
+
+	// ***********************Offer related end points**********************
 	@GetMapping("/findOfferLinesByOrderId/{orderId}")
 	public List<Offer> findOfferLinesByOrderId(@PathVariable Long orderId) {
 		return offerQueryService.findOfferLinesByOrderId(orderId);
+	}
+
+	@GetMapping("/findOrderLinesByOrderNumber/{orderId}")
+	public ResponseEntity<List<com.diviso.graeshoppe.client.report.model.OrderLine>> findOrderLinesByOrderNumber(@PathVariable String orderId) {
+		log.debug("<<<<<<<<< findOrderLinesByOrderNumber >>>>>>>{}", orderId);
+		return reportQueryService.findOrderLinesByOrderNumber(orderId);
+
+	}
+	@GetMapping("/findOfferLinesByOrderNumber/{orderId}")
+	public ResponseEntity<List<OfferLine>> findOfferLinesByOrderNumber(@PathVariable String orderId){
+		log.debug("<<<<<<<<<findOfferLineByOrderNumber {} ",orderId);
+		return reportQueryService.findOfferLineByOrderNumber(orderId);
+		
+	}
+	@GetMapping("/findAuxItemsbyId/{id}")
+	public ResponseEntity<List<AuxItem>> findAuxItemsById(@PathVariable Long id){
+		log.debug("<<<<<<<<<< findAuxItem >>>>>>>",id);
+		return reportQueryService.findAuxItemsById(id);
+		
 	}
 
 }

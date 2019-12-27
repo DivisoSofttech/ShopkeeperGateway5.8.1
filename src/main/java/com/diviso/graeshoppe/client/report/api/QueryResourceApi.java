@@ -5,9 +5,10 @@
  */
 package com.diviso.graeshoppe.client.report.api;
 
-import java.util.Date;
-import java.time.LocalDate;
+import com.diviso.graeshoppe.client.report.model.AuxItem;
+import com.diviso.graeshoppe.client.report.model.OfferLine;
 import java.time.OffsetDateTime;
+import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import io.swagger.annotations.*;
@@ -29,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T09:19:42.298+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-27T10:12:59.645+05:30[Asia/Calcutta]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
@@ -40,22 +41,34 @@ public interface QueryResourceApi {
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/report/{date}/{storeId}",
-        produces = "*/*", 
-        method = RequestMethod.GET)
-    ResponseEntity<ReportSummary> createReportSummaryUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") LocalDate date,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
-
-
-    @ApiOperation(value = "createReportSummary", nickname = "createReportSummaryUsingGET1", notes = "", response = ReportSummary.class, tags={ "query-resource", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = ReportSummary.class),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 403, message = "Forbidden"),
-        @ApiResponse(code = 404, message = "Not Found") })
     @RequestMapping(value = "/api/reportview/{expectedDelivery}/{storeName}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<ReportSummary> createReportSummaryUsingGET1(@ApiParam(value = "expectedDelivery",required=true) @PathVariable("expectedDelivery") String expectedDelivery,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName);
+    ResponseEntity<ReportSummary> createReportSummaryUsingGET(@ApiParam(value = "expectedDelivery",required=true) @PathVariable("expectedDelivery") String expectedDelivery,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName);
+
+
+    @ApiOperation(value = "findAuxItemByid", nickname = "findAuxItemByidUsingGET", notes = "", response = AuxItem.class, responseContainer = "List", tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = AuxItem.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/findAuxItemByid/{id}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<AuxItem>> findAuxItemByidUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "findOfferLinesByOrderNumber", nickname = "findOfferLinesByOrderNumberUsingGET", notes = "", response = OfferLine.class, responseContainer = "List", tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OfferLine.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/findOfferLinesByOrderNumber/{orderId}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<OfferLine>> findOfferLinesByOrderNumberUsingGET(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") String orderId);
 
 
     @ApiOperation(value = "findOrderByDatebetweenAndStoreId", nickname = "findOrderByDatebetweenAndStoreIdUsingGET", notes = "", response = PageOfOrderMaster.class, tags={ "query-resource", })
@@ -67,7 +80,7 @@ public interface QueryResourceApi {
     @RequestMapping(value = "/api/findOrderByDatebetweenAndStoreId/{from}/{to}/{storeId}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<PageOfOrderMaster> findOrderByDatebetweenAndStoreIdUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") OffsetDateTime from,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId,@ApiParam(value = "to",required=true) @PathVariable("to") OffsetDateTime to,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
+    ResponseEntity<PageOfOrderMaster> findOrderByDatebetweenAndStoreIdUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") String from,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId,@ApiParam(value = "to",required=true) @PathVariable("to") String to,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
 
 
     @ApiOperation(value = "findOrderCountByDateAndStatusName", nickname = "findOrderCountByDateAndStatusNameUsingGET", notes = "", response = Long.class, tags={ "query-resource", })
@@ -79,7 +92,7 @@ public interface QueryResourceApi {
     @RequestMapping(value = "/api/findOrderCountByDateAndStatusName/{date}/{statusName}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<Long> findOrderCountByDateAndStatusNameUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") OffsetDateTime date,@ApiParam(value = "statusName",required=true) @PathVariable("statusName") String statusName);
+    ResponseEntity<Long> findOrderCountByDateAndStatusNameUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "statusName",required=true) @PathVariable("statusName") String statusName);
 
 
     @ApiOperation(value = "findOrderCountByStatusName", nickname = "findOrderCountByStatusNameUsingGET", notes = "", response = Long.class, tags={ "query-resource", })
@@ -94,6 +107,18 @@ public interface QueryResourceApi {
     ResponseEntity<Long> findOrderCountByStatusNameUsingGET(@ApiParam(value = "statusName",required=true) @PathVariable("statusName") String statusName);
 
 
+    @ApiOperation(value = "findOrderLineByOrderNumber", nickname = "findOrderLineByOrderNumberUsingGET", notes = "", response = OrderLine.class, responseContainer = "List", tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OrderLine.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/findOrderLinesByOrderNumber/{orderNumber}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<OrderLine>> findOrderLineByOrderNumberUsingGET(@ApiParam(value = "orderNumber",required=true) @PathVariable("orderNumber") String orderNumber);
+
+
     @ApiOperation(value = "findOrderMasterByExpectedDeliveryBetween", nickname = "findOrderMasterByExpectedDeliveryBetweenUsingGET", notes = "", response = PageOfOrderMaster.class, tags={ "query-resource", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = PageOfOrderMaster.class),
@@ -106,16 +131,16 @@ public interface QueryResourceApi {
     ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetweenUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") OffsetDateTime from,@ApiParam(value = "to",required=true) @PathVariable("to") OffsetDateTime to,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
 
 
-    @ApiOperation(value = "getReportAsPdf", nickname = "getReportAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
+    @ApiOperation(value = "findOrderMasterCountByExpectedDeliveryBetween", nickname = "findOrderMasterCountByExpectedDeliveryBetweenUsingGET", notes = "", response = Long.class, tags={ "query-resource", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = byte[].class),
+        @ApiResponse(code = 200, message = "OK", response = Long.class),
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/pdf/{orderNumber}",
+    @RequestMapping(value = "/api/countOrderMasterByDeliveryBetween/{from}/{to}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<byte[]> getReportAsPdfUsingGET(@ApiParam(value = "orderNumber",required=true) @PathVariable("orderNumber") String orderNumber);
+    ResponseEntity<Long> findOrderMasterCountByExpectedDeliveryBetweenUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") String from,@ApiParam(value = "to",required=true) @PathVariable("to") String to);
 
 
     @ApiOperation(value = "getReportSummaryAsPdf", nickname = "getReportSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })

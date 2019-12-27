@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * OrderMaster
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T09:19:42.298+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-27T10:12:59.645+05:30[Asia/Calcutta]")
 
 public class OrderMaster   {
   @JsonProperty("addressType")
@@ -136,6 +136,9 @@ public class OrderMaster   {
 
   @JsonProperty("totalDue")
   private Double totalDue = null;
+
+  @JsonProperty("zoneId")
+  private String zoneId = null;
 
   public OrderMaster addressType(String addressType) {
     this.addressType = addressType;
@@ -919,6 +922,26 @@ public class OrderMaster   {
     this.totalDue = totalDue;
   }
 
+  public OrderMaster zoneId(String zoneId) {
+    this.zoneId = zoneId;
+    return this;
+  }
+
+  /**
+   * Get zoneId
+   * @return zoneId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getZoneId() {
+    return zoneId;
+  }
+
+  public void setZoneId(String zoneId) {
+    this.zoneId = zoneId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -966,12 +989,13 @@ public class OrderMaster   {
         Objects.equals(this.storePhone, orderMaster.storePhone) &&
         Objects.equals(this.storelocationName, orderMaster.storelocationName) &&
         Objects.equals(this.subTotal, orderMaster.subTotal) &&
-        Objects.equals(this.totalDue, orderMaster.totalDue);
+        Objects.equals(this.totalDue, orderMaster.totalDue) &&
+        Objects.equals(this.zoneId, orderMaster.zoneId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, methodOfOrder, name, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue);
+    return Objects.hash(addressType, allergyNote, alternatePhone, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, methodOfOrder, name, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
@@ -1017,6 +1041,7 @@ public class OrderMaster   {
     sb.append("    storelocationName: ").append(toIndentedString(storelocationName)).append("\n");
     sb.append("    subTotal: ").append(toIndentedString(subTotal)).append("\n");
     sb.append("    totalDue: ").append(toIndentedString(totalDue)).append("\n");
+    sb.append("    zoneId: ").append(toIndentedString(zoneId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

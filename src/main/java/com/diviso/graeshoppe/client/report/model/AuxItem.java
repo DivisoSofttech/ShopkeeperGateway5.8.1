@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * AuxItem
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T09:19:42.298+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-27T10:12:59.645+05:30[Asia/Calcutta]")
 
 public class AuxItem   {
   @JsonProperty("auxItem")
