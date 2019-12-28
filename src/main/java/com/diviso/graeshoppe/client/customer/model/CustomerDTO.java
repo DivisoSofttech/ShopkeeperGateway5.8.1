@@ -1,284 +1,204 @@
 package com.diviso.graeshoppe.client.customer.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import java.util.Arrays;
 
-/**
- * CustomerDTO
- */
-@Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-02T14:03:38.434+05:30[Asia/Calcutta]")
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CustomerDTO   {
-  @JsonProperty("contactId")
-  private Long contactId = null;
+	  @JsonProperty("contactId")
+	  private Long contactId = null;
 
-  @JsonProperty("customerUniqueId")
-  private String customerUniqueId = null;
+	  @JsonProperty("customerUniqueId")
+	  private String customerUniqueId = null;
 
-  @JsonProperty("id")
-  private Long id = null;
+	  @JsonProperty("id")
+	  private Long id = null;
 
-  @JsonProperty("idpCode")
-  private String idpCode = null;
+	  @JsonProperty("idpCode")
+	  private String idpCode = null;
 
-  @JsonProperty("idpSub")
-  private String idpSub = null;
+	  @JsonProperty("idpSub")
+	  private String idpSub = null;
 
-  @JsonProperty("image")
-  private byte[] image = null;
+	  @JsonProperty("image")
+	  private byte[] image = null;
 
-  @JsonProperty("imageContentType")
-  private String imageContentType = null;
+	  @JsonProperty("imageContentType")
+	  private String imageContentType = null;
 
-  @JsonProperty("imageLink")
-  private String imageLink = null;
+	  @JsonProperty("imageLink")
+	  private String imageLink = null;
 
-  @JsonProperty("name")
-  private String name = null;
+	  @JsonProperty("name")
+	  private String name = null;
+	  
+	  @JsonProperty("loyaltyPoint")
+	  private Long loyaltyPoint = null;
 
-  public CustomerDTO contactId(Long contactId) {
-    this.contactId = contactId;
-    return this;
-  }
+	public Long getContactId() {
+		return contactId;
+	}
 
-  /**
-   * Get contactId
-   * @return contactId
-  **/
-  @ApiModelProperty(value = "")
+	public void setContactId(Long contactId) {
+		this.contactId = contactId;
+	}
 
+	public String getCustomerUniqueId() {
+		return customerUniqueId;
+	}
 
-  public Long getContactId() {
-    return contactId;
-  }
+	public void setCustomerUniqueId(String customerUniqueId) {
+		this.customerUniqueId = customerUniqueId;
+	}
 
-  public void setContactId(Long contactId) {
-    this.contactId = contactId;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public CustomerDTO customerUniqueId(String customerUniqueId) {
-    this.customerUniqueId = customerUniqueId;
-    return this;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  /**
-   * Get customerUniqueId
-   * @return customerUniqueId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+	public String getIdpCode() {
+		return idpCode;
+	}
 
+	public void setIdpCode(String idpCode) {
+		this.idpCode = idpCode;
+	}
 
-  public String getCustomerUniqueId() {
-    return customerUniqueId;
-  }
+	public String getIdpSub() {
+		return idpSub;
+	}
 
-  public void setCustomerUniqueId(String customerUniqueId) {
-    this.customerUniqueId = customerUniqueId;
-  }
+	public void setIdpSub(String idpSub) {
+		this.idpSub = idpSub;
+	}
 
-  public CustomerDTO id(Long id) {
-    this.id = id;
-    return this;
-  }
+	public byte[] getImage() {
+		return image;
+	}
 
-  /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 
+	public String getImageContentType() {
+		return imageContentType;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public void setImageContentType(String imageContentType) {
+		this.imageContentType = imageContentType;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public String getImageLink() {
+		return imageLink;
+	}
 
-  public CustomerDTO idpCode(String idpCode) {
-    this.idpCode = idpCode;
-    return this;
-  }
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
 
-  /**
-   * Get idpCode
-   * @return idpCode
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getIdpCode() {
-    return idpCode;
-  }
+	public Long getLoyaltyPoint() {
+		return loyaltyPoint;
+	}
 
-  public void setIdpCode(String idpCode) {
-    this.idpCode = idpCode;
-  }
+	public void setLoyaltyPoint(Long loyaltyPoint) {
+		this.loyaltyPoint = loyaltyPoint;
+	}
 
-  public CustomerDTO idpSub(String idpSub) {
-    this.idpSub = idpSub;
-    return this;
-  }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((contactId == null) ? 0 : contactId.hashCode());
+		result = prime * result + ((customerUniqueId == null) ? 0 : customerUniqueId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idpCode == null) ? 0 : idpCode.hashCode());
+		result = prime * result + ((idpSub == null) ? 0 : idpSub.hashCode());
+		result = prime * result + Arrays.hashCode(image);
+		result = prime * result + ((imageContentType == null) ? 0 : imageContentType.hashCode());
+		result = prime * result + ((imageLink == null) ? 0 : imageLink.hashCode());
+		result = prime * result + ((loyaltyPoint == null) ? 0 : loyaltyPoint.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
 
-  /**
-   * Get idpSub
-   * @return idpSub
-  **/
-  @ApiModelProperty(value = "")
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerDTO other = (CustomerDTO) obj;
+		if (contactId == null) {
+			if (other.contactId != null)
+				return false;
+		} else if (!contactId.equals(other.contactId))
+			return false;
+		if (customerUniqueId == null) {
+			if (other.customerUniqueId != null)
+				return false;
+		} else if (!customerUniqueId.equals(other.customerUniqueId))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (idpCode == null) {
+			if (other.idpCode != null)
+				return false;
+		} else if (!idpCode.equals(other.idpCode))
+			return false;
+		if (idpSub == null) {
+			if (other.idpSub != null)
+				return false;
+		} else if (!idpSub.equals(other.idpSub))
+			return false;
+		if (!Arrays.equals(image, other.image))
+			return false;
+		if (imageContentType == null) {
+			if (other.imageContentType != null)
+				return false;
+		} else if (!imageContentType.equals(other.imageContentType))
+			return false;
+		if (imageLink == null) {
+			if (other.imageLink != null)
+				return false;
+		} else if (!imageLink.equals(other.imageLink))
+			return false;
+		if (loyaltyPoint == null) {
+			if (other.loyaltyPoint != null)
+				return false;
+		} else if (!loyaltyPoint.equals(other.loyaltyPoint))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
 
+	@Override
+	public String toString() {
+		return "CustomerDTO [contactId=" + contactId + ", customerUniqueId=" + customerUniqueId + ", id=" + id
+				+ ", idpCode=" + idpCode + ", idpSub=" + idpSub + ", image=" + Arrays.toString(image)
+				+ ", imageContentType=" + imageContentType + ", imageLink=" + imageLink + ", name=" + name
+				+ ", loyaltyPoint=" + loyaltyPoint + "]";
+	}
 
-  public String getIdpSub() {
-    return idpSub;
-  }
-
-  public void setIdpSub(String idpSub) {
-    this.idpSub = idpSub;
-  }
-
-  public CustomerDTO image(byte[] image) {
-    this.image = image;
-    return this;
-  }
-
-  /**
-   * Get image
-   * @return image
-  **/
-  @ApiModelProperty(value = "")
-
-//@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
-  public byte[] getImage() {
-    return image;
-  }
-
-  public void setImage(byte[] image) {
-    this.image = image;
-  }
-
-  public CustomerDTO imageContentType(String imageContentType) {
-    this.imageContentType = imageContentType;
-    return this;
-  }
-
-  /**
-   * Get imageContentType
-   * @return imageContentType
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getImageContentType() {
-    return imageContentType;
-  }
-
-  public void setImageContentType(String imageContentType) {
-    this.imageContentType = imageContentType;
-  }
-
-  public CustomerDTO imageLink(String imageLink) {
-    this.imageLink = imageLink;
-    return this;
-  }
-
-  /**
-   * Get imageLink
-   * @return imageLink
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-
-  public String getImageLink() {
-    return imageLink;
-  }
-
-  public void setImageLink(String imageLink) {
-    this.imageLink = imageLink;
-  }
-
-  public CustomerDTO name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    CustomerDTO customerDTO = (CustomerDTO) o;
-    return Objects.equals(this.contactId, customerDTO.contactId) &&
-        Objects.equals(this.customerUniqueId, customerDTO.customerUniqueId) &&
-        Objects.equals(this.id, customerDTO.id) &&
-        Objects.equals(this.idpCode, customerDTO.idpCode) &&
-        Objects.equals(this.idpSub, customerDTO.idpSub) &&
-        Objects.equals(this.image, customerDTO.image) &&
-        Objects.equals(this.imageContentType, customerDTO.imageContentType) &&
-        Objects.equals(this.imageLink, customerDTO.imageLink) &&
-        Objects.equals(this.name, customerDTO.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(contactId, customerUniqueId, id, idpCode, idpSub, image, imageContentType, imageLink, name);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CustomerDTO {\n");
-    
-    sb.append("    contactId: ").append(toIndentedString(contactId)).append("\n");
-    sb.append("    customerUniqueId: ").append(toIndentedString(customerUniqueId)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    idpCode: ").append(toIndentedString(idpCode)).append("\n");
-    sb.append("    idpSub: ").append(toIndentedString(idpSub)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
-    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	  
 }
 
