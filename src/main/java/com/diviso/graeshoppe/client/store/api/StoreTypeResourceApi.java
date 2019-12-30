@@ -5,8 +5,6 @@
  */
 package com.diviso.graeshoppe.client.store.api;
 
-import java.util.List;
-import com.diviso.graeshoppe.client.store.model.StoreType;
 import com.diviso.graeshoppe.client.store.model.StoreTypeDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -27,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-27T14:30:41.015+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-30T14:09:05.929+05:30[Asia/Kolkata]")
 
 @Api(value = "StoreTypeResource", description = "the StoreTypeResource API")
 public interface StoreTypeResourceApi {
@@ -79,20 +77,6 @@ public interface StoreTypeResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<StoreTypeDTO> getStoreTypeUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
-
-
-    @ApiOperation(value = "listToDto", nickname = "listToDtoUsingPOST2", notes = "", response = StoreTypeDTO.class, responseContainer = "List", tags={ "store-type-resource", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = StoreTypeDTO.class, responseContainer = "List"),
-        @ApiResponse(code = 201, message = "Created"),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 403, message = "Forbidden"),
-        @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/storeType/toDto",
-        produces = "*/*", 
-        consumes = "application/json",
-        method = RequestMethod.POST)
-    ResponseEntity<List<StoreTypeDTO>> listToDtoUsingPOST2(@ApiParam(value = "storeTypes" ,required=true )  @Valid @RequestBody List<StoreType> storeType);
 
 
     @ApiOperation(value = "searchStoreTypes", nickname = "searchStoreTypesUsingGET", notes = "", response = StoreTypeDTO.class, responseContainer = "List", tags={ "store-type-resource", })

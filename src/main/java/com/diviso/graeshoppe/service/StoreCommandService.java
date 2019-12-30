@@ -6,10 +6,10 @@ import com.diviso.graeshoppe.client.store.model.BannerDTO;
 import com.diviso.graeshoppe.client.store.model.DeliveryInfoDTO;
 import com.diviso.graeshoppe.client.store.model.PreOrderSettingsDTO;
 import com.diviso.graeshoppe.client.store.model.ReplyDTO;
-import com.diviso.graeshoppe.client.store.model.ReviewDTO;
+
 import com.diviso.graeshoppe.client.store.model.StoreDTO;
 import com.diviso.graeshoppe.client.store.model.TypeDTO;
-import com.diviso.graeshoppe.client.store.model.UserRatingDTO;
+
 
 public interface StoreCommandService {
 

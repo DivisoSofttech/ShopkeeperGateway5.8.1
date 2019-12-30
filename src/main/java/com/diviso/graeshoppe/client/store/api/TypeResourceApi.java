@@ -5,8 +5,6 @@
  */
 package com.diviso.graeshoppe.client.store.api;
 
-import java.util.List;
-import com.diviso.graeshoppe.client.store.model.Type;
 import com.diviso.graeshoppe.client.store.model.TypeDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -27,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-27T14:30:41.015+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-30T14:09:05.929+05:30[Asia/Kolkata]")
 
 @Api(value = "TypeResource", description = "the TypeResource API")
 public interface TypeResourceApi {
@@ -79,20 +77,6 @@ public interface TypeResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<TypeDTO> getTypeUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
-
-
-    @ApiOperation(value = "listToDto", nickname = "listToDtoUsingPOST3", notes = "", response = TypeDTO.class, responseContainer = "List", tags={ "type-resource", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = TypeDTO.class, responseContainer = "List"),
-        @ApiResponse(code = 201, message = "Created"),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 403, message = "Forbidden"),
-        @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/type/toDto",
-        produces = "*/*", 
-        consumes = "application/json",
-        method = RequestMethod.POST)
-    ResponseEntity<List<TypeDTO>> listToDtoUsingPOST3(@ApiParam(value = "types" ,required=true )  @Valid @RequestBody List<Type> type);
 
 
     @ApiOperation(value = "searchTypes", nickname = "searchTypesUsingGET", notes = "", response = TypeDTO.class, responseContainer = "List", tags={ "type-resource", })

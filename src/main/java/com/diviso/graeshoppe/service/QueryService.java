@@ -139,22 +139,6 @@ public interface QueryService {
 
 	/**
 	 * 
-	 * @param storeId
-	 * @param pageable
-	 * @return
-	 */
-	public Page<Review> findAllReviews(String storeId, Pageable pageable);
-
-	/**
-	 * 
-	 * @param storeId
-	 * @param pageable
-	 * @return
-	 */
-	public Page<UserRating> findAllUserRatings(String storeId, Pageable pageable);
-
-	/**
-	 * 
 	 * @param regNo
 	 * @return
 	 */

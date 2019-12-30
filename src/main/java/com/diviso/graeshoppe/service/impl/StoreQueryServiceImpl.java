@@ -35,7 +35,7 @@ import com.diviso.graeshoppe.client.store.model.Banner;
 import com.diviso.graeshoppe.client.store.model.BannerDTO;
 import com.diviso.graeshoppe.client.store.model.DeliveryInfo;
 import com.diviso.graeshoppe.client.store.model.DeliveryInfoDTO;
-import com.diviso.graeshoppe.client.store.model.Review;
+
 import com.diviso.graeshoppe.client.store.model.Store;
 import com.diviso.graeshoppe.client.store.model.StoreAddress;
 import com.diviso.graeshoppe.client.store.model.StoreAddressDTO;
@@ -47,7 +47,7 @@ import com.diviso.graeshoppe.client.store.model.StoreType;
 import com.diviso.graeshoppe.client.store.model.StoreTypeDTO;
 import com.diviso.graeshoppe.client.store.model.Type;
 import com.diviso.graeshoppe.client.store.model.TypeDTO;
-import com.diviso.graeshoppe.client.store.model.UserRating;
+
 import com.diviso.graeshoppe.service.StoreQueryService;
 import com.diviso.graeshoppe.service.mapper.BannerMapper;
 import com.diviso.graeshoppe.service.mapper.*;

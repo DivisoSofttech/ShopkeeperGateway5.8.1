@@ -56,14 +56,14 @@ import com.diviso.graeshoppe.client.store.model.BannerDTO;
 import com.diviso.graeshoppe.client.store.model.DeliveryInfoDTO;
 import com.diviso.graeshoppe.client.store.model.PreOrderSettingsDTO;
 import com.diviso.graeshoppe.client.store.model.ReplyDTO;
-import com.diviso.graeshoppe.client.store.model.ReviewDTO;
+
 import com.diviso.graeshoppe.client.store.model.StoreAddressDTO;
 import com.diviso.graeshoppe.client.store.model.StoreBundleDTO;
 import com.diviso.graeshoppe.client.store.model.StoreDTO;
 import com.diviso.graeshoppe.client.store.model.StoreSettingsDTO;
 import com.diviso.graeshoppe.client.store.model.StoreTypeDTO;
 import com.diviso.graeshoppe.client.store.model.TypeDTO;
-import com.diviso.graeshoppe.client.store.model.UserRatingDTO;
+
 import com.diviso.graeshoppe.service.CustomerCommandService;
 import com.diviso.graeshoppe.service.OrderCommandService;
 import com.diviso.graeshoppe.service.OrderQueryService;
