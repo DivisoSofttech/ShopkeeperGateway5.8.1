@@ -43,8 +43,6 @@ private String iDPcode;
 
 private String name;
 
-private byte[] image;
-
 
 private String imageContentType;
 
@@ -89,19 +87,6 @@ public Category name(String name) {
 
 public void setName(String name) {
     this.name = name;
-}
-
-public byte[] getImage() {
-    return image;
-}
-
-public Category image(byte[] image) {
-    this.image = image;
-    return this;
-}
-
-public void setImage(byte[] image) {
-    this.image = image;
 }
 
 public String getImageContentType() {
@@ -195,8 +180,6 @@ public String toString() {
         "id=" + getId() +
         ", iDPcode='" + getiDPcode() + "'" +
         ", name='" + getName() + "'" +
-        ", image='" + getImage() + "'" +
-        ", imageContentType='" + getImageContentType() + "'" +
         ", imageLink='" + getImageLink() + "'" +
         ", description='" + getDescription() + "'" +
         "}";

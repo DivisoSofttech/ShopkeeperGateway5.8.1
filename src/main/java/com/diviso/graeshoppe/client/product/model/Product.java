@@ -23,10 +23,6 @@ public class Product   {
 
 	    private Boolean showInCatalogue;
 
-	    @Lob
-	    private byte[] image;
-
-
 	    private String imageContentType;
 
 
@@ -124,19 +120,6 @@ public class Product   {
 
 	    public void setShowInCatalogue(Boolean showInCatalogue) {
 	        this.showInCatalogue = showInCatalogue;
-	    }
-
-	    public byte[] getImage() {
-	        return image;
-	    }
-
-	    public Product image(byte[] image) {
-	        this.image = image;
-	        return this;
-	    }
-
-	    public void setImage(byte[] image) {
-	        this.image = image;
 	    }
 
 	    public String getImageContentType() {
@@ -502,8 +485,6 @@ public class Product   {
 	            ", reference='" + getReference() + "'" +
 	            ", name='" + getName() + "'" +
 	            ", showInCatalogue='" + isShowInCatalogue() + "'" +
-	            ", image='" + getImage() + "'" +
-	            ", imageContentType='" + getImageContentType() + "'" +
 	            ", imageLink='" + getImageLink() + "'" +
 	            ", isActive='" + isIsActive() + "'" +
 	            ", sku='" + getSku() + "'" +
