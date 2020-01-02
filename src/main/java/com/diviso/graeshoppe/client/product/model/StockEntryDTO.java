@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.Date;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -20,7 +21,7 @@ import javax.validation.constraints.*;
 
 public class StockEntryDTO   {
   @JsonProperty("date")
-  private LocalDate date = null;
+  private OffsetDateTime date = null;
 
   @JsonProperty("description")
   private String description = null;
@@ -40,7 +41,7 @@ public class StockEntryDTO   {
   @JsonProperty("reference")
   private String reference = null;
 
-  public StockEntryDTO date(LocalDate date) {
+  public StockEntryDTO date(OffsetDateTime date) {
     this.date = date;
     return this;
   }
@@ -53,11 +54,11 @@ public class StockEntryDTO   {
 
   @Valid
 
-  public LocalDate getDate() {
+  public OffsetDateTime getDate() {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate(OffsetDateTime date) {
     this.date = date;
   }
 
