@@ -1,0 +1,1 @@
+package com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator;
