@@ -17,9 +17,8 @@ import org.springframework.security.oauth2.client.token.grant.implicit.ImplicitR
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 
 @Configuration
-/*
- * @ExcludeFromComponentScan
- */@EnableConfigurationProperties
+@ExcludeFromComponentScan
+@EnableConfigurationProperties
 public class OrderClientConfiguration {
 
 }
