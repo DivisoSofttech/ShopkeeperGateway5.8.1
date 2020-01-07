@@ -3,14 +3,11 @@ package com.diviso.graeshoppe.shopkeepergateway.client.product.model;
 import java.util.Objects;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * Category

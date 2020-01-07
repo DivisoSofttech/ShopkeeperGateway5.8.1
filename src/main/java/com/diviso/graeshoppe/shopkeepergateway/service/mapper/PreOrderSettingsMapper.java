@@ -10,10 +10,12 @@ import com.diviso.graeshoppe.shopkeepergateway.client.store.model.PreOrderSettin
 @Mapper(componentModel = "spring", uses = {})
 public interface PreOrderSettingsMapper extends EntityMapper<PreOrderSettingsDTO, PreOrderSettings> {
 
-    PreOrderSettingsDTO toDto(PreOrderSettings preOrderSettings);
+    @Override
+	PreOrderSettingsDTO toDto(PreOrderSettings preOrderSettings);
 
 
-    PreOrderSettings toEntity(PreOrderSettingsDTO preOrderSettingsDTO);
+    @Override
+	PreOrderSettings toEntity(PreOrderSettingsDTO preOrderSettingsDTO);
 
     default PreOrderSettings fromId(Long id) {
         if (id == null) {

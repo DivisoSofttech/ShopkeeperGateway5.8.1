@@ -3,13 +3,10 @@ package com.diviso.graeshoppe.shopkeepergateway.service.impl;
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -17,20 +14,12 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import com.diviso.graeshoppe.shopkeepergateway.client.store.api.BannerResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.store.api.DeliveryInfoResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.api.StoreAddressResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.api.StoreResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.api.StoreSettingsResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.store.api.StoreTypeResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.store.api.TypeResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.model.Banner;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.model.BannerDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.model.DeliveryInfo;
@@ -53,8 +42,6 @@ import com.diviso.graeshoppe.shopkeepergateway.service.mapper.BannerMapper;
 import com.diviso.graeshoppe.shopkeepergateway.service.mapper.*;
 import com.diviso.graeshoppe.shopkeepergateway.web.rest.util.ServiceUtility;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.diviso.graeshoppe.shopkeepergateway.client.store.model.PreOrderSettings;
 
 import com.diviso.graeshoppe.shopkeepergateway.client.store.model.PreOrderSettingsDTO;
 @Service
@@ -407,6 +394,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
 	}
 
+	@Override
 	public StoreDTO findStoreDTOByRegNo(String regNo) {
 		Store store = findStoreByRegNo(regNo);
 		return storeMapper.toDto(store);
@@ -430,6 +418,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 	
 	
 	
+	@Override
 	public ResponseEntity<StoreBundleDTO> getStoreBundle(String regNo) {
 
 		Store store = findStoreByRegNo(regNo);
@@ -567,6 +556,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 	 * 
 	 */
 
+	@Override
 	public /* ResponseEntity<BannerDTO> */ BannerDTO findBanner(Long id) {
 		QueryBuilder dslQuery = QueryBuilders.boolQuery()
 				.must(matchAllQuery()).filter(termQuery("id", id));

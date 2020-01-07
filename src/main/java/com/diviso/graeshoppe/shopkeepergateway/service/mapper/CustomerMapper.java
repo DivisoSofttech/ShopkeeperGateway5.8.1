@@ -12,10 +12,12 @@ import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.CustomerDTO
 @Mapper(componentModel = "spring", uses = {ContactMapper.class})
 public interface CustomerMapper extends EntityMapper<CustomerDTO, Customer> {
 
-    @Mapping(source = "contact.id", target = "contactId")
+    @Override
+	@Mapping(source = "contact.id", target = "contactId")
     CustomerDTO toDto(Customer customer);
 
-    @Mapping(source = "contactId", target = "contact")
+    @Override
+	@Mapping(source = "contactId", target = "contact")
     @Mapping(target = "favouritestores", ignore = true)
     @Mapping(target = "favouriteproducts", ignore = true)
     Customer toEntity(CustomerDTO customerDTO);

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.validation.Valid;
 
 
@@ -119,9 +120,41 @@ public void setPreOrderDate(OffsetDateTime preOrderDate) {
   @JsonProperty("status")
   private Status status = null;
 
-  @JsonProperty("storeId")
-  private String storeId = null;
+  /**
+ * @return the timeZone
+ */
+public String getTimeZone() {
+	return timeZone;
+}
 
+/**
+ * @param timeZone the timeZone to set
+ */
+public void setTimeZone(String timeZone) {
+	this.timeZone = timeZone;
+}
+
+/**
+ * @return the processId
+ */
+public String getProcessId() {
+	return processId;
+}
+
+/**
+ * @param processId the processId to set
+ */
+public void setProcessId(String processId) {
+	this.processId = processId;
+}
+
+@JsonProperty("storeId")
+  private String storeId = null;
+  @JsonProperty("timeZone")
+  private String timeZone;
+
+  @JsonProperty("processId")
+  private String processId;
   public Order appliedOffers(List<Offer> appliedOffers) {
     this.appliedOffers = appliedOffers;
     return this;

@@ -5,7 +5,6 @@ import com.diviso.graeshoppe.shopkeepergateway.security.AuthoritiesConstants;
 import com.diviso.graeshoppe.shopkeepergateway.service.UserService;
 import com.diviso.graeshoppe.shopkeepergateway.service.dto.UserDTO;
 
-import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 

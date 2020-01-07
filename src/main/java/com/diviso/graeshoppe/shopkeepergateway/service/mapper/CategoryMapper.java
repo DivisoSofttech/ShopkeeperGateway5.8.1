@@ -22,7 +22,8 @@ public interface CategoryMapper extends EntityMapper<CategoryDTO, Category> {
 	 @Mapping(source = "description", target = "description")
 	CategoryDTO toDto(Category category);*/
 
-    @Mapping(target = "products", ignore = true)
+    @Override
+	@Mapping(target = "products", ignore = true)
     Category toEntity(CategoryDTO categoryDTO);
 
     default Category fromId(Long id) {

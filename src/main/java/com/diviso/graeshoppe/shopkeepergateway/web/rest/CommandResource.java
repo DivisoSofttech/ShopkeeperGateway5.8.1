@@ -1,7 +1,6 @@
 package com.diviso.graeshoppe.shopkeepergateway.web.rest;
 
 import java.time.OffsetDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +41,6 @@ import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ReasonDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockCurrentDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockEntryDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.UOMDTO;
-import com.diviso.graeshoppe.shopkeepergateway.client.report.model.SaleDTO;
-import com.diviso.graeshoppe.shopkeepergateway.client.report.model.TicketLineDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.api.BannerResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.api.DeliveryInfoResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.api.PreOrderSettingsResourceApi;
@@ -68,73 +65,69 @@ import com.diviso.graeshoppe.shopkeepergateway.service.OrderQueryService;
 import com.diviso.graeshoppe.shopkeepergateway.service.ProductCommandService;
 import com.diviso.graeshoppe.shopkeepergateway.service.StoreCommandService;
 
-
-
 @RestController
 @RequestMapping("/api/command")
 public class CommandResource {
 
 	@Autowired
-	private OrderCommandResourceApi orderCommandResourceApi;  //used in this.markOrderAsDelivered()
-	
-	@Autowired 
+	private OrderCommandResourceApi orderCommandResourceApi; // used in this.markOrderAsDelivered()
+
+	@Autowired
 	private StockEntryResourceApi stockEntryResourceApi;
-	
-	@Autowired
-	private StoreResourceApi storeResourceApi;		//used in this.createStoreBundle
 
 	@Autowired
-	private NotificationResourceApi notificationResource;		//used in this.markOrderAsDelivered()
-	
-	@Autowired
-	private PreOrderSettingsResourceApi preOrderSettingsResourceApi;	
+	private StoreResourceApi storeResourceApi; // used in this.createStoreBundle
 
 	@Autowired
-	DeliveryInfoResourceApi deliveryInfoResourceApi;				
+	private NotificationResourceApi notificationResource; // used in this.markOrderAsDelivered()
 
 	@Autowired
-	TypeResourceApi typeResourceApi;								
-	
-	@Autowired
-	BannerResourceApi bannerResourceApi;						
-	
-	@Autowired
-	private StoreAddressResourceApi storeAddressResourceApi;		
+	private PreOrderSettingsResourceApi preOrderSettingsResourceApi;
 
 	@Autowired
-	private StoreSettingsResourceApi storeSettingsResourceApi;		
+	DeliveryInfoResourceApi deliveryInfoResourceApi;
 
 	@Autowired
-	private StoreTypeResourceApi storeTypeResourceApi;				
-	
-    @Autowired
-    private EntryLineItemResourceApi entryLineItemResourceApi;
-    
-    @Autowired
-    private ReasonResourceApi reasonResourceApi;
-    
-    @Autowired
-    private LocationResourceApi locationResourceApi;
- 
-    @Autowired
-    OrderQueryService orderQueryService;
-    
-    @Autowired
-    private CustomerCommandService customerCommandService;
-    
-    @Autowired
-    private ProductCommandService productCommandService;
-    
-    @Autowired
-    private StoreCommandService storeCommandService;
-    
-    @Autowired
-    private OrderCommandService orderCommandService;
-    
-    
+	TypeResourceApi typeResourceApi;
+
+	@Autowired
+	BannerResourceApi bannerResourceApi;
+
+	@Autowired
+	private StoreAddressResourceApi storeAddressResourceApi;
+
+	@Autowired
+	private StoreSettingsResourceApi storeSettingsResourceApi;
+
+	@Autowired
+	private StoreTypeResourceApi storeTypeResourceApi;
+
+	@Autowired
+	private EntryLineItemResourceApi entryLineItemResourceApi;
+
+	@Autowired
+	private ReasonResourceApi reasonResourceApi;
+
+	@Autowired
+	private LocationResourceApi locationResourceApi;
+
+	@Autowired
+	OrderQueryService orderQueryService;
+
+	@Autowired
+	private CustomerCommandService customerCommandService;
+
+	@Autowired
+	private ProductCommandService productCommandService;
+
+	@Autowired
+	private StoreCommandService storeCommandService;
+
+	@Autowired
+	private OrderCommandService orderCommandService;
+
 	private final Logger log = LoggerFactory.getLogger(CommandResource.class);
 
-	
 	public EntryLineItemResourceApi getEntryLineItemResourceApi() {
 		return entryLineItemResourceApi;
 	}
@@ -159,7 +152,6 @@ public class CommandResource {
 		this.locationResourceApi = locationResourceApi;
 	}
 
-	
 	public StockEntryResourceApi getStockEntryResourceApi() {
 		return stockEntryResourceApi;
 	}
@@ -168,7 +160,6 @@ public class CommandResource {
 		this.stockEntryResourceApi = stockEntryResourceApi;
 	}
 
-	
 	@PostMapping("/customers/register-customer")
 	public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerAggregator customerAggregator) {
 		return customerCommandService.createCustomer(customerAggregator);
@@ -188,7 +179,7 @@ public class CommandResource {
 	public ResponseEntity<ContactDTO> createContact(@RequestBody ContactDTO contact) {
 		return customerCommandService.createContact(contact);
 	}
-	
+
 	@PutMapping("/contacts")
 	public ResponseEntity<ContactDTO> updateContact(@RequestBody ContactDTO contact) {
 		return customerCommandService.updateContact(contact);
@@ -246,7 +237,6 @@ public class CommandResource {
 	 * @PutMapping("/sales") public ResponseEntity<SaleDTO> updateSale(@RequestBody
 	 * SaleDTO saleDTO) { return saleCommandService.updateSale(saleDTO); }
 	 */
-	
 
 	/*
 	 * @PostMapping("/ticket-lines") public ResponseEntity<TicketLineDTO>
@@ -257,7 +247,6 @@ public class CommandResource {
 	 * updateTicketLine(@RequestBody TicketLineDTO ticketLineDTO) { return
 	 * saleCommandService.updateTicketLine(ticketLineDTO); }
 	 */
-	
 
 	@PutMapping("/uoms")
 	public ResponseEntity<UOMDTO> updateUOM(@RequestBody UOMDTO uomDTO) {
@@ -283,57 +272,31 @@ public class CommandResource {
 	public ResponseEntity<StoreDTO> createStore(@RequestBody StoreDTO storeDTO) {
 		return storeCommandService.createStore(storeDTO);
 	}
-	
-	
+
 //	Order Related Command Resources starts here
-	
+
 	@PostMapping("/markAsDelivered/{orderId}")
 	public void markOrderAsDelivered(@PathVariable String orderId) {
-		Order order=orderQueryService.findOrderByOrderId(orderId);
-		OrderDTO orderDTO = new OrderDTO();
-		orderDTO.setId(order.getId());
-		
-		orderDTO.setDate(order.getDate());
-		orderDTO.setOrderId(order.getOrderId());
-		orderDTO.setCustomerId(order.getCustomerId());
-		orderDTO.setStoreId(order.getStoreId());
-		orderDTO.setGrandTotal(order.getGrandTotal());
-		orderDTO.setEmail(order.getEmail());
-		orderDTO.setDeliveryInfoId(order.getDeliveryInfo().getId());
-		orderDTO.setSubTotal(order.getSubTotal());
-		if(order.getApprovalDetails()!=null) {
-			orderDTO.setApprovalDetailsId(order.getApprovalDetails().getId());
-		}
-		orderDTO.setPaymentRef(order.getPaymentRef());
-		orderDTO.setStatusId(5l);
-		orderCommandResourceApi.updateOrderUsingPUT(orderDTO);
-		NotificationDTO notificationDTO=new NotificationDTO();
-		notificationDTO.setTitle("Order Delivered");
-		notificationDTO.setMessage("Hi, Your order has been delivered successfuly!");
-		notificationDTO.setReceiverId(orderDTO.getCustomerId());
-		notificationDTO.setStatus("unread");
-		notificationDTO.setDate(OffsetDateTime.now());
-		notificationDTO.setTargetId(orderDTO.getOrderId());
-		notificationDTO.setType("Order-Delivered");
-		notificationResource.createNotificationUsingPOST(notificationDTO);
+		orderCommandResourceApi.markOrderAsDelivered(orderId);
 	}
-	
+
 	@PostMapping("/acceptOrder/{taskId}")
-	public ResponseEntity<com.diviso.graeshoppe.shopkeepergateway.client.order.model.CommandResource> acceptOrder(@PathVariable String taskId,@RequestBody ApprovalDetailsDTO approvalDetailsDTO) {
+	public ResponseEntity<com.diviso.graeshoppe.shopkeepergateway.client.order.model.CommandResource> acceptOrder(
+			@PathVariable String taskId, @RequestBody ApprovalDetailsDTO approvalDetailsDTO) {
 		return orderCommandService.createApprovalDetails(taskId, approvalDetailsDTO);
 	}
 
 	public ResponseEntity<OrderDTO> updateOrder(OrderDTO orderDTO) {
 		return orderCommandService.updateOrder(orderDTO);
 	}
-	
+
 	@PutMapping("/notifications")
 	public ResponseEntity<NotificationDTO> updateNotification(@RequestBody NotificationDTO notificationDTO) {
 		return orderCommandService.updateNotification(notificationDTO);
 	}
-	
+
 //	Order related commands ends here
-	
+
 	@PutMapping("/stores")
 	public ResponseEntity<StoreDTO> updateStore(@RequestBody StoreDTO storeDTO) {
 		return storeCommandService.updateStore(storeDTO);
@@ -341,7 +304,7 @@ public class CommandResource {
 
 	@DeleteMapping("/stores/{id}")
 	public void deleteStore(@PathVariable Long id) {
-		 storeCommandService.deleteStore(id);
+		storeCommandService.deleteStore(id);
 	}
 
 	@PostMapping("/replies")
@@ -359,36 +322,31 @@ public class CommandResource {
 		return storeCommandService.deleteReply(id);
 	}
 
-	/*@PostMapping("/user-ratings")
-	public ResponseEntity<UserRatingDTO> createUserRating(@RequestBody UserRatingDTO userRatingDTO) {
-		return storeCommandService.createUserRating(userRatingDTO);
-	}
-
-	@PutMapping("/user-ratings")
-	public ResponseEntity<UserRatingDTO> updateUserRating(@RequestBody UserRatingDTO userRatingDTO) {
-		return storeCommandService.updateUserRating(userRatingDTO);
-	}
-
-	@DeleteMapping("/user-ratings/{id}")
-	public ResponseEntity<Void> deleteUserRating(@PathVariable Long id) {
-		return storeCommandService.deleteUserRating(id);
-	}
-
-	@PostMapping("/reviews")
-	public ResponseEntity<ReviewDTO> createUserRating(@RequestBody ReviewDTO reviewDTO) {		//change method name
-		return storeCommandService.createUserRating(reviewDTO);
-	}
-
-	@PutMapping("/reviews")
-	public ResponseEntity<ReviewDTO> updateUserRating(@RequestBody ReviewDTO reviewDTO) {		//change method name
-		return storeCommandService.updateUserRating(reviewDTO);
-	}
-
-	@DeleteMapping("/reviews/{id}")
-	public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
-		return storeCommandService.deleteReview(id);
-	}
-*/
+	/*
+	 * @PostMapping("/user-ratings") public ResponseEntity<UserRatingDTO>
+	 * createUserRating(@RequestBody UserRatingDTO userRatingDTO) { return
+	 * storeCommandService.createUserRating(userRatingDTO); }
+	 * 
+	 * @PutMapping("/user-ratings") public ResponseEntity<UserRatingDTO>
+	 * updateUserRating(@RequestBody UserRatingDTO userRatingDTO) { return
+	 * storeCommandService.updateUserRating(userRatingDTO); }
+	 * 
+	 * @DeleteMapping("/user-ratings/{id}") public ResponseEntity<Void>
+	 * deleteUserRating(@PathVariable Long id) { return
+	 * storeCommandService.deleteUserRating(id); }
+	 * 
+	 * @PostMapping("/reviews") public ResponseEntity<ReviewDTO>
+	 * createUserRating(@RequestBody ReviewDTO reviewDTO) { //change method name
+	 * return storeCommandService.createUserRating(reviewDTO); }
+	 * 
+	 * @PutMapping("/reviews") public ResponseEntity<ReviewDTO>
+	 * updateUserRating(@RequestBody ReviewDTO reviewDTO) { //change method name
+	 * return storeCommandService.updateUserRating(reviewDTO); }
+	 * 
+	 * @DeleteMapping("/reviews/{id}") public ResponseEntity<Void>
+	 * deleteReview(@PathVariable Long id) { return
+	 * storeCommandService.deleteReview(id); }
+	 */
 	@PostMapping("/delivery-infos")
 	public ResponseEntity<DeliveryInfoDTO> createDeliveryInfo(@RequestBody DeliveryInfoDTO deliveryInfoDTO) {
 		return storeCommandService.createDeliveryInfo(deliveryInfoDTO);
@@ -420,20 +378,21 @@ public class CommandResource {
 	}
 
 	/*
-	 * @PostMapping("/load-products") public void
-	 * loadProducts(@RequestParam("file") MultipartFile file) throws IOException
-	 * { // upload and save the file then load
-	 * log.info("::::::::::::::::::file:::::::::::::::::::::: "+ file);
+	 * @PostMapping("/load-products") public void loadProducts(@RequestParam("file")
+	 * MultipartFile file) throws IOException { // upload and save the file then
+	 * load log.info("::::::::::::::::::file:::::::::::::::::::::: "+ file);
 	 * loadControllerApi.loadUsingPOST(file.getBytes()); }
 	 */
 
 	@PostMapping("/auxilarylineitem")
-	public ResponseEntity<AuxilaryLineItemDTO> createAuxilaryLineItem(@RequestBody AuxilaryLineItemDTO auxilaryLineItemDTO) {
+	public ResponseEntity<AuxilaryLineItemDTO> createAuxilaryLineItem(
+			@RequestBody AuxilaryLineItemDTO auxilaryLineItemDTO) {
 		return productCommandService.createAuxilaryLineItem(auxilaryLineItemDTO);
 	}
 
 	@PutMapping("/auxilarylineitem")
-	public ResponseEntity<AuxilaryLineItemDTO> updateAuxilaryLineItem(@RequestBody AuxilaryLineItemDTO auxilaryLineItemDTO) {
+	public ResponseEntity<AuxilaryLineItemDTO> updateAuxilaryLineItem(
+			@RequestBody AuxilaryLineItemDTO auxilaryLineItemDTO) {
 		return productCommandService.updateAuxilaryLineItem(auxilaryLineItemDTO);
 	}
 
@@ -471,27 +430,26 @@ public class CommandResource {
 	public ResponseEntity<Void> deleteBanner(@PathVariable Long id) {
 		return storeCommandService.deleteBanner(id);
 	}
-	
+
 	@PostMapping("/stock-entry")
 	public ResponseEntity<StockEntryDTO> createStockEntry(@RequestBody StockEntryDTO stockEntryDTO) {
 		return productCommandService.createStockEntry(stockEntryDTO);
 	}
-	
+
 	@PutMapping("/stock-entry")
 	public ResponseEntity<StockEntryDTO> updateStockEntry(@RequestBody StockEntryDTO stockEntryDTO) {
 		return productCommandService.updateStockEntry(stockEntryDTO);
 	}
 
-	
 	@DeleteMapping("/stock-entry/{id}")
 	public ResponseEntity<Void> deleteStockEntry(@PathVariable Long id) {
 		return productCommandService.deleteStockEntry(id);
 	}
-	
+
 	@PostMapping("/entryLineItem")
 	public ResponseEntity<EntryLineItemDTO> createEntryLineItem(@RequestBody EntryLineItemDTO entrylineitemDTO) {
-		
-		log.info("////////////////////////////////////////////////////"+entrylineitemDTO);
+
+		log.info("////////////////////////////////////////////////////" + entrylineitemDTO);
 		return productCommandService.createEntryLineItem(entrylineitemDTO);
 	}
 
@@ -504,7 +462,7 @@ public class CommandResource {
 	public ResponseEntity<Void> deleteEntryLineItem(@PathVariable Long id) {
 		return productCommandService.deleteEntryLineItem(id);
 	}
-	
+
 	@PostMapping("/reason")
 	public ResponseEntity<ReasonDTO> createReason(@RequestBody ReasonDTO reasonDTO) {
 		return productCommandService.createReason(reasonDTO);
@@ -519,7 +477,7 @@ public class CommandResource {
 	public ResponseEntity<Void> deleteReason(@PathVariable Long id) {
 		return productCommandService.deleteReason(id);
 	}
-	
+
 	@PostMapping("/location")
 	public ResponseEntity<LocationDTO> createLocation(@RequestBody LocationDTO locationDTO) {
 		return productCommandService.createLocation(locationDTO);
@@ -534,7 +492,7 @@ public class CommandResource {
 	public ResponseEntity<Void> deleteLocation(@PathVariable Long id) {
 		return productCommandService.deleteLocation(id);
 	}
-	
+
 	@PostMapping("/product/address")
 	public ResponseEntity<AddressDTO> createProductAddress(@RequestBody AddressDTO addressDTO) {
 		return productCommandService.createProductAddress(addressDTO);
@@ -549,24 +507,25 @@ public class CommandResource {
 	public ResponseEntity<Void> deleteProductAddress(@PathVariable Long id) {
 		return productCommandService.deleteProductAddress(id);
 	}
-	
+
 	@PostMapping("/store/preOrderSettings")
-	public ResponseEntity<PreOrderSettingsDTO> createPreOrderSettings(@RequestBody PreOrderSettingsDTO preOrderSettingsDTO) {
+	public ResponseEntity<PreOrderSettingsDTO> createPreOrderSettings(
+			@RequestBody PreOrderSettingsDTO preOrderSettingsDTO) {
 		return storeCommandService.createPreOrderSettings(preOrderSettingsDTO);
 	}
-	
+
 	@PutMapping("/store/preOrderSettings")
-	public ResponseEntity<PreOrderSettingsDTO> updatePreOrderSettings(@RequestBody PreOrderSettingsDTO preOrderSettingsDTO) {
+	public ResponseEntity<PreOrderSettingsDTO> updatePreOrderSettings(
+			@RequestBody PreOrderSettingsDTO preOrderSettingsDTO) {
 		return storeCommandService.updatePreOrderSettings(preOrderSettingsDTO);
 	}
-
 
 	@DeleteMapping("/store/preOrderSettings")
 	public ResponseEntity<Void> deletePreOrderSettings(@PathVariable Long id) {
 		return storeCommandService.deletePreOrderSettings(id);
-				
+
 	}
-	
+
 	@PostMapping("/discount")
 	public ResponseEntity<DiscountDTO> createDiscount(@RequestBody DiscountDTO discountDTO) {
 		return productCommandService.createDiscount(discountDTO);
@@ -576,12 +535,12 @@ public class CommandResource {
 	public ResponseEntity<DiscountDTO> updateDiscount(@RequestBody DiscountDTO discountDTO) {
 		return productCommandService.updateDiscount(discountDTO);
 	}
-	
+
 	@DeleteMapping("/discount/{id}")
 	public ResponseEntity<Void> deleteDiscount(@PathVariable Long id) {
 		return productCommandService.deleteDiscount(id);
 	}
-	
+
 	@PostMapping("/storeBundle")
 	public ResponseEntity<StoreBundleDTO> createStoreBundle(@RequestBody StoreBundleDTO storeBundleDTO) {
 
@@ -606,15 +565,17 @@ public class CommandResource {
 		}
 
 		PreOrderSettingsDTO preOrderSettingsDTO = storeBundleDTO.getPreOrderSettings();
-		
+
 		if (preOrderSettingsDTO != null) {
 			if (preOrderSettingsDTO.getId() == null) {
-				preOrderSettingsDTO = preOrderSettingsResourceApi.createPreOrderSettingsUsingPOST(preOrderSettingsDTO).getBody();
+				preOrderSettingsDTO = preOrderSettingsResourceApi.createPreOrderSettingsUsingPOST(preOrderSettingsDTO)
+						.getBody();
 			} else {
-				preOrderSettingsDTO = preOrderSettingsResourceApi.updatePreOrderSettingsUsingPUT(preOrderSettingsDTO).getBody();
+				preOrderSettingsDTO = preOrderSettingsResourceApi.updatePreOrderSettingsUsingPUT(preOrderSettingsDTO)
+						.getBody();
 			}
 		}
-		
+
 		List<DeliveryInfoDTO> deliveryInfos = storeBundleDTO.getDeliveryInfos();
 		List<DeliveryInfoDTO> savedDeliveryInfos = new ArrayList<DeliveryInfoDTO>();
 
@@ -681,7 +642,7 @@ public class CommandResource {
 		storeBundle.setStore(storeDTO);
 		storeBundle.setStoreAddress(storeAddressDTO);
 		storeBundle.setStoreSettings(storeSettingsDTO);
-		//do this added in if
+		// do this added in if
 		storeDTO.setStoreSettingsId(storeSettingsDTO.getId());
 		storeDTO.setPreOrderSettingsId(preOrderSettingsDTO.getId());
 		storeDTO.setStoreAddressId(storeAddressDTO.getId());
@@ -697,7 +658,4 @@ public class CommandResource {
 		return ResponseEntity.ok().body(storeBundle);
 	}
 
-	
-	
 }
-

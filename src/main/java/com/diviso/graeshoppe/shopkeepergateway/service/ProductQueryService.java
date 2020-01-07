@@ -1,13 +1,7 @@
 package com.diviso.graeshoppe.shopkeepergateway.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.AuxilaryLineItem;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.AuxilaryLineItemDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.Category;

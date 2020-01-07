@@ -1,57 +1,28 @@
 package com.diviso.graeshoppe.shopkeepergateway.web.rest;
 
-import static org.elasticsearch.index.query.QueryBuilders.termQuery;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine;
 
 
 import com.diviso.graeshoppe.shopkeepergateway.client.order.api.OrderQueryResourceApi;
 
-import com.diviso.graeshoppe.shopkeepergateway.client.order.model.OpenTask;
-
-import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine;
-//import com.diviso.graeshoppe.client.report.model.OrderLine;
-
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.AuxilaryOrderLine;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Notification;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Offer;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Order;
-import com.diviso.graeshoppe.shopkeepergateway.client.product.api.AuxilaryLineItemResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.product.api.CategoryResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ComboLineItemResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ProductResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.product.api.StockCurrentResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.product.api.StockEntryResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.product.api.UomResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.*;
-import com.diviso.graeshoppe.shopkeepergateway.client.report.api.OrderMasterResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.report.api.QueryResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.*;
 
-import com.diviso.graeshoppe.shopkeepergateway.client.store.api.*;
 import com.diviso.graeshoppe.shopkeepergateway.client.store.model.*;
 
 import com.diviso.graeshoppe.shopkeepergateway.service.CustomerQueryService;
@@ -64,7 +35,6 @@ import com.diviso.graeshoppe.shopkeepergateway.service.dto.PdfDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.ContactDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.Customer;
 import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.CustomerDTO;
-import com.diviso.graeshoppe.shopkeepergateway.web.rest.util.ServiceUtility;
 
 @RestController
 @RequestMapping("/api/query")
@@ -161,6 +131,7 @@ public class QueryResource {
 	 * @return
 	 * @deprecated
 	 */
+	@Deprecated
 	@GetMapping("/customers/export") // not working
 	public ResponseEntity<PdfDTO> exportCustomers() {
 		PdfDTO pdf = new PdfDTO();

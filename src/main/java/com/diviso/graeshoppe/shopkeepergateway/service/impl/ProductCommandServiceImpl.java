@@ -108,6 +108,7 @@ public class ProductCommandServiceImpl implements ProductCommandService{
 	 * @description update category
 	 */
 
+	@Override
 	public ResponseEntity<CategoryDTO> updateCategory(CategoryDTO categoryDTO) {
 
 		return categoryResourceApi.updateCategoryUsingPUT(categoryDTO);

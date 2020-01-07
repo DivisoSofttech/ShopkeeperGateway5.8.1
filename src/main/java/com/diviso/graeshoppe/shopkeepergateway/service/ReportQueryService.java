@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.AuxItem;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.ComboItem;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OfferLine;

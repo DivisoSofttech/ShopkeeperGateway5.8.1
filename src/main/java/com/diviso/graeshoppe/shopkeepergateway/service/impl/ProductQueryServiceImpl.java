@@ -1,44 +1,33 @@
 package com.diviso.graeshoppe.shopkeepergateway.service.impl;
 
-import static org.elasticsearch.action.search.SearchType.QUERY_THEN_FETCH;
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.util.PageCacheRecycler;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
-import org.elasticsearch.search.aggregations.InternalOrder.Aggregation;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
-import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
-
 import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.Customer;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.Address;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.AuxilaryLineItem;
@@ -475,6 +464,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	 * @param storeId
 	 */
 	
+	@Override
 	public Page<EntryLineItem> findAllEntryLineItemsByIdpCode(String idpCode, Pageable pageable) {
 		// QueryBuilder queryDsl = QueryBuilders.termQuery("product.iDPcode.keyword",
 		// idpCode);
@@ -686,6 +676,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	 * @param pageable
 	 */
 	
+	@Override
 	public Page<AuxilaryLineItem> findAuxilaryLineItemsByIDPcode(String idpCode, Pageable pageable) {
 		// QueryBuilder queryDsl = QueryBuilders.termQuery("product.iDPcode.keyword",
 		// iDPcode);
@@ -1140,6 +1131,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 
 	}
 
+	@Override
 	public Page<CategoryDTO> findAllCategoryDTOsByIdpCode(String idpCode, Pageable pageable) {
 		//builder.query(QueryBuilders.termQuery("iDPcode.keyword", iDPcode));
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
@@ -1180,6 +1172,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 
 	}
 
+	@Override
 	public CategoryDTO findCategoryDTOById(Long id) {
 	//	QueryBuilder queryDsl = QueryBuilders.termQuery("id", id);
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
@@ -1192,6 +1185,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		// return categoryResourceApi.getCategoryUsingGET(id);
 	}
 
+	@Override
 	public ProductDTO findProductDTOById( Long id) {
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
 				.filter(QueryBuilders.termQuery("id", id));
@@ -1204,6 +1198,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		// return productResourceApi.getProductUsingGET(id);
 	}
 
+	@Override
 	public StockEntryDTO findStockEntryDTOById(Long id) {
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
 				.filter(QueryBuilders.termQuery("id", id));
@@ -1222,6 +1217,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	 * @return
 	 */
 
+	@Override
 	public UOMDTO findUOMDTOById(Long id) {
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
 				.filter(QueryBuilders.termQuery("id", id));
@@ -1234,6 +1230,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		// return uomResourceApi.getUOMUsingGET(id);
 	}
 
+	@Override
 	public AuxilaryLineItemDTO findAuxilaryLineItemById(Long id) {
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
 				.filter(QueryBuilders.termQuery("id", id));
@@ -1247,6 +1244,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		// return auxilaryLineItemResourceApi.getAuxilaryLineItemUsingGET(id);
 	}
 
+	@Override
 	public ComboLineItemDTO findCombolineItemById(Long id) {
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(matchAllQuery())
 				.filter(QueryBuilders.termQuery("id", id));
@@ -1258,6 +1256,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		return comboLineItemMapper.toDto(comboLineItem);
 		// return comboLineItemResourceApi.getComboLineItemUsingGET(id);
 	}
+	@Override
 	public StockEntryBundle getStockEntryBundleById(Long id) {
 
 		StockEntry stockEntry = findStockEntryById(id);
@@ -1274,6 +1273,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		stockEntryBundle.getLocation().setAddress(address);
 		return stockEntryBundle;
 	}
+	@Override
 	public ProductBundle getProductBundleById( Long id) {
 
 		Product product = findProductById(id);

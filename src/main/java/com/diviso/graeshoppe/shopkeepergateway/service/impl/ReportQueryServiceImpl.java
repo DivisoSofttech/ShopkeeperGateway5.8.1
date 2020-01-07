@@ -19,8 +19,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.CategoryResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ProductResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.StockCurrentResourceApi;
@@ -36,8 +34,6 @@ import com.diviso.graeshoppe.shopkeepergateway.web.rest.util.ServiceUtility;
 
 //import com.diviso.graeshoppe.client.order.model.aggregator.OrderLine;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OrderLine;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -204,6 +200,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	 * 
 	 * }
 	 */
+	@Override
 	public ResponseEntity<PdfDTO> getAllCategories(String idpcode) {
 		PdfDTO pdf = new PdfDTO();
 		pdf.setPdf(this.categoryResourceApi.exportCategoryListAsPdfUsingGET(idpcode).getBody());
@@ -211,6 +208,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return ResponseEntity.ok().body(pdf);
 	}
 
+	@Override
 	public ResponseEntity<PdfDTO> getAllProducts(String idpcode) {
 		PdfDTO pdf = new PdfDTO();
 		pdf.setPdf(this.productResourceApi.exportProductListAsPdfUsingGET(idpcode).getBody());
@@ -218,6 +216,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return ResponseEntity.ok().body(pdf);
 	}
 
+	@Override
 	public ResponseEntity<PdfDTO> getCurrentStock(String idpcode) {
 		PdfDTO pdf = new PdfDTO();
 		pdf.setPdf(this.stockCurrentResourceApi.exportStockCurrentListAsPdfUsingGET(idpcode).getBody());
@@ -227,6 +226,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 
 
+	@Override
 	public ResponseEntity<PdfDTO> getOrderDocket(String orderNumber) {
 		PdfDTO pdf = new PdfDTO();
 		pdf.setPdf(this.queryResourceApi.getReportWithAuxAndComboAsPdfUsingGET(orderNumber).getBody());
@@ -234,6 +234,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return ResponseEntity.ok().body(pdf);
 	}
 
+	@Override
 	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId) {
 		PdfDTO pdf = new PdfDTO();
 		pdf.setPdf(this.queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId).getBody());
@@ -241,6 +242,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return ResponseEntity.ok().body(pdf);
 	}
 
+	@Override
 	public ResponseEntity<ReportSummary> createReportSummary(String expectedDelivery, String storeName) {
 		return queryResourceApi.createReportSummaryUsingGET(expectedDelivery, storeName);
 	}

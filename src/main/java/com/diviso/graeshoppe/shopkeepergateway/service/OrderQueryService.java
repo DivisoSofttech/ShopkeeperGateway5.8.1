@@ -5,9 +5,6 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-
-import com.diviso.graeshoppe.shopkeepergateway.client.order.model.OpenTask;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.AuxilaryOrderLine;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Notification;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Order;

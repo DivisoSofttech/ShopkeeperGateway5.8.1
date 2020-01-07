@@ -7,12 +7,14 @@ import com.diviso.graeshoppe.shopkeepergateway.client.store.model.StoreDTO;
 @Mapper(componentModel = "spring", uses = {StoreAddressMapper.class, StoreSettingsMapper.class, PreOrderSettingsMapper.class})
 public interface StoreMapper extends EntityMapper<StoreDTO, Store> {
 
-    @Mapping(source = "storeAddress.id", target = "storeAddressId")
+    @Override
+	@Mapping(source = "storeAddress.id", target = "storeAddressId")
     @Mapping(source = "storeSettings.id", target = "storeSettingsId")
     @Mapping(source = "preOrderSettings.id", target = "preOrderSettingsId")
     StoreDTO toDto(Store store);
 
-    @Mapping(source = "storeAddressId", target = "storeAddress")
+    @Override
+	@Mapping(source = "storeAddressId", target = "storeAddress")
     @Mapping(source = "storeSettingsId", target = "storeSettings")
     @Mapping(source = "preOrderSettingsId", target = "preOrderSettings")
     @Mapping(target = "storeTypes", ignore = true)

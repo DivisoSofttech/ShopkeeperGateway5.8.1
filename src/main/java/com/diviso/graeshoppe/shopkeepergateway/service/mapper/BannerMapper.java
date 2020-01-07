@@ -12,10 +12,12 @@ import com.diviso.graeshoppe.shopkeepergateway.client.store.model.BannerDTO;
 @Mapper(componentModel = "spring", uses = {StoreMapper.class})
 public interface BannerMapper extends EntityMapper<BannerDTO, Banner> {
 
-    @Mapping(source = "store.id", target = "storeId")
+    @Override
+	@Mapping(source = "store.id", target = "storeId")
     BannerDTO toDto(Banner banner);
 
-    @Mapping(source = "storeId", target = "store")
+    @Override
+	@Mapping(source = "storeId", target = "store")
     Banner toEntity(BannerDTO bannerDTO);
 
     default Banner fromId(Long id) {

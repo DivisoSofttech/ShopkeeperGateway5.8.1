@@ -1,7 +1,6 @@
 package com.diviso.graeshoppe.shopkeepergateway.service;
 
 import com.corundumstudio.socketio.SocketIOServer;
-import com.diviso.graeshoppe.notification.avro.Notification;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.NotificationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.config.KafkaProperties;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

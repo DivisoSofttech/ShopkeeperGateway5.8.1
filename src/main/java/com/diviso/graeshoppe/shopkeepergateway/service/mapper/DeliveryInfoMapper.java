@@ -13,11 +13,13 @@ import com.diviso.graeshoppe.shopkeepergateway.client.store.model.DeliveryInfoDT
 @Mapper(componentModel = "spring", uses = {StoreMapper.class, TypeMapper.class})
 public interface DeliveryInfoMapper extends EntityMapper<DeliveryInfoDTO, DeliveryInfo> {
 
-    @Mapping(source = "store.id", target = "storeId")
+    @Override
+	@Mapping(source = "store.id", target = "storeId")
     @Mapping(source = "type.id", target = "typeId")
     DeliveryInfoDTO toDto(DeliveryInfo deliveryInfo);
 
-    @Mapping(source = "storeId", target = "store")
+    @Override
+	@Mapping(source = "storeId", target = "store")
     @Mapping(source = "typeId", target = "type")
     DeliveryInfo toEntity(DeliveryInfoDTO deliveryInfoDTO);
 

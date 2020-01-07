@@ -1,7 +1,6 @@
 package com.diviso.graeshoppe.shopkeepergateway.client.product.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Objects;
