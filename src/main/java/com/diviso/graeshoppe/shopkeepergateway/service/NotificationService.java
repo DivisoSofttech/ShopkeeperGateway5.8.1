@@ -1,6 +1,7 @@
 package com.diviso.graeshoppe.shopkeepergateway.service;
 
 import com.corundumstudio.socketio.SocketIOServer;
+import com.diviso.graeshoppe.notification.avro.Notification;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.NotificationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.config.KafkaProperties;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -44,14 +45,14 @@ public class NotificationService {
         consumerProps.remove("topic");
 
         sseExecutorService.execute(() -> {
-            KafkaConsumer<String, String> consumer = new KafkaConsumer<>(consumerProps);
+            KafkaConsumer<String, Notification> consumer = new KafkaConsumer<>(consumerProps);
             consumer.subscribe(Collections.singletonList(notificationTopic));
             boolean exitLoop = false;
             while(!exitLoop) {
                 try {
-                    ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(5));
-                    for (ConsumerRecord<String, String> record : records) {
-                   
+                    ConsumerRecords<String, Notification> records = consumer.poll(Duration.ofSeconds(5));
+                    for (ConsumerRecord<String, Notification> record : records) {
+                    	sendNotification(record.value());
                     }
                 } catch (Exception ex) {
                     log.trace("Complete with error {}", ex.getMessage(), ex);
