@@ -620,22 +620,9 @@ public class CommandResource {
 			});
 		}
 
-		List<BannerDTO> banners = storeBundleDTO.getBanners();
-		List<BannerDTO> savedBanners = new ArrayList<BannerDTO>();
-
-		if (storeType != null) {
-			banners.forEach(banner -> {
-				if (banner.getId() == null) {
-					savedBanners.add(bannerResourceApi.createBannerUsingPOST(banner).getBody());
-				} else {
-					savedBanners.add(bannerResourceApi.updateBannerUsingPUT(banner).getBody());
-				}
-			});
-		}
 
 		StoreBundleDTO storeBundle = new StoreBundleDTO();
 
-		storeBundle.setBanners(savedBanners);
 		storeBundle.setDeliveryInfos(savedDeliveryInfos);
 		storeBundle.setStoreType(savedStoreType);
 		storeBundle.setTypes(savedTypes);
