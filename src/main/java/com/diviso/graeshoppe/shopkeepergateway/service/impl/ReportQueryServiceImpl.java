@@ -260,7 +260,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	public ResponseEntity<com.diviso.graeshoppe.client.report.model.ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
 		log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,toDate);
 		
-		return queResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
+		return null;//queResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
 	}
 
 	/*

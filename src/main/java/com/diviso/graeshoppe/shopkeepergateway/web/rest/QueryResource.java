@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine;
 
@@ -625,7 +626,8 @@ public class QueryResource {
 	 */
 	@GetMapping("/ordersummaryview/{fromDate}/{toDate}") // its working
 	public ResponseEntity<com.diviso.graeshoppe.client.report.model.ReportSummary> createReportSummary(@PathVariable String fromDate ,@PathVariable String toDate,
-			@PathVariable String storeName) {
+			@RequestParam String storeName) {
+		log.debug("<<<<<<<<< createReportSummary >>>>>>>{}{}{}>",fromDate,toDate);
 		return reportQueryService.createReportSummary(fromDate,toDate,storeName);
 	}
 
