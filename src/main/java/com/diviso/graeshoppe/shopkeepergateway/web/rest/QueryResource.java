@@ -623,10 +623,10 @@ public class QueryResource {
 	 * @param storeName
 	 * @return
 	 */
-	@GetMapping("/ordersummaryview/{expectedDelivery}/{storeName}") // its working
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String expectedDelivery,
+	@GetMapping("/ordersummaryview/{fromDate}/{toDate}") // its working
+	public ResponseEntity<com.diviso.graeshoppe.client.report.model.ReportSummary> createReportSummary(@PathVariable String fromDate ,@PathVariable String toDate,
 			@PathVariable String storeName) {
-		return reportQueryService.createReportSummary(expectedDelivery, storeName);
+		return reportQueryService.createReportSummary(fromDate,toDate,storeName);
 	}
 
 	/**
@@ -762,7 +762,7 @@ public class QueryResource {
 
 	@GetMapping("orderCountByCustomerIdAndStoreId/{customerId}/{storeId}") // 07 12 19 it,s working
 	public Long orderCountByCustomerIdAndStoreId(@PathVariable String customerId, @PathVariable String storeId) {
-		log.debug("<<<<<<<<<<< OrderCount >>>>>>>>>>", customerId, storeId);
+		log.debug("<<<<<<<<<<< OrderCount >>>>>>>>>>{}", customerId, storeId);
 		return orderQueryService.orderCountByCustomerIdAndStoreId(customerId, storeId);
 
 	}
@@ -786,7 +786,7 @@ public class QueryResource {
 	 */
 	@GetMapping("/findOrderLineByStoreId/{storeId}") // 26 11 19 its working
 	public Page<Order> findOrderLineByStoreId(@PathVariable String storeId, Pageable pageable) {
-		log.debug("<<<<<<<< findOrderLineByStoreId >>>>>>>>>>", storeId);
+		log.debug("<<<<<<<< findOrderLineByStoreId >>>>>>>>>>{}", storeId);
 		return orderQueryService.findOrderByStoreId(storeId, pageable);
 
 	}
@@ -832,7 +832,7 @@ public class QueryResource {
 
 	@GetMapping("/findAllOrderLinesByOrderId/{orderId}")
 	public Page<OrderLine> findAllOrderLinesByOrderId(@PathVariable Long orderId, Pageable pageable) {
-		log.debug("<<<<<<<<<findAllOrderLinesByOrderId >>>>>>>>>>>", orderId);
+		log.debug("<<<<<<<<<findAllOrderLinesByOrderId >>>>>>>>>>>{}", orderId);
 		Page<OrderLine> page = orderQueryService.findAllOrderLinesByOrderId(orderId, pageable);
 		return page;
 	}

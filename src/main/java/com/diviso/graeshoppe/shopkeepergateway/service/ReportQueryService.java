@@ -43,7 +43,7 @@ public interface ReportQueryService {
 	
 	public ResponseEntity<PdfDTO> getOrderDocket( String orderNumber);
 	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId);
-	public ResponseEntity<ReportSummary> createReportSummary( String expectedDelivery, String storeName);
+	public ResponseEntity<com.diviso.graeshoppe.client.report.model.ReportSummary> createReportSummary( String fromDate, String toDate, String storeName);
 
 	public ResponseEntity<List<OrderLine>> findOrderLinesByOrderNumber(String orderId);
 

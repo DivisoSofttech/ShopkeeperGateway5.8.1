@@ -3,7 +3,11 @@ package com.diviso.graeshoppe.shopkeepergateway.service.impl;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -15,6 +19,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +64,14 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	@Autowired
 	QueryResourceApi queryResourceApi;
+	
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier(value="queResourceApi")
+	 */
+	@Autowired
+	com.diviso.graeshoppe.client.report.api.QueryResourceApi queResourceApi;
 
 	public ReportQueryServiceImpl(RestHighLevelClient restHighLevelClient) {
 
@@ -243,8 +257,10 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<ReportSummary> createReportSummary(String expectedDelivery, String storeName) {
-		return queryResourceApi.createReportSummaryUsingGET(expectedDelivery, storeName);
+	public ResponseEntity<com.diviso.graeshoppe.client.report.model.ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
+		log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,toDate);
+		
+		return queResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
 	}
 
 	/*
