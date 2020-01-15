@@ -1,13 +1,13 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.diviso.graeshoppe"
+      "packageName": "com.diviso.graeshoppe.shopkeepergateway"
     },
     "jhipsterVersion": "5.8.1",
     "applicationType": "gateway",
     "baseName": "graeshoppegateway",
-    "packageName": "com.diviso.graeshoppe",
-    "packageFolder": "com/diviso/graeshoppe",
+    "packageName": "com.diviso.graeshoppe.shopkeepergateway",
+    "packageFolder": "com/diviso/graeshoppe/shopkeepergateway",
     "serverPort": "9080",
     "authenticationType": "oauth2",
     "cacheProvider": "hazelcast",

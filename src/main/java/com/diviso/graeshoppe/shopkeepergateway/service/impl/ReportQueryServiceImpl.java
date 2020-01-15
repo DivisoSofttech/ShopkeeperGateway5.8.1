@@ -70,8 +70,9 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	 * 
 	 * @Qualifier(value="queResourceApi")
 	 */
-	@Autowired
-	com.diviso.graeshoppe.client.report.api.QueryResourceApi queResourceApi;
+	/*
+	 * @Autowired com.diviso.graeshoppe.clQueryResourceApi queResourceApi;
+	 */
 
 	public ReportQueryServiceImpl(RestHighLevelClient restHighLevelClient) {
 
@@ -249,15 +250,15 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId) {
+	public ResponseEntity<PdfDTO> getOrderSummary(String fromDate,String toDate, String storeId) {
 		PdfDTO pdf = new PdfDTO();
-		pdf.setPdf(this.queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId).getBody());
+		pdf.setPdf(this.queryResourceApi.getReportSummaryAsPdfUsingGET(fromDate,toDate, storeId).getBody());
 		pdf.setContentType("application/pdf");
 		return ResponseEntity.ok().body(pdf);
 	}
 
 	@Override
-	public ResponseEntity<com.diviso.graeshoppe.client.report.model.ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
+	public ResponseEntity<ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
 		log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,toDate);
 		
 		return null;//queResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);

@@ -3,15 +3,18 @@ package com.diviso.graeshoppe.shopkeepergateway.client.report.model;
 import java.util.Objects;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OrderLine;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * ComboItem
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-03T09:32:05.158+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-15T09:53:50.027+05:30[Asia/Calcutta]")
 
 public class ComboItem   {
   @JsonProperty("comboItem")
@@ -22,6 +25,9 @@ public class ComboItem   {
 
   @JsonProperty("orderLine")
   private OrderLine orderLine = null;
+
+  @JsonProperty("productId")
+  private Long productId = null;
 
   @JsonProperty("quantity")
   private Double quantity = null;
@@ -87,6 +93,26 @@ public class ComboItem   {
     this.orderLine = orderLine;
   }
 
+  public ComboItem productId(Long productId) {
+    this.productId = productId;
+    return this;
+  }
+
+  /**
+   * Get productId
+   * @return productId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getProductId() {
+    return productId;
+  }
+
+  public void setProductId(Long productId) {
+    this.productId = productId;
+  }
+
   public ComboItem quantity(Double quantity) {
     this.quantity = quantity;
     return this;
@@ -120,12 +146,13 @@ public class ComboItem   {
     return Objects.equals(this.comboItem, comboItem.comboItem) &&
         Objects.equals(this.id, comboItem.id) &&
         Objects.equals(this.orderLine, comboItem.orderLine) &&
+        Objects.equals(this.productId, comboItem.productId) &&
         Objects.equals(this.quantity, comboItem.quantity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(comboItem, id, orderLine, quantity);
+    return Objects.hash(comboItem, id, orderLine, productId, quantity);
   }
 
   @Override
@@ -136,6 +163,7 @@ public class ComboItem   {
     sb.append("    comboItem: ").append(toIndentedString(comboItem)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    orderLine: ").append(toIndentedString(orderLine)).append("\n");
+    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("}");
     return sb.toString();

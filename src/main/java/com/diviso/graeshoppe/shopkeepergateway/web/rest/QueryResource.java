@@ -613,9 +613,9 @@ public class QueryResource {
 	 * @param storeId
 	 * @return
 	 */
-	@GetMapping("/ordersummary/{date}/{storeId}") // its working
-	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String date, @PathVariable String storeId) {
-		return reportQueryService.getOrderSummary(date, storeId);
+	@GetMapping("/ordersummary/{fromDate}/{toDate}/{storeName}") // its working
+	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String fromDate,@PathVariable String toDate, @PathVariable String storeName) {
+		return reportQueryService.getOrderSummary(fromDate,toDate, storeName);
 	}
 
 	/**
@@ -625,7 +625,7 @@ public class QueryResource {
 	 * @return
 	 */
 	@GetMapping("/ordersummaryview/{fromDate}/{toDate}") // its working
-	public ResponseEntity<com.diviso.graeshoppe.client.report.model.ReportSummary> createReportSummary(@PathVariable String fromDate ,@PathVariable String toDate,
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate ,@PathVariable String toDate,
 			@RequestParam String storeName) {
 		log.debug("<<<<<<<<< createReportSummary >>>>>>>{}{}{}>",fromDate,toDate);
 		return reportQueryService.createReportSummary(fromDate,toDate,storeName);
