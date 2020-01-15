@@ -261,7 +261,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	public ResponseEntity<ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
 		log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,toDate);
 		
-		return null;//queResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
+		return queryResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
 	}
 
 	/*
