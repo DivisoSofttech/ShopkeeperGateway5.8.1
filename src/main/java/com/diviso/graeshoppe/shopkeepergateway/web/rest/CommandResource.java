@@ -641,6 +641,15 @@ public class CommandResource {
 				storeDTO = storeResourceApi.updateStoreUsingPUT(storeDTO).getBody();
 			}
 		}
+		
+		if (storeType != null) {
+
+			storeType.forEach(storetype -> {
+				
+					savedStoreType.add(storeTypeResourceApi.updateStoreTypeUsingPUT(storetype).getBody());
+			});
+		}
+
 
 		return ResponseEntity.ok().body(storeBundle);
 	}
