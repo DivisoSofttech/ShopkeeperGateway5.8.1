@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine;
 
@@ -612,9 +613,9 @@ public class QueryResource {
 	 * @param storeId
 	 * @return
 	 */
-	@GetMapping("/ordersummary/{date}/{storeId}") // its working
-	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String date, @PathVariable String storeId) {
-		return reportQueryService.getOrderSummary(date, storeId);
+	@GetMapping("/ordersummary/{fromDate}/{toDate}/{storeName}") // its working
+	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String fromDate,@PathVariable String toDate, @PathVariable String storeName) {
+		return reportQueryService.getOrderSummary(fromDate,toDate, storeName);
 	}
 
 	/**
@@ -623,10 +624,11 @@ public class QueryResource {
 	 * @param storeName
 	 * @return
 	 */
-	@GetMapping("/ordersummaryview/{expectedDelivery}/{storeName}") // its working
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String expectedDelivery,
-			@PathVariable String storeName) {
-		return reportQueryService.createReportSummary(expectedDelivery, storeName);
+	@GetMapping("/ordersummaryview/{fromDate}/{toDate}") // its working
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate ,@PathVariable String toDate,
+			@RequestParam String storeName) {
+		log.debug("<<<<<<<<< createReportSummary >>>>>>>{}{}{}>",fromDate,toDate);
+		return reportQueryService.createReportSummary(fromDate,toDate,storeName);
 	}
 
 	/**
@@ -762,7 +764,7 @@ public class QueryResource {
 
 	@GetMapping("orderCountByCustomerIdAndStoreId/{customerId}/{storeId}") // 07 12 19 it,s working
 	public Long orderCountByCustomerIdAndStoreId(@PathVariable String customerId, @PathVariable String storeId) {
-		log.debug("<<<<<<<<<<< OrderCount >>>>>>>>>>", customerId, storeId);
+		log.debug("<<<<<<<<<<< OrderCount >>>>>>>>>>{}", customerId, storeId);
 		return orderQueryService.orderCountByCustomerIdAndStoreId(customerId, storeId);
 
 	}
@@ -786,7 +788,7 @@ public class QueryResource {
 	 */
 	@GetMapping("/findOrderLineByStoreId/{storeId}") // 26 11 19 its working
 	public Page<Order> findOrderLineByStoreId(@PathVariable String storeId, Pageable pageable) {
-		log.debug("<<<<<<<< findOrderLineByStoreId >>>>>>>>>>", storeId);
+		log.debug("<<<<<<<< findOrderLineByStoreId >>>>>>>>>>{}", storeId);
 		return orderQueryService.findOrderByStoreId(storeId, pageable);
 
 	}
@@ -832,7 +834,7 @@ public class QueryResource {
 
 	@GetMapping("/findAllOrderLinesByOrderId/{orderId}")
 	public Page<OrderLine> findAllOrderLinesByOrderId(@PathVariable Long orderId, Pageable pageable) {
-		log.debug("<<<<<<<<<findAllOrderLinesByOrderId >>>>>>>>>>>", orderId);
+		log.debug("<<<<<<<<<findAllOrderLinesByOrderId >>>>>>>>>>>{}", orderId);
 		Page<OrderLine> page = orderQueryService.findAllOrderLinesByOrderId(orderId, pageable);
 		return page;
 	}

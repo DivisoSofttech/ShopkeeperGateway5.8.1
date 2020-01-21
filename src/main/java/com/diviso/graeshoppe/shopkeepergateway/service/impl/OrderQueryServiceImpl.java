@@ -83,7 +83,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	@Override
 	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(String statusName, String storeId, String deliveryType,
 			Pageable pageable) {
-		log.debug("<<<<<<<<<< findOrderByStatusNameAndDeliveryType >>>>>>>>>",statusName,deliveryType);
+		log.debug("<<<<<<<<<< findOrderByStatusNameAndDeliveryType >>>>>>>>>{}{}",statusName,deliveryType);
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		SearchRequest searchRequest = null;
 		SearchResponse searchResponse = null;
@@ -216,9 +216,11 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		  SearchResponse searchResponse = null;
 		  
 		  try { searchResponse = restHighLevelClient.search(searchRequest,
-		  RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		  e.printStackTrace(); } SearchHit[] searchHit =
-		  searchResponse.getHits().getHits();
+		  RequestOptions.DEFAULT); }
+		  catch (IOException e) { // TODO Auto-generated
+		  e.printStackTrace(); }
+		  SearchHit[] searchHit =searchResponse.getHits().getHits();
+		  
 		  
 		  List<OrderLine> orderLineList = new ArrayList<>();
 		  

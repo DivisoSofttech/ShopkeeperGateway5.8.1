@@ -42,8 +42,8 @@ public interface ReportQueryService {
 	public ResponseEntity<PdfDTO> getCurrentStock(String idpcode);
 	
 	public ResponseEntity<PdfDTO> getOrderDocket( String orderNumber);
-	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId);
-	public ResponseEntity<ReportSummary> createReportSummary( String expectedDelivery, String storeName);
+	public ResponseEntity<PdfDTO> getOrderSummary(String fromDate, String toDate, String storeName);
+	public ResponseEntity<ReportSummary> createReportSummary( String fromDate, String toDate, String storeName);
 
 	public ResponseEntity<List<OrderLine>> findOrderLinesByOrderNumber(String orderId);
 
