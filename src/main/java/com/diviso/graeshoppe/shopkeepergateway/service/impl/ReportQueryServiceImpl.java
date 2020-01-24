@@ -250,19 +250,22 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<PdfDTO> getOrderSummary(String fromDate,String toDate, String storeId) {
+	public PdfDTO getOrderSummary(String date, String storeId) {
 		PdfDTO pdf = new PdfDTO();
-		pdf.setPdf(this.queryResourceApi.getReportSummaryAsPdfUsingGET(fromDate,toDate, storeId).getBody());
+		pdf.setPdf(this.queryResourceApi.getOrderSummaryByDateAndStoreNameAsPdfUsingGET(date, storeId).getBody());
 		pdf.setContentType("application/pdf");
-		return ResponseEntity.ok().body(pdf);
+		return pdf;
 	}
 
-	@Override
-	public ResponseEntity<ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
-		log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,toDate);
-		
-		return queryResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
-	}
+	/*
+	 * @Override public ResponseEntity<ReportSummary> createReportSummary(String
+	 * fromDate,String toDate, String storeName) {
+	 * log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,
+	 * toDate);
+	 * 
+	 * return queryResourceApi.createReportSummaryUsingGET(fromDate, toDate,
+	 * storeName); }
+	 */
 
 	/*
 	 * @Override public ResponseEntity<OrderAggregator> getOrderAggregator(String
@@ -298,6 +301,21 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	public ResponseEntity<List<AuxItem>> findAuxItemsById(Long id) {
 		log.debug("<<<<<<<findAuxItemsById >>>>>>>{}",id);
 		return queryResourceApi.findAuxItemByidUsingGET(id);
+	}
+
+	@Override
+	public ResponseEntity<ReportSummary> createReportSummary(String fromDate, String toDate, String storeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
+			String storeId) {
+		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf>>>>>{}{}{}",fromDate,storeId,toDate);
+		PdfDTO pdfDto= new PdfDTO();
+		pdfDto.setPdf(queryResourceApi.getOrderSummaryBetweenDatesAsPdfUsingGET(fromDate, storeId, toDate).getBody());
+		return ResponseEntity.ok().body(pdfDto);
 	}
 
 }

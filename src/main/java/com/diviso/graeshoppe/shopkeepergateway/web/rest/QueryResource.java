@@ -613,9 +613,9 @@ public class QueryResource {
 	 * @param storeId
 	 * @return
 	 */
-	@GetMapping("/ordersummary/{fromDate}/{toDate}/{storeName}") // its working
-	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String fromDate,@PathVariable String toDate, @PathVariable String storeName) {
-		return reportQueryService.getOrderSummary(fromDate,toDate, storeName);
+	@GetMapping("/ordersummary/{date}/{storeName}") // its working
+	public PdfDTO getOrderSummary(@PathVariable String date, @PathVariable String storeName) {
+		return reportQueryService.getOrderSummary(date, storeName);
 	}
 
 	/**
@@ -868,6 +868,12 @@ public class QueryResource {
 	public ResponseEntity<List<AuxItem>> findAuxItemsById(@PathVariable Long id){
 		log.debug("<<<<<<<<<< findAuxItem >>>>>>>",id);
 		return reportQueryService.findAuxItemsById(id);
+		
+	}
+	@GetMapping("/getOrderSummaryBetweenDatesAsPdf/{fromDate}/{toDate}/{storeId}")
+	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam (value="storeName")String storeId){
+		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf >>>>>{}{}{}",fromDate,toDate,storeId,storeId);
+		return reportQueryService.getOrderSummaryBetweenDatesAndStoreIdAsPdf(fromDate,toDate,storeId);
 		
 	}
 

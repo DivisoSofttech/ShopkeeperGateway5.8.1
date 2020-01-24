@@ -42,7 +42,7 @@ public interface ReportQueryService {
 	public ResponseEntity<PdfDTO> getCurrentStock(String idpcode);
 	
 	public ResponseEntity<PdfDTO> getOrderDocket( String orderNumber);
-	public ResponseEntity<PdfDTO> getOrderSummary(String fromDate, String toDate, String storeName);
+	public PdfDTO getOrderSummary(String fromDate, String toDate);
 	public ResponseEntity<ReportSummary> createReportSummary( String fromDate, String toDate, String storeName);
 
 	public ResponseEntity<List<OrderLine>> findOrderLinesByOrderNumber(String orderId);
@@ -50,6 +50,9 @@ public interface ReportQueryService {
 	public ResponseEntity<List<OfferLine>> findOfferLineByOrderNumber(String orderId);
 
 	public ResponseEntity<List<AuxItem>> findAuxItemsById(Long id);
+
+	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
+			String storeId);
 
 //	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber);
 }
