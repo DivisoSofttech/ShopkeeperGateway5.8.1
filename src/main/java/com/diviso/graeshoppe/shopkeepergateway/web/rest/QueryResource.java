@@ -876,5 +876,10 @@ public class QueryResource {
 		return reportQueryService.getOrderSummaryBetweenDatesAndStoreIdAsPdf(fromDate,toDate,storeId);
 		
 	}
+	@GetMapping("/getOrderSummaryDetails/{date}/{storeId}")
+	public ResponseEntity<PdfDTO> getOrderSummaryDetails(@PathVariable String date,@PathVariable String storeId){
+		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
+		return reportQueryService.getOrderSummaruDetails(date,storeId);
+	}
 
 }

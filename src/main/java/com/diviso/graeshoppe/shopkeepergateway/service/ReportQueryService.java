@@ -54,5 +54,7 @@ public interface ReportQueryService {
 	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
 			String storeId);
 
+	public ResponseEntity<PdfDTO> getOrderSummaruDetails(String date,String storeId);
+
 //	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber);
 }

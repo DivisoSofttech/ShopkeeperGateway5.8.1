@@ -318,4 +318,12 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return ResponseEntity.ok().body(pdfDto);
 	}
 
+	@Override
+	public ResponseEntity<PdfDTO> getOrderSummaruDetails(String date,String storeId) {
+		log.debug("<<<<<<<<< getOrderSummaruDetails >>>>>>>>",date);
+		PdfDTO pdf =new PdfDTO();
+		pdf.setPdf(queryResourceApi.getOrderSummaryByDateAndStoreNameAsPdfUsingGET(date, storeId).getBody());
+		return ResponseEntity.ok().body(pdf);
+	}
+
 }

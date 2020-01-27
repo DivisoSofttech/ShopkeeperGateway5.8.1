@@ -6,6 +6,7 @@
 package com.diviso.graeshoppe.shopkeepergateway.client.report.api;
 
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.AuxItem;
+import com.diviso.graeshoppe.shopkeepergateway.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OfferLine;
 import java.time.OffsetDateTime;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OrderLine;
@@ -30,10 +31,22 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-23T15:47:37.850+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T13:59:26.531+05:30[Asia/Calcutta]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
+
+    @ApiOperation(value = "createCancellationReportSummaryView", nickname = "createCancellationReportSummaryViewUsingGET", notes = "", response = CancellationSummary.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = CancellationSummary.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/cancellationReportview/{date}/{storeName}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<CancellationSummary> createCancellationReportSummaryViewUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName);
+
 
     @ApiOperation(value = "createReportSummary", nickname = "createReportSummaryUsingGET", notes = "", response = ReportSummary.class, tags={ "query-resource", })
     @ApiResponses(value = { 
@@ -155,16 +168,28 @@ public interface QueryResourceApi {
     ResponseEntity<Long> findWeakOrderCountUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "statusName",required=true) @PathVariable("statusName") String statusName);
 
 
+    @ApiOperation(value = "getCancellationSummaryAsPdf", nickname = "getCancellationSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = byte[].class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/cancellationSummary/{date}/{storeName}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<byte[]> getCancellationSummaryAsPdfUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName);
+
+
     @ApiOperation(value = "getDetailedOrderSummaryAsPdf", nickname = "getDetailedOrderSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = byte[].class),
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/detailedOrderSummary/{date}",
+    @RequestMapping(value = "/api/detailedOrderSummary/{date}/{storeName}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<byte[]> getDetailedOrderSummaryAsPdfUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName") @Valid @RequestParam(value = "storeName", required = false) String storeName);
+    ResponseEntity<byte[]> getDetailedOrderSummaryAsPdfUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName);
 
 
     @ApiOperation(value = "getOrderSummaryBetweenDatesAsPdf", nickname = "getOrderSummaryBetweenDatesAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
