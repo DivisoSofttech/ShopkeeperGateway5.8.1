@@ -530,19 +530,7 @@ public class QueryResource {
 		return ResponseEntity.ok().body(orderMaster);
 	}
 
-	/**
-	 * 
-	 * @param orderMasterId
-	 * @param pageable
-	 * @return
-	 */
-	@GetMapping("/orderLineByOrderMasterId/{orderMasterId}") // not tested no data in database
-	public ResponseEntity<Page<OrderLine>> findOrderLineByOrderMasterId(@PathVariable Long orderMasterId,
-			Pageable pageable) {
-		Page<OrderLine> orderLine = reportQueryService.findOrderLineByOrderMasterId(orderMasterId, pageable);
-		return ResponseEntity.ok().body(orderLine);
-	}
-
+	
 	/**
 	 * 
 	 * @param orderNumber
@@ -710,41 +698,10 @@ public class QueryResource {
 	Long findNotificationCountByReceiverIdAndStatusName(String receiverId, String status) {
 		return orderQueryService.getNotificationCountByReceiveridAndStatus(receiverId, status);
 	}
-	/**
-	 * @author Prince
-	 * @param orderId
-	 * @param pageable
-	 * @return
-	 */
-	@GetMapping("/findAllOrderLinesByOrderId/{orderId}")
-	public Page<OrderLine> findAllOrderLinesByOrderId(@PathVariable Long orderId, Pageable pageable) {
-		log.debug("<<<<<<<<<findAllOrderLinesByOrderId >>>>>>>>>>>{}", orderId);
-		Page<OrderLine> page = orderQueryService.findAllOrderLinesByOrderId(orderId, pageable);
-		return page;
-	}
-	/**
-	 * @author Prince
-	 * @param orderLineId
-	 * @param pageable
-	 * @return
-	 */
-	@GetMapping("/findAuxilaryOrderLineByOrderLineId/{orderLineId}")
-	public Page<AuxilaryOrderLine> findAuxilaryOrderLineByOrderLineId(@PathVariable Long orderLineId,
-			Pageable pageable) {
-		log.debug("<<<<<<<<findAuxilaryOrderLineByOrderLineId >>>>>>>>>>", orderLineId);
-		return orderQueryService.findAuxilaryOrderLineByOrderLineId(orderLineId, pageable);
-	}
-
+	
+	
 	// ***********************Offer related end points**********************
-	/**
-	 * @author Prince
-	 * @param orderId
-	 * @return
-	 */
-	@GetMapping("/findOfferLinesByOrderId/{orderId}")
-	public List<Offer> findOfferLinesByOrderId(@PathVariable Long orderId) {
-		return offerQueryService.findOfferLinesByOrderId(orderId);
-	}
+	
 	/**
 	 * @author Prince
 	 * @param orderId
@@ -756,17 +713,7 @@ public class QueryResource {
 		return reportQueryService.findOrderLinesByOrderNumber(orderId);
 
 	}
-	/**
-	 *@author Prince
-	 * @param orderId
-	 * @return
-	 */
-	@GetMapping("/findOfferLinesByOrderNumber/{orderId}")
-	public ResponseEntity<List<OfferLine>> findOfferLinesByOrderNumber(@PathVariable String orderId){
-		log.debug("<<<<<<<<<findOfferLineByOrderNumber {} ",orderId);
-		return reportQueryService.findOfferLineByOrderNumber(orderId);
-		
-	}
+	
 	/**
 	 * 
 	 * @param id
@@ -774,7 +721,7 @@ public class QueryResource {
 	 */
 	@GetMapping("/findAuxItemsbyId/{id}")
 	public ResponseEntity<List<AuxItem>> findAuxItemsById(@PathVariable Long id){
-		log.debug("<<<<<<<<<< findAuxItem >>>>>>>",id);
+		log.debug("<<<<<<<<<< findAuxItem >>>>>>>{}",id);
 		return reportQueryService.findAuxItemsById(id);
 		
 	}

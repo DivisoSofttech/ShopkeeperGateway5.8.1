@@ -118,31 +118,12 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	 */
 	@Override
 	public Page<AuxItem> findAuxItemByOrderLineId(Long orderLineId, Pageable pageable) {
-
+		log.debug("<<<<<<<<<<<<<< findAuxItemByOrderLineId >>>>>>>>>{}",orderLineId);
+		QueryBuilder dslBuilder = QueryBuilders.boolQuery()
+				.must(QueryBuilders.matchAllQuery()).filter(QueryBuilders.termQuery("orderline.id", orderLineId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
-
-		/*
-		 * String[] include = new String[] { "" };
-		 * 
-		 * String[] exclude = new String[] {};
-		 * 
-		 * builder.fetchSource(include, exclude);
-		 */
-
-		builder.query(termQuery("orderLine.id", orderLineId));
-
-		SearchRequest searchRequest = serviceUtility.generateSearchRequest("auxitem", pageable.getPageSize(),
-				pageable.getPageNumber(), builder);
-
-		SearchResponse searchResponse = null;
-
-		try {
-			searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) { // TODO Auto-generated
-			e.printStackTrace();
-		}
-
-		return serviceUtility.getPageResult(searchResponse, pageable, new AuxItem());
+		SearchResponse response = serviceUtility.searchResponseForPage("auxitem", builder, pageable);
+		return serviceUtility.getPageResult(response, pageable, new AuxItem());
 
 	}
 
@@ -151,31 +132,12 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	 */
 	@Override
 	public Page<ComboItem> findComboItemByOrderLineId(Long orderLineId, Pageable pageable) {
-
+		log.debug("<<<<<<<<<<<<< findComboItemByOrderLineId >>>>>>>>>{}",orderLineId);
+		QueryBuilder dslBuilder = QueryBuilders.boolQuery()
+				.must(QueryBuilders.matchAllQuery()).filter(QueryBuilders.termQuery("orderline.id", orderLineId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
-
-		/*
-		 * String[] include = new String[] { "" };
-		 * 
-		 * String[] exclude = new String[] {};
-		 * 
-		 * builder.fetchSource(include, exclude);
-		 */
-
-		builder.query(termQuery("orderLine.id", orderLineId));
-
-		SearchRequest searchRequest = serviceUtility.generateSearchRequest("comboitem", pageable.getPageSize(),
-				pageable.getPageNumber(), builder);
-
-		SearchResponse searchResponse = null;
-
-		try {
-			searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) { // TODO Auto-generated
-			e.printStackTrace();
-		}
-
-		return serviceUtility.getPageResult(searchResponse, pageable, new ComboItem());
+		SearchResponse response = serviceUtility.searchResponseForPage("comboitem", builder, pageable);
+		return serviceUtility.getPageResult(response, pageable, new ComboItem());
 
 	}
 
