@@ -304,9 +304,9 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<ReportSummary> createReportSummary(String fromDate, String toDate, String storeName) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<ReportSummary> createReportSummary(String date, String storeId) {
+		log.debug("<<<<<<<<<<< createReportSummary >>>>>>{}{}",date,storeId);
+		return queryResourceApi.createReportSummaryUsingGET(date, storeId);
 	}
 
 	@Override
@@ -324,6 +324,12 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		PdfDTO pdf =new PdfDTO();
 		pdf.setPdf(queryResourceApi.getDetailedOrderSummaryAsPdfUsingGET(date, storeId).getBody());
 		return ResponseEntity.ok().body(pdf);
+	}
+
+	@Override
+	public ResponseEntity<ReportSummary> getDetailedOrderSummery(String date, String storeId) {
+		log.debug("<<<<<<<<<< getDetailedOrderSummery >>>>>>>>{}{}",date,storeId);
+		return null;//ResponseEntity.ok().body(queryResourceApi.getDetailedOrderSummaryAsPdfUsingGET(date, storeId));
 	}
 
 }

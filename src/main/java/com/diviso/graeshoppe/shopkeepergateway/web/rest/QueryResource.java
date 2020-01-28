@@ -624,11 +624,10 @@ public class QueryResource {
 	 * @param storeName
 	 * @return
 	 */
-	@GetMapping("/ordersummaryview/{fromDate}/{toDate}") // its working
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate ,@PathVariable String toDate,
-			@RequestParam String storeName) {
-		log.debug("<<<<<<<<< createReportSummary >>>>>>>{}{}{}>",fromDate,toDate);
-		return reportQueryService.createReportSummary(fromDate,toDate,storeName);
+	@GetMapping("/ordersummaryview/{date}/{storeId}") // its working
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String date,@PathVariable String storeId) {
+		log.debug("<<<<<<<<< createReportSummary >>>>>>>{}>",date,storeId);
+		return reportQueryService.createReportSummary(date,storeId);
 	}
 
 	/**
@@ -876,10 +875,16 @@ public class QueryResource {
 		return reportQueryService.getOrderSummaryBetweenDatesAndStoreIdAsPdf(fromDate,toDate,storeId);
 		
 	}
-	@GetMapping("/getOrderSummaryDetails/{date}/{storeId}")
+	@GetMapping("/getDetailedOrderSummeryAsPdf/{date}/{storeId}")
 	public ResponseEntity<PdfDTO> getOrderSummaryDetails(@PathVariable String date,@PathVariable String storeId){
 		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
 		return reportQueryService.getOrderSummaryDetails(date,storeId);
 	}
+	@GetMapping("/getDetailedOrderSummery/{date}/{storeId}")
+	public ResponseEntity<ReportSummary> getDetailedOrderSummery(@PathVariable String date,@PathVariable String storeId){
+		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
+		return reportQueryService.getDetailedOrderSummery(date,storeId);
+	}
+
 
 }
