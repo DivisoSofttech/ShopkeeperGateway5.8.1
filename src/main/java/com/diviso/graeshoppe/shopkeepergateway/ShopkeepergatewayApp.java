@@ -72,7 +72,7 @@ public class ShopkeepergatewayApp implements InitializingBean {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(ShopkeepergatewayApp.class);
         ConfigurableApplicationContext applicationContext = app.run(args);
-        applicationContext.getBean(NotificationService.class).consumeNotification();
+        applicationContext.getBean(NotificationService.class).startConsumers();
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = applicationContext.getEnvironment();
         logApplicationStartup(env);

@@ -220,8 +220,7 @@ kafka:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 topic:
-   notification:
-      destination: notificationx
+   notification: notificationx
 elasticsearch:
    host: 7817d4bf6d2b4100a5f86c3187b78e21.us-central1.gcp.cloud.es.io
    port: 9243
