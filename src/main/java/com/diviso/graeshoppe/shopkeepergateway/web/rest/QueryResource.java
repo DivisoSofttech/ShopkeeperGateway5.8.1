@@ -869,10 +869,10 @@ public class QueryResource {
 		return reportQueryService.findAuxItemsById(id);
 		
 	}
-	@GetMapping("/getOrderSummaryBetweenDatesAsPdf/{fromDate}/{toDate}/{storeId}")
-	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam (value="storeName")String storeId){
-		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf >>>>>{}{}{}",fromDate,toDate,storeId,storeId);
-		return reportQueryService.getOrderSummaryBetweenDatesAndStoreIdAsPdf(fromDate,toDate,storeId);
+	@GetMapping("/getOrderSummaryBetweenDatesAsPdf/{fromDate}/{toDate}/{storeName}")
+	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(@PathVariable String fromDate,@PathVariable String toDate,@PathVariable String storeName){
+		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf >>>>>{}{}{}",fromDate,toDate,storeName);
+		return reportQueryService.getOrderSummaryBetweenDatesAndStoreIdAsPdf(fromDate,toDate,storeName);
 		
 	}
 	@GetMapping("/getDetailedOrderSummeryAsPdf/{date}/{storeId}")

@@ -311,10 +311,10 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	@Override
 	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
-			String storeId) {
-		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf>>>>>{}{}{}",fromDate,storeId,toDate);
+			String storeName) {
+		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf>>>>>{}{}{}",fromDate,storeName,toDate);
 		PdfDTO pdfDto= new PdfDTO();
-		pdfDto.setPdf(queryResourceApi.getOrderSummaryBetweenDatesAsPdfUsingGET(fromDate, storeId, toDate).getBody());
+		pdfDto.setPdf(queryResourceApi.getOrderSummaryBetweenDatesAsPdfUsingGET(fromDate, storeName, toDate).getBody());
 		return ResponseEntity.ok().body(pdfDto);
 	}
 
