@@ -2,16 +2,19 @@ package com.diviso.graeshoppe.shopkeepergateway.client.report.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * OrderMasterDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-03T09:32:05.158+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T13:59:26.531+05:30[Asia/Calcutta]")
 
 public class OrderMasterDTO   {
   @JsonProperty("addressType")
@@ -22,6 +25,9 @@ public class OrderMasterDTO   {
 
   @JsonProperty("alternatePhone")
   private Long alternatePhone = null;
+
+  @JsonProperty("cancellationRef")
+  private Long cancellationRef = null;
 
   @JsonProperty("city")
   private String city = null;
@@ -94,6 +100,9 @@ public class OrderMasterDTO   {
 
   @JsonProperty("preOrderDate")
   private OffsetDateTime preOrderDate = null;
+
+  @JsonProperty("refundedAmount")
+  private Double refundedAmount = null;
 
   @JsonProperty("roadNameAreaOrStreet")
   private String roadNameAreaOrStreet = null;
@@ -183,6 +192,26 @@ public class OrderMasterDTO   {
 
   public void setAlternatePhone(Long alternatePhone) {
     this.alternatePhone = alternatePhone;
+  }
+
+  public OrderMasterDTO cancellationRef(Long cancellationRef) {
+    this.cancellationRef = cancellationRef;
+    return this;
+  }
+
+  /**
+   * Get cancellationRef
+   * @return cancellationRef
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getCancellationRef() {
+    return cancellationRef;
+  }
+
+  public void setCancellationRef(Long cancellationRef) {
+    this.cancellationRef = cancellationRef;
   }
 
   public OrderMasterDTO city(String city) {
@@ -669,6 +698,26 @@ public class OrderMasterDTO   {
     this.preOrderDate = preOrderDate;
   }
 
+  public OrderMasterDTO refundedAmount(Double refundedAmount) {
+    this.refundedAmount = refundedAmount;
+    return this;
+  }
+
+  /**
+   * Get refundedAmount
+   * @return refundedAmount
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Double getRefundedAmount() {
+    return refundedAmount;
+  }
+
+  public void setRefundedAmount(Double refundedAmount) {
+    this.refundedAmount = refundedAmount;
+  }
+
   public OrderMasterDTO roadNameAreaOrStreet(String roadNameAreaOrStreet) {
     this.roadNameAreaOrStreet = roadNameAreaOrStreet;
     return this;
@@ -882,6 +931,7 @@ public class OrderMasterDTO   {
     return Objects.equals(this.addressType, orderMasterDTO.addressType) &&
         Objects.equals(this.allergyNote, orderMasterDTO.allergyNote) &&
         Objects.equals(this.alternatePhone, orderMasterDTO.alternatePhone) &&
+        Objects.equals(this.cancellationRef, orderMasterDTO.cancellationRef) &&
         Objects.equals(this.city, orderMasterDTO.city) &&
         Objects.equals(this.customerId, orderMasterDTO.customerId) &&
         Objects.equals(this.customerName, orderMasterDTO.customerName) &&
@@ -906,6 +956,7 @@ public class OrderMasterDTO   {
         Objects.equals(this.phone, orderMasterDTO.phone) &&
         Objects.equals(this.pincode, orderMasterDTO.pincode) &&
         Objects.equals(this.preOrderDate, orderMasterDTO.preOrderDate) &&
+        Objects.equals(this.refundedAmount, orderMasterDTO.refundedAmount) &&
         Objects.equals(this.roadNameAreaOrStreet, orderMasterDTO.roadNameAreaOrStreet) &&
         Objects.equals(this.serviceCharge, orderMasterDTO.serviceCharge) &&
         Objects.equals(this.state, orderMasterDTO.state) &&
@@ -920,7 +971,7 @@ public class OrderMasterDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
+    return Objects.hash(addressType, allergyNote, alternatePhone, cancellationRef, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
@@ -931,6 +982,7 @@ public class OrderMasterDTO   {
     sb.append("    addressType: ").append(toIndentedString(addressType)).append("\n");
     sb.append("    allergyNote: ").append(toIndentedString(allergyNote)).append("\n");
     sb.append("    alternatePhone: ").append(toIndentedString(alternatePhone)).append("\n");
+    sb.append("    cancellationRef: ").append(toIndentedString(cancellationRef)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    customerName: ").append(toIndentedString(customerName)).append("\n");
@@ -955,6 +1007,7 @@ public class OrderMasterDTO   {
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    pincode: ").append(toIndentedString(pincode)).append("\n");
     sb.append("    preOrderDate: ").append(toIndentedString(preOrderDate)).append("\n");
+    sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
     sb.append("    roadNameAreaOrStreet: ").append(toIndentedString(roadNameAreaOrStreet)).append("\n");
     sb.append("    serviceCharge: ").append(toIndentedString(serviceCharge)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");

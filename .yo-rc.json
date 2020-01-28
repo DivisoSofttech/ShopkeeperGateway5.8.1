@@ -1,13 +1,13 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.diviso.graeshoppe"
+      "packageName": "com.diviso.graeshoppe.shopkeepergateway"
     },
     "jhipsterVersion": "5.8.1",
     "applicationType": "gateway",
     "baseName": "graeshoppegateway",
-    "packageName": "com.diviso.graeshoppe",
-    "packageFolder": "com/diviso/graeshoppe",
+    "packageName": "com.diviso.graeshoppe.shopkeepergateway",
+    "packageFolder": "com/diviso/graeshoppe/shopkeepergateway",
     "serverPort": "9080",
     "authenticationType": "oauth2",
     "cacheProvider": "hazelcast",
@@ -49,11 +49,11 @@
         "spec": "http://34.73.191.107:8084/v2/api-docs"
       },
       "report": {
-        "spec": "http://dev.ci2.divisosofttech.com:8077/v2/api-docs"
+        "spec": "http://dev.ci3.divisosofttech.com:8077/v2/api-docs"
       }
     },
     "promptValues": {
-      "inputSpec": "http://dev.ci2.divisosofttech.com:8077/v2/api-docs",
+      "inputSpec": "http://dev.ci3.divisosofttech.com:8077/v2/api-docs",
       "cliName": "report"
     }
   }

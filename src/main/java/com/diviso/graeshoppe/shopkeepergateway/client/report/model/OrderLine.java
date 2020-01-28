@@ -5,17 +5,20 @@ import com.diviso.graeshoppe.shopkeepergateway.client.report.model.AuxItem;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.ComboItem;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OrderMaster;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * OrderLine
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-03T09:32:05.158+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T13:59:26.531+05:30[Asia/Calcutta]")
 
 public class OrderLine   {
   @JsonProperty("auxItems")
@@ -34,6 +37,9 @@ public class OrderLine   {
 
   @JsonProperty("orderMaster")
   private OrderMaster orderMaster = null;
+
+  @JsonProperty("productId")
+  private Long productId = null;
 
   @JsonProperty("quantity")
   private Integer quantity = null;
@@ -160,6 +166,26 @@ public class OrderLine   {
     this.orderMaster = orderMaster;
   }
 
+  public OrderLine productId(Long productId) {
+    this.productId = productId;
+    return this;
+  }
+
+  /**
+   * Get productId
+   * @return productId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getProductId() {
+    return productId;
+  }
+
+  public void setProductId(Long productId) {
+    this.productId = productId;
+  }
+
   public OrderLine quantity(Integer quantity) {
     this.quantity = quantity;
     return this;
@@ -215,13 +241,14 @@ public class OrderLine   {
         Objects.equals(this.id, orderLine.id) &&
         Objects.equals(this.item, orderLine.item) &&
         Objects.equals(this.orderMaster, orderLine.orderMaster) &&
+        Objects.equals(this.productId, orderLine.productId) &&
         Objects.equals(this.quantity, orderLine.quantity) &&
         Objects.equals(this.total, orderLine.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(auxItems, comboItems, id, item, orderMaster, quantity, total);
+    return Objects.hash(auxItems, comboItems, id, item, orderMaster, productId, quantity, total);
   }
 
   @Override
@@ -234,6 +261,7 @@ public class OrderLine   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    item: ").append(toIndentedString(item)).append("\n");
     sb.append("    orderMaster: ").append(toIndentedString(orderMaster)).append("\n");
+    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");

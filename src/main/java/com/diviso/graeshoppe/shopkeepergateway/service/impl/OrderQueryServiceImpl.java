@@ -83,7 +83,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	@Override
 	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(String statusName, String storeId, String deliveryType,
 			Pageable pageable) {
-		log.debug("<<<<<<<<<< findOrderByStatusNameAndDeliveryType >>>>>>>>>",statusName,deliveryType);
+		log.debug("<<<<<<<<<< findOrderByStatusNameAndDeliveryType >>>>>>>>>{}{}",statusName,deliveryType);
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		SearchRequest searchRequest = null;
 		SearchResponse searchResponse = null;
@@ -196,7 +196,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	 */
 	@Override
 	public List<OrderLine> findOrderLinesByOrderId(Long orderId) {
-		log.debug("<<<<<<<< findOrderLinesByOrderId  >>>>>>>>>.", orderId);
+		log.debug("<<<<<<<< findOrderLinesByOrderId  >>>>>>>>>{}", orderId);
 
 		
 		  QueryBuilder dslQuery=
@@ -216,9 +216,11 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		  SearchResponse searchResponse = null;
 		  
 		  try { searchResponse = restHighLevelClient.search(searchRequest,
-		  RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		  e.printStackTrace(); } SearchHit[] searchHit =
-		  searchResponse.getHits().getHits();
+		  RequestOptions.DEFAULT); }
+		  catch (IOException e) { // TODO Auto-generated
+		  e.printStackTrace(); }
+		  SearchHit[] searchHit =searchResponse.getHits().getHits();
+		  
 		  
 		  List<OrderLine> orderLineList = new ArrayList<>();
 		  
@@ -236,7 +238,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	 */
 	@Override
 	public Page<Notification> findNotificationByReceiverId(String receiverId, Pageable pageable) {
-		log.debug("<<<<<<<<<<< findNotificationByReceiverId >>>>>>>>", receiverId);
+		log.debug("<<<<<<<<<<< findNotificationByReceiverId >>>>>>>>{}", receiverId);
 		QueryBuilder queryDsl = QueryBuilders.boolQuery()
 				.must(QueryBuilders.matchAllQuery())
 				.filter(QueryBuilders.termQuery("receiverId.keyword", receiverId));
@@ -307,7 +309,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	@Override
 	public Page<Order> findOrderByDatebetweenAndStoreId(Instant from, Instant to, String storeId, Pageable pageable) {
 
-		log.debug("<<<<<<<<< findOrderByDatebetweenAndStoreId >>>>>>>>>>",from,to,storeId);
+		log.debug("<<<<<<<<< findOrderByDatebetweenAndStoreId >>>>>>>>>>{}{}{}",from,to,storeId);
 		QueryBuilder queryDsl = QueryBuilders.boolQuery()
 				.must(termQuery("storeId.keyword",storeId))
 				.must(rangeQuery("date").gte(from).lte(to));

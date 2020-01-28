@@ -3,7 +3,11 @@ package com.diviso.graeshoppe.shopkeepergateway.service.impl;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -15,6 +19,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +64,15 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	@Autowired
 	QueryResourceApi queryResourceApi;
+	
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier(value="queResourceApi")
+	 */
+	/*
+	 * @Autowired com.diviso.graeshoppe.clQueryResourceApi queResourceApi;
+	 */
 
 	public ReportQueryServiceImpl(RestHighLevelClient restHighLevelClient) {
 
@@ -235,17 +250,22 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId) {
+	public PdfDTO getOrderSummary(String date, String storeId) {
 		PdfDTO pdf = new PdfDTO();
-		pdf.setPdf(this.queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId).getBody());
+		pdf.setPdf(this.queryResourceApi.getOrderSummaryByDateAndStoreNameAsPdfUsingGET(date, storeId).getBody());
 		pdf.setContentType("application/pdf");
-		return ResponseEntity.ok().body(pdf);
+		return pdf;
 	}
 
-	@Override
-	public ResponseEntity<ReportSummary> createReportSummary(String expectedDelivery, String storeName) {
-		return queryResourceApi.createReportSummaryUsingGET(expectedDelivery, storeName);
-	}
+	/*
+	 * @Override public ResponseEntity<ReportSummary> createReportSummary(String
+	 * fromDate,String toDate, String storeName) {
+	 * log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,
+	 * toDate);
+	 * 
+	 * return queryResourceApi.createReportSummaryUsingGET(fromDate, toDate,
+	 * storeName); }
+	 */
 
 	/*
 	 * @Override public ResponseEntity<OrderAggregator> getOrderAggregator(String
@@ -281,6 +301,35 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	public ResponseEntity<List<AuxItem>> findAuxItemsById(Long id) {
 		log.debug("<<<<<<<findAuxItemsById >>>>>>>{}",id);
 		return queryResourceApi.findAuxItemByidUsingGET(id);
+	}
+
+	@Override
+	public ResponseEntity<ReportSummary> createReportSummary(String date, String storeId) {
+		log.debug("<<<<<<<<<<< createReportSummary >>>>>>{}{}",date,storeId);
+		return queryResourceApi.createReportSummaryUsingGET(date, storeId);
+	}
+
+	@Override
+	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
+			String storeName) {
+		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf>>>>>{}{}{}",fromDate,storeName,toDate);
+		PdfDTO pdfDto= new PdfDTO();
+		pdfDto.setPdf(queryResourceApi.getOrderSummaryBetweenDatesAsPdfUsingGET(fromDate, storeName, toDate).getBody());
+		return ResponseEntity.ok().body(pdfDto);
+	}
+
+	@Override
+	public ResponseEntity<PdfDTO> getOrderSummaryDetails(String date,String storeId) {
+		log.debug("<<<<<<<<< getOrderSummaruDetails >>>>>>>>{}{}",date,storeId);
+		PdfDTO pdf =new PdfDTO();
+		pdf.setPdf(queryResourceApi.getDetailedOrderSummaryAsPdfUsingGET(date, storeId).getBody());
+		return ResponseEntity.ok().body(pdf);
+	}
+
+	@Override
+	public ResponseEntity<ReportSummary> getDetailedOrderSummery(String date, String storeId) {
+		log.debug("<<<<<<<<<< getDetailedOrderSummery >>>>>>>>{}{}",date,storeId);
+		return null;//ResponseEntity.ok().body(queryResourceApi.getDetailedOrderSummaryAsPdfUsingGET(date, storeId));
 	}
 
 }
