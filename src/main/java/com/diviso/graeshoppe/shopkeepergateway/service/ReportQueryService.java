@@ -51,8 +51,11 @@ public interface ReportQueryService {
 
 	public ResponseEntity<List<AuxItem>> findAuxItemsById(Long id);
 
-	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
-			String storeName);
+	/*
+	 * public ResponseEntity<PdfDTO>
+	 * getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
+	 * String storeName);
+	 */
 
 	public ResponseEntity<PdfDTO> getOrderSummaryDetails(String date,String storeId);
 
