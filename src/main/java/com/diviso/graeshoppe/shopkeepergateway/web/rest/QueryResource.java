@@ -1,5 +1,6 @@
 package com.diviso.graeshoppe.shopkeepergateway.web.rest;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -753,12 +754,12 @@ public class QueryResource {
 	 *              in page
 	 */
 	// findOrderByStatusName
-	@GetMapping("/findOrderByStatusNameAndStoreIdAndDeliveryType/{statusName}/{storeId}/{deliveryType}") // 27 11 19 //
+	@GetMapping("/findOrderByStatusNameAndStoreIdAndDeliveryType/{date}/{statusName}/{storeId}/{deliveryType}") // 27 11 19 //
 																											// it's //
 																											// working
-	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(@PathVariable String statusName,
+	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(@PathVariable LocalDate date,@PathVariable String statusName,
 			@PathVariable String storeId, @PathVariable String deliveryType, Pageable pageable) {
-		return orderQueryService.findOrderByStatusNameAndStoreIdAndDeliveryType(statusName, storeId, deliveryType,
+		return orderQueryService.findOrderByStatusNameAndStoreIdAndDeliveryType(date,statusName, storeId, deliveryType,
 				pageable);
 	}
 

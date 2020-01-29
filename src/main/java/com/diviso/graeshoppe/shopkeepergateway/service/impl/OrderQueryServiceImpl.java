@@ -5,6 +5,7 @@ import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -81,7 +82,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	 * @param deliverytype
 	 */
 	@Override
-	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(String statusName, String storeId, String deliveryType,
+	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(LocalDate date,String statusName, String storeId, String deliveryType,
 			Pageable pageable) {
 		log.debug("<<<<<<<<<< findOrderByStatusNameAndDeliveryType >>>>>>>>>{}{}",statusName,deliveryType);
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -108,9 +109,9 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 			
 		
 		}
-		FieldSortBuilder sortById = SortBuilders.fieldSort("id").order(SortOrder.DESC);
+		FieldSortBuilder sortByDate = SortBuilders.fieldSort("date").order(SortOrder.DESC);
 		searchSourceBuilder.query(dslQuery);
-		searchSourceBuilder .sort(sortById);
+		searchSourceBuilder .sort(sortByDate);
 		searchResponse = serviceUtility.searchResponseForPage("order", searchSourceBuilder, pageable);
 		
 		/*searchRequest = serviceUtility.generateSearchRequest("order", pageable.getPageSize(),

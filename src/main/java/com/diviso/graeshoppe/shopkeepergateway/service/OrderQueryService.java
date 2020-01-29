@@ -1,6 +1,7 @@
 package com.diviso.graeshoppe.shopkeepergateway.service;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ public interface OrderQueryService {
 	 * @param deliveryType
 	 * @param pageable
 	 */
-	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(String statusName, String storeId,
+	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(LocalDate date, String statusName, String storeId,
 			String deliveryType, Pageable pageable);
 
 	/**
