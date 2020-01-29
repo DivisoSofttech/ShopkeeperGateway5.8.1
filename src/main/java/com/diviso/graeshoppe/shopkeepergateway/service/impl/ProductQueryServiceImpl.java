@@ -1237,7 +1237,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		//QueryBuilder queryDsl = QueryBuilders.termQuery("id", id);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryDsl);
-		SearchResponse searchResponse = serviceUtility.searchResponseForObject("auxilaryLineItem", queryDsl);
+		SearchResponse searchResponse = serviceUtility.searchResponseForObject("auxilarylineItem", queryDsl);
 		AuxilaryLineItem auxilaryLineItem = serviceUtility.getObjectResult(searchResponse, new AuxilaryLineItem());
 		return auxilaryLineItemMapper.toDto(auxilaryLineItem);
 
@@ -1251,7 +1251,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 		//QueryBuilder queryDsl = QueryBuilders.termQuery("id", id);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryDsl);
-		SearchResponse searchResponse = serviceUtility.searchResponseForObject("comboLineItem", queryDsl);
+		SearchResponse searchResponse = serviceUtility.searchResponseForObject("combolineItem", queryDsl);
 		ComboLineItem comboLineItem = serviceUtility.getObjectResult(searchResponse, new ComboLineItem());
 		return comboLineItemMapper.toDto(comboLineItem);
 		// return comboLineItemResourceApi.getComboLineItemUsingGET(id);

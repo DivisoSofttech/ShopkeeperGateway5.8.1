@@ -79,55 +79,42 @@ public class QueryResource {
 	 */
 	@GetMapping("/findAllCustomersByName/{name}") // 26 11 19 its working
 	public Page<Customer> findAllCustomersByName(@PathVariable String name, Pageable pageable) {
-		log.debug("<<<<<<<< findAllCustomer by name >>>>>>>>>>", name);
+		log.debug("<<<<<<<< findAllCustomer by name >>>>>>>>>>{}", name);
 		return customerQueryService.findAllCustomersByName(name, pageable);
 	}
-
+	/**
+	 * @author Prince
+	 * @param pageable
+	 * @return
+	 */
 	@GetMapping("/findAllCustomers") // 26 11 19 its working
 	Page<Customer> findAllCustomers(Pageable pageable) {
-		log.debug("<<<<<<<<<< findAllCustomers >>>>>>>>>>");
+		log.debug("<<<<<<<<<< findAllCustomers >>>>>>>>>>{}");
 		return customerQueryService.findAllCustomers(pageable);
 	}
-
+	/**
+	 * @author Prince
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/findCustomerById/{id}") // 06 12 19 it's working
 	public ResponseEntity<CustomerDTO> findCustomerById(@PathVariable Long id) {
 		CustomerDTO result = customerQueryService.findCustomerById(id);
 		return ResponseEntity.ok().body(result);
-		/*
-		 * log.debug("<<<<<<<<< findCustomerById >>>>>>>>", id); return
-		 * customerQueryService.findCustomerById(id);
-		 */
+	
 	}
-
+	/**
+	 * @author Prince
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/findContactById/{id}") // 6 12 19 it's working
 	public ResponseEntity<ContactDTO> findContactById(@PathVariable Long id) {
 		ContactDTO result = customerQueryService.findContactById(id);
 		return ResponseEntity.ok().body(result);
 	}
 
-	/*
-	 * @GetMapping("/contact/{mobileNumber}") // 6 12 19 it,s working public
-	 * List<Contact> findContacts(@PathVariable Long mobileNumber, Pageable page) {
-	 * log.debug("<<<<<<<<<< findContacts >>>>>>>", mobileNumber);
-	 * 
-	 * return contactService.findContactsByMobileNumber(mobileNumber,page);
-	 */
-	/*
-	 * SearchSourceBuilder ssb = new SearchSourceBuilder();
-	 * ssb.query(termQuery("mobileNumber", mobileNumber)); SearchRequest sr =
-	 * su.generateSearchRequest("contact", page.getPageSize(), page.getPageNumber(),
-	 * ssb);
-	 * 
-	 * SearchResponse searchResponse = null;
-	 * 
-	 * try { rhlc.search(sr, RequestOptions.DEFAULT); } catch (IOException e) {
-	 * e.printStackTrace(); }
-	 * 
-	 * return su.getPageResult(searchResponse, page, new Contact());
-	 */
-
-	// }
-
+	
 	/**
 	 * 
 	 * @return
@@ -142,8 +129,7 @@ public class QueryResource {
 		return ResponseEntity.ok().body(pdf);
 	}
 
-	// ******************************************Product Related end
-	// points**********************
+	
 
 	/**
 	 * @author Prince
@@ -232,6 +218,15 @@ public class QueryResource {
 	public ResponseEntity<Page<CategoryDTO>> findAllCategoryDTOsByIdpCode(@PathVariable String idpCode,
 			Pageable pageable) {
 		return ResponseEntity.ok().body(productQueryService.findAllCategoryDTOsByIdpCode(idpCode, pageable));
+	}
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/findCategoryDTOById/{id}") // its working findCategory change findCategoryById
+	public ResponseEntity<CategoryDTO> findCategoryDTOById(@PathVariable Long id) {
+		return ResponseEntity.ok().body(productQueryService.findCategoryDTOById(id));
 	}
 
 	@GetMapping("/findAllEntryLineItemsByIdpCode/{idpCode}") // no data
@@ -328,15 +323,7 @@ public class QueryResource {
 		return ResponseEntity.ok().body(productQueryService.findUOMDTOById(id));
 	}
 
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("/findCategoryDTOById/{id}") // its working findCategory change findCategoryById
-	public ResponseEntity<CategoryDTO> findCategoryDTOById(@PathVariable Long id) {
-		return ResponseEntity.ok().body(productQueryService.findCategoryDTOById(id));
-	}
+
 
 	/**
 	 * 
@@ -506,40 +493,7 @@ public class QueryResource {
 
 	// *****************************Report related End Points**********************
 
-	/**
-	 * @deprecated
-	 * @param assignee
-	 * @param assigneeLike
-	 * @param candidateGroup
-	 * @param candidateGroups
-	 * @param candidateUser
-	 * @param createdAfter
-	 * @param createdBefore
-	 * @param createdOn
-	 * @param name
-	 * @param nameLike
-	 * @return
-	 */
-	/*
-	 * @GetMapping("/opentasks") public ResponseEntity<List<OpenTask>>
-	 * getOpenTasks(@RequestParam(required = false) String assignee,
-	 * 
-	 * @RequestParam(required = false) String assigneeLike, @RequestParam(required =
-	 * false) String candidateGroup,
-	 * 
-	 * @RequestParam(required = false) String candidateGroups,
-	 * 
-	 * @RequestParam(required = false) String candidateUser, @RequestParam(required
-	 * = false) String createdAfter,
-	 * 
-	 * @RequestParam(required = false) String createdBefore, @RequestParam(required
-	 * = false) String createdOn,
-	 * 
-	 * @RequestParam(required = false) String name, @RequestParam(required = false)
-	 * String nameLike) { return orderQueryResourceApi.getTasksUsingGET(assignee,
-	 * assigneeLike, candidateGroup, candidateGroups, candidateUser, createdAfter,
-	 * createdBefore, createdOn, name, nameLike); }
-	 */
+
 
 	/**
 	 * 
@@ -577,19 +531,7 @@ public class QueryResource {
 		return ResponseEntity.ok().body(orderMaster);
 	}
 
-	/**
-	 * 
-	 * @param orderMasterId
-	 * @param pageable
-	 * @return
-	 */
-	@GetMapping("/orderLineByOrderMasterId/{orderMasterId}") // not tested no data in database
-	public ResponseEntity<Page<OrderLine>> findOrderLineByOrderMasterId(@PathVariable Long orderMasterId,
-			Pageable pageable) {
-		Page<OrderLine> orderLine = reportQueryService.findOrderLineByOrderMasterId(orderMasterId, pageable);
-		return ResponseEntity.ok().body(orderLine);
-	}
-
+	
 	/**
 	 * 
 	 * @param orderNumber
@@ -600,12 +542,6 @@ public class QueryResource {
 
 		return reportQueryService.getOrderDocket(orderNumber);
 	}
-
-	/**
-	 * 
-	 * @param orderNumber
-	 * @return
-	 */
 
 
 	/**
@@ -625,11 +561,10 @@ public class QueryResource {
 	 * @param storeName
 	 * @return
 	 */
-	@GetMapping("/ordersummaryview/{fromDate}/{toDate}") // its working
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate ,@PathVariable String toDate,
-			@RequestParam String storeName) {
-		log.debug("<<<<<<<<< createReportSummary >>>>>>>{}{}{}>",fromDate,toDate);
-		return reportQueryService.createReportSummary(fromDate,toDate,storeName);
+	@GetMapping("/ordersummaryview/{date}/{storeId}") // its working
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String date,@PathVariable String storeId) {
+		log.debug("<<<<<<<<< createReportSummary >>>>>>>{}>",date,storeId);
+		return reportQueryService.createReportSummary(date,storeId);
 	}
 
 	/**
@@ -668,79 +603,8 @@ public class QueryResource {
 		return reportQueryService.getCurrentStock(idpcode);
 
 	}
-	/*
-	 * @GetMapping("/orderaggregator/{orderNumber}") public
-	 * ResponseEntity<com.diviso.graeshoppe.client.report.model.OrderAggregator>
-	 * getOrderAggregator(@PathVariable String orderNumber) { return
-	 * reportQueryService.getOrderAggregator(orderNumber); }
-	 */
 
 	// ***********************Order related end Points*************************
-	/**
-	 * 
-	 * @param assignee
-	 * @param assigneeLike
-	 * @param candidateGroup
-	 * @param candidateGroups
-	 * @param candidateUser
-	 * @param createdAfter
-	 * @param createdBefore
-	 * @param createdOn
-	 * @param name
-	 * @param nameLike
-	 * @return
-	 */
-
-	/*
-	 * @GetMapping("/tasks") public ResponseEntity<List<Order>>
-	 * getTasks(@RequestParam(required = false) String assignee,
-	 * 
-	 * @RequestParam(required = false) String assigneeLike, @RequestParam(required =
-	 * false) String candidateGroup,
-	 * 
-	 * @RequestParam(required = false) String candidateGroups,
-	 * 
-	 * @RequestParam(required = false) String candidateUser, @RequestParam(required
-	 * = false) String createdAfter,
-	 * 
-	 * @RequestParam(required = false) String createdBefore, @RequestParam(required
-	 * = false) String createdOn,
-	 * 
-	 * @RequestParam(required = false) String name, @RequestParam(required = false)
-	 * String nameLike) { List<OpenTask> openTasks =
-	 * orderQueryResourceApi.getTasksUsingGET(assignee, assigneeLike,
-	 * candidateGroup, candidateGroups, candidateUser, createdAfter, createdBefore,
-	 * createdOn, name, nameLike).getBody();
-	 * 
-	 * log.info("...........openTasks...................." + openTasks); List<Order>
-	 * orders = new ArrayList<Order>();
-	 * 
-	 * openTasks.forEach(opentask -> {
-	 * 
-	 * orders.add(orderQueryService.findOrderByOrderId(opentask.getOrderId()));
-	 * 
-	 * }); return ResponseEntity.ok().body(orders); }
-	 */
-	/**
-	 * 
-	 * @param taskName
-	 * @param orderId
-	 * @param storeId
-	 * @return getTaskDetails
-	 * 
-	 * @description input a taskName ,orderId and storeId to get a task details
-	 */
-
-	/*
-	 * @GetMapping("/getTaskDetails/{taskName}/{orderId}/{storeId}") public
-	 * ResponseEntity<OpenTask> getTaskDetails(@PathVariable String
-	 * taskName, @PathVariable String orderId,
-	 * 
-	 * @PathVariable String storeId) { return
-	 * orderQueryService.getTaskDetails(taskName, orderId, storeId);
-	 * 
-	 * }
-	 */
 
 	/**
 	 * @author Prince
@@ -753,7 +617,7 @@ public class QueryResource {
 	 * @description if you input statusName,storeId and deliveryType to get Orders
 	 *              in page
 	 */
-	// findOrderByStatusName
+
 	@GetMapping("/findOrderByStatusNameAndStoreIdAndDeliveryType/{date}/{statusName}/{storeId}/{deliveryType}") // 27 11 19 //
 																											// it's //
 																											// working
@@ -762,7 +626,12 @@ public class QueryResource {
 		return orderQueryService.findOrderByStatusNameAndStoreIdAndDeliveryType(date,statusName, storeId, deliveryType,
 				pageable);
 	}
-
+	/**
+	 * 
+	 * @param customerId
+	 * @param storeId
+	 * @return
+	 */
 	@GetMapping("orderCountByCustomerIdAndStoreId/{customerId}/{storeId}") // 07 12 19 it,s working
 	public Long orderCountByCustomerIdAndStoreId(@PathVariable String customerId, @PathVariable String storeId) {
 		log.debug("<<<<<<<<<<< OrderCount >>>>>>>>>>{}", customerId, storeId);
@@ -832,55 +701,56 @@ public class QueryResource {
 	Long findNotificationCountByReceiverIdAndStatusName(String receiverId, String status) {
 		return orderQueryService.getNotificationCountByReceiveridAndStatus(receiverId, status);
 	}
-
-	@GetMapping("/findAllOrderLinesByOrderId/{orderId}")
-	public Page<OrderLine> findAllOrderLinesByOrderId(@PathVariable Long orderId, Pageable pageable) {
-		log.debug("<<<<<<<<<findAllOrderLinesByOrderId >>>>>>>>>>>{}", orderId);
-		Page<OrderLine> page = orderQueryService.findAllOrderLinesByOrderId(orderId, pageable);
-		return page;
-	}
-
-	@GetMapping("/findAuxilaryOrderLineByOrderLineId/{orderLineId}")
-	public Page<AuxilaryOrderLine> findAuxilaryOrderLineByOrderLineId(@PathVariable Long orderLineId,
-			Pageable pageable) {
-		log.debug("<<<<<<<<findAuxilaryOrderLineByOrderLineId >>>>>>>>>>", orderLineId);
-		return orderQueryService.findAuxilaryOrderLineByOrderLineId(orderLineId, pageable);
-	}
-
+	
+	
 	// ***********************Offer related end points**********************
-	@GetMapping("/findOfferLinesByOrderId/{orderId}")
-	public List<Offer> findOfferLinesByOrderId(@PathVariable Long orderId) {
-		return offerQueryService.findOfferLinesByOrderId(orderId);
-	}
-
+	
+	/**
+	 * @author Prince
+	 * @param orderId
+	 * @return
+	 */
 	@GetMapping("/findOrderLinesByOrderNumber/{orderId}")
 	public ResponseEntity<List<com.diviso.graeshoppe.shopkeepergateway.client.report.model.OrderLine>> findOrderLinesByOrderNumber(@PathVariable String orderId) {
 		log.debug("<<<<<<<<< findOrderLinesByOrderNumber >>>>>>>{}", orderId);
 		return reportQueryService.findOrderLinesByOrderNumber(orderId);
 
 	}
-	@GetMapping("/findOfferLinesByOrderNumber/{orderId}")
-	public ResponseEntity<List<OfferLine>> findOfferLinesByOrderNumber(@PathVariable String orderId){
-		log.debug("<<<<<<<<<findOfferLineByOrderNumber {} ",orderId);
-		return reportQueryService.findOfferLineByOrderNumber(orderId);
-		
-	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/findAuxItemsbyId/{id}")
 	public ResponseEntity<List<AuxItem>> findAuxItemsById(@PathVariable Long id){
-		log.debug("<<<<<<<<<< findAuxItem >>>>>>>",id);
+		log.debug("<<<<<<<<<< findAuxItem >>>>>>>{}",id);
 		return reportQueryService.findAuxItemsById(id);
 		
 	}
-	@GetMapping("/getOrderSummaryBetweenDatesAsPdf/{fromDate}/{toDate}/{storeId}")
-	public ResponseEntity<PdfDTO> getOrderSummaryBetweenDatesAndStoreIdAsPdf(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam (value="storeName")String storeId){
-		log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf >>>>>{}{}{}",fromDate,toDate,storeId,storeId);
-		return reportQueryService.getOrderSummaryBetweenDatesAndStoreIdAsPdf(fromDate,toDate,storeId);
-		
-	}
-	@GetMapping("/getOrderSummaryDetails/{date}/{storeId}")
+
+	/**
+	 * @author Prince
+	 * @param date
+	 * @param storeId
+	 * @return
+	 */
+	@GetMapping("/getDetailedOrderSummeryAsPdf/{date}/{storeId}")
 	public ResponseEntity<PdfDTO> getOrderSummaryDetails(@PathVariable String date,@PathVariable String storeId){
 		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
 		return reportQueryService.getOrderSummaryDetails(date,storeId);
 	}
+	/**
+	 * @author Prince
+	 * @param date
+	 * @param storeId
+	 * @return
+	 */
+	@GetMapping("/getDetailedOrderSummery/{date}/{storeId}")
+	public ResponseEntity<ReportSummary> getDetailedOrderSummery(@PathVariable String date,@PathVariable String storeId){
+		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
+		return reportQueryService.getDetailedOrderSummery(date,storeId);
+	}
+
 
 }
