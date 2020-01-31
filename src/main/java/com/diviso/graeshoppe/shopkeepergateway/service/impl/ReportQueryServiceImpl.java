@@ -284,9 +284,10 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	@Override
 	public ResponseEntity<PdfDTO> getOrderSummaryDetails(String date,String storeId) {
-		log.debug("<<<<<<<<< getOrderSummaruDetails >>>>>>>>{}{}",date,storeId);
-		PdfDTO pdf =new PdfDTO();
-		pdf.setPdf(queryResourceApi.getDetailedOrderSummaryAsPdfUsingGET(date, storeId).getBody());
+	
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getDetailedOrderSummaryAsPdfUsingGET(date, storeId).getBody());
+		pdf.setContentType("application/pdf");
 		return ResponseEntity.ok().body(pdf);
 	}
 
