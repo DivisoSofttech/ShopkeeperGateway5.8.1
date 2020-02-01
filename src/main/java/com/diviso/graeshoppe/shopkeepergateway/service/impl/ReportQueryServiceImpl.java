@@ -237,7 +237,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	 */
 	@Override
 	public Page<com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine> findOrderLineByOrderMasterId(Long orderMasterId, Pageable pageable) {
-		QueryBuilder queryBuilder = QueryBuilders.termQuery("orderMaster.id", orderMasterId);
+		QueryBuilder queryBuilder = QueryBuilders.termQuery("ordermaster.id", orderMasterId);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
 		SearchResponse response = serviceUtility.searchResponseForPage("comboitem", builder, pageable);
@@ -295,6 +295,18 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	public ResponseEntity<ReportSummary> getDetailedOrderSummery(String date, String storeId) {
 		log.debug("<<<<<<<<<< getDetailedOrderSummery >>>>>>>>{}{}",date,storeId);
 		return null;//ResponseEntity.ok().body(queryResourceApi.getDetailedOrderSummaryAsPdfUsingGET(date, storeId));
+	}
+
+	@Override
+	public ResponseEntity<String> createDocketHeader(String orderNumber) {
+		log.debug("<<<<<<<<<createDocketHeader >>>>>>>>>{}",orderNumber);
+		return queryResourceApi.createDocketHeaderViewUsingGET(orderNumber);
+	}
+
+	@Override
+	public ResponseEntity<String> createDocketNumber(String orderNumber) {
+		log.debug("<<<<<<<  createDocketNumber >>>>>>>{}",orderNumber);
+		return queryResourceApi.createDocketContentUsingGET(orderNumber);
 	}
 
 }

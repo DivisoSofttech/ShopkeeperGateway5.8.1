@@ -61,5 +61,9 @@ public interface ReportQueryService {
 
 	public ResponseEntity<ReportSummary> getDetailedOrderSummery(String date, String storeId);
 
+	public ResponseEntity<String> createDocketHeader(String orderNumber);
+
+	public ResponseEntity<String> createDocketNumber(String orderNumber);
+
 //	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber);
 }

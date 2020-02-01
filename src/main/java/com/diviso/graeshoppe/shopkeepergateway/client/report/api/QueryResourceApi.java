@@ -31,7 +31,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T13:59:26.531+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-31T10:12:32.895+05:30[Asia/Calcutta]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
@@ -46,6 +46,42 @@ public interface QueryResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<CancellationSummary> createCancellationReportSummaryViewUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName);
+
+
+    @ApiOperation(value = "createDetailedReportSummaryView", nickname = "createDetailedReportSummaryViewUsingGET", notes = "", response = ReportSummary.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = ReportSummary.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/detailedReportview/{fromDate}/{toDate}/{storeName}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<ReportSummary> createDetailedReportSummaryViewUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate);
+
+
+    @ApiOperation(value = "createDocketContent", nickname = "createDocketContentUsingGET", notes = "", response = String.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = String.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/docketContent/{orderNumber}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<String> createDocketContentUsingGET(@ApiParam(value = "orderNumber",required=true) @PathVariable("orderNumber") String orderNumber);
+
+
+    @ApiOperation(value = "createDocketHeaderView", nickname = "createDocketHeaderViewUsingGET", notes = "", response = String.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = String.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/docketHeader/{orderNumber}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<String> createDocketHeaderViewUsingGET(@ApiParam(value = "orderNumber",required=true) @PathVariable("orderNumber") String orderNumber);
 
 
     @ApiOperation(value = "createReportSummary", nickname = "createReportSummaryUsingGET", notes = "", response = ReportSummary.class, tags={ "query-resource", })
@@ -70,6 +106,18 @@ public interface QueryResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<List<AuxItem>> findAuxItemByidUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "findGrandTotalBetweenAndStoreName", nickname = "findGrandTotalBetweenAndStoreNameUsingGET", notes = "", response = Double.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = Double.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/grandTotalOfAStore/{fromDate}/{toDate}/{storeName}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<Double> findGrandTotalBetweenAndStoreNameUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate);
 
 
     @ApiOperation(value = "findOfferLinesByOrderNumber", nickname = "findOfferLinesByOrderNumberUsingGET", notes = "", response = OfferLine.class, responseContainer = "List", tags={ "query-resource", })

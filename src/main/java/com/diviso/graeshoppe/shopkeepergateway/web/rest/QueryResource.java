@@ -751,11 +751,23 @@ public class QueryResource {
 		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
 		return reportQueryService.getDetailedOrderSummery(date,storeId);
 	}
-	
+
 	@GetMapping("/findOfferLinesByOrderId/{orderId}")
 	public List<Offer> findOfferLinesByOrderId(@PathVariable Long orderId) {
 		return offerQueryService.findOfferLinesByOrderId(orderId);
 	}
 
+	@GetMapping("/createDocketHeader/{orderNumber}")
+	public ResponseEntity<String> createDocketHeader(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< create docket header >>>>>>>>{}",orderNumber);
+		return reportQueryService.createDocketHeader(orderNumber);
+		
+	}
+	@GetMapping("/createDocketContent/{orderNumber}")
+	public ResponseEntity<String> createDocketNumber(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< create docket header >>>>>>>>{}",orderNumber);
+		return reportQueryService.createDocketNumber(orderNumber);
+		
+	}
 
 }
