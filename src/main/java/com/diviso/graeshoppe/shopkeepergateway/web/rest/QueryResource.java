@@ -751,6 +751,11 @@ public class QueryResource {
 		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
 		return reportQueryService.getDetailedOrderSummery(date,storeId);
 	}
+	
+	@GetMapping("/findOfferLinesByOrderId/{orderId}")
+	public List<Offer> findOfferLinesByOrderId(@PathVariable Long orderId) {
+		return offerQueryService.findOfferLinesByOrderId(orderId);
+	}
 
 
 }
