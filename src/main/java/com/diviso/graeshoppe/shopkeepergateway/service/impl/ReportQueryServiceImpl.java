@@ -300,13 +300,61 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	@Override
 	public ResponseEntity<String> createDocketHeader(String orderNumber) {
 		log.debug("<<<<<<<<<createDocketHeader >>>>>>>>>{}",orderNumber);
-		return queryResourceApi.createDocketHeaderViewUsingGET(orderNumber);
+		return queryResourceApi.getDocketHeaderUsingGET(orderNumber);
 	}
 
 	@Override
 	public ResponseEntity<String> createDocketNumber(String orderNumber) {
 		log.debug("<<<<<<<  createDocketNumber >>>>>>>{}",orderNumber);
-		return queryResourceApi.createDocketContentUsingGET(orderNumber);
+		return queryResourceApi.getDocketContentUsingGET(orderNumber);
 	}
+
+	@Override
+	public ResponseEntity<String> getProduct(String orderNumber) {
+		log.debug("<<<<<<<<<<<< getProduct >>>>>>>>{}",orderNumber);
+		return queryResourceApi.getDocketProductsUsingGET(orderNumber);
+	}
+
+	@Override
+	public ResponseEntity<String> getDiscountAndTotal(String orderNumber) {
+		log.debug("<<<<<<<<<getDiscountAndTotal >>>>>>>{}",orderNumber);
+		return queryResourceApi.getDocketDiscountAndTotalUsingGET(orderNumber);
+	}
+
+	@Override
+	public ResponseEntity<String> getPaymentStatusForDocket(String orderNumber) {
+		log.debug("<<<<<<<<getPaymentStatusForDocket >>>>>>>>{}", orderNumber);
+		return queryResourceApi.getDocketPaymentStatusUsingGET(orderNumber);
+	}
+
+	@Override
+	public ResponseEntity<String> getCustomerOrderDetails(String orderNumber) {
+		log.debug("<<<<<<<< getCustomerOrderDetails >>>>>>>>{}",orderNumber);
+		return queryResourceApi.getCustomerOrderDetailsUsingGET(orderNumber);
+	}
+
+	@Override
+	public ResponseEntity<String> getCustomerDetails(String orderNumber) {
+		log.debug("<<<<<<<<<<getCustomerDetails >>>>>>>>>{}",orderNumber);
+		return queryResourceApi.getCustomerDetailsUsingGET(orderNumber);
+	}
+
+	@Override
+	public ResponseEntity<String> getAttentionForFirstOrder(String orderNumber) {
+		log.debug("<<<<<<<<<<getAttentionForFirstOrder >>>>>>>>{}",orderNumber);
+		return queryResourceApi.getAttentionForOrderUsingGET(orderNumber);
+	}
+
+	@Override
+	public ResponseEntity<String> getFooter(String orderNumber) {
+		log.debug("<<<<<<<< getFooter >>>>>>>>{}",orderNumber);
+		return queryResourceApi.getFootersUsingGET(orderNumber);
+	}
+
+	/*
+	 * @Override public ResponseEntity<String> EscPosDocket(String orderNumber) {
+	 * log.debug("<<<<<<<<<< EscPosDocket >>>>>>>{}",orderNumber); return
+	 * queryResourceApi.; }
+	 */
 
 }

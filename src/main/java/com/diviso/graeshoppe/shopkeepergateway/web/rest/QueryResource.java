@@ -751,16 +751,68 @@ public class QueryResource {
 		log.debug("<<<<<< getOrderSummaryDetails >>>>>>>>>",date);
 		return reportQueryService.getDetailedOrderSummery(date,storeId);
 	}
-	@GetMapping("/createDocketHeader/{orderNumber}")
-	public ResponseEntity<String> createDocketHeader(@PathVariable String orderNumber){
+	@GetMapping("/getDocketHeader/{orderNumber}")
+	public ResponseEntity<String> getDocketHeader(@PathVariable String orderNumber){
 		log.debug("<<<<<<<< create docket header >>>>>>>>{}",orderNumber);
 		return reportQueryService.createDocketHeader(orderNumber);
 		
 	}
-	@GetMapping("/createDocketContent/{orderNumber}")
-	public ResponseEntity<String> createDocketNumber(@PathVariable String orderNumber){
+	@GetMapping("/getDocketContent/{orderNumber}")
+	public ResponseEntity<String> getDocketContent(@PathVariable String orderNumber){
 		log.debug("<<<<<<<< create docket header >>>>>>>>{}",orderNumber);
 		return reportQueryService.createDocketNumber(orderNumber);
 		
 	}
+	@GetMapping("/getProduct/{orderNumber}")
+	public ResponseEntity<String> getProduct(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< getProduct >>>>>>>>{}",orderNumber);
+		return reportQueryService.getProduct(orderNumber);
+		
+	}
+	@GetMapping("/getDiscountAndTotal/{orderNumber}")
+	public ResponseEntity<String> getDiscountAndTotal(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< getDiscountAndTotal >>>>>>>>{}",orderNumber);
+		return reportQueryService.getDiscountAndTotal(orderNumber);
+		
+	}
+	@GetMapping("/getPaymentStatusForDocket/{orderNumber}")
+	public ResponseEntity<String> getPaymentStatusForDocket(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< getPaymentStatusForDocket >>>>>>>>{}",orderNumber);
+		return reportQueryService.getPaymentStatusForDocket(orderNumber);
+		
+	}
+	@GetMapping("/getCustomerOrderDetails/{orderNumber}")
+	public ResponseEntity<String> getCustomerOrderDetails(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< getCustomerOrderDetails >>>>>>>>{}",orderNumber);
+		return reportQueryService.getCustomerOrderDetails(orderNumber);
+		
+	}
+	@GetMapping("/getCustomerDetails/{orderNumber}")
+	public ResponseEntity<String> getCustomerDetails(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< getCustomerDetails >>>>>>>>{}",orderNumber);
+		return reportQueryService.getCustomerDetails(orderNumber);
+		
+	}	
+	@GetMapping("/getAttentionForFirstOrder/{orderNumber}")
+	public ResponseEntity<String> getAttentionForFirstOrder(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< getAttentionForFirstOrder >>>>>>>>{}",orderNumber);
+		return reportQueryService.getAttentionForFirstOrder(orderNumber);
+		
+	}
+
+	/*
+	 * @GetMapping("/EscPosDocket/{orderNumber}") public ResponseEntity<String>
+	 * EscPosDocket(@PathVariable String orderNumber){
+	 * log.debug("<<<<<<<< EscPosDocket >>>>>>>>{}",orderNumber); return
+	 * reportQueryService.EscPosDocket(orderNumber);
+	 * 
+	 * }
+	 */
+	@GetMapping("/getFooter/{orderNumber}")
+	public ResponseEntity<String> getFooter(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< EscPosDocket >>>>>>>>{}",orderNumber);
+		return reportQueryService.getFooter(orderNumber);
+		
+	}
+	
 }

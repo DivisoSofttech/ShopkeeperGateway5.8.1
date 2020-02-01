@@ -65,5 +65,21 @@ public interface ReportQueryService {
 
 	public ResponseEntity<String> createDocketNumber(String orderNumber);
 
+	public ResponseEntity<String> getProduct(String orderNumber);
+
+	public ResponseEntity<String> getDiscountAndTotal(String orderNumber);
+
+	public ResponseEntity<String> getPaymentStatusForDocket(String orderNumber);
+
+	public ResponseEntity<String> getCustomerOrderDetails(String orderNumber);
+
+	public ResponseEntity<String> getCustomerDetails(String orderNumber);
+
+	public ResponseEntity<String> getAttentionForFirstOrder(String orderNumber);
+
+	public ResponseEntity<String> getFooter(String orderNumber);
+
+	//public ResponseEntity<String> EscPosDocket(String orderNumber);
+
 //	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber);
 }
