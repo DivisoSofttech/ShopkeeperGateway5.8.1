@@ -298,7 +298,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<String> createDocketHeader(String orderNumber) {
+	public ResponseEntity<String> getDocketHeader(String orderNumber) {
 		log.debug("<<<<<<<<<createDocketHeader >>>>>>>>>{}",orderNumber);
 		return queryResourceApi.getDocketHeaderUsingGET(orderNumber);
 	}
