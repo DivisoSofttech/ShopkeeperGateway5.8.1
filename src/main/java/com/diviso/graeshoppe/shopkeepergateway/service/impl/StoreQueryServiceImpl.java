@@ -44,6 +44,7 @@ import com.diviso.graeshoppe.shopkeepergateway.web.rest.util.ServiceUtility;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.diviso.graeshoppe.shopkeepergateway.client.store.model.PreOrderSettingsDTO;
+
 @Service
 public class StoreQueryServiceImpl implements StoreQueryService {
 
@@ -64,16 +65,22 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
 	@Autowired
 	BannerMapper bannerMapper;
+	
 	@Autowired
 	StoreMapper storeMapper;
+	
 	@Autowired
 	DeliveryInfoMapper deliveryInfoMapper;
+	
 	@Autowired
 	StoreTypeMapper storeTypeMapper;
+	
 	@Autowired
 	TypeMapper typeMapper;
+	
 	@Autowired
 	PreOrderSettingsMapper preOrderSettingsMapper;
+	
 	private RestHighLevelClient restHighLevelClient;
 
 	public StoreQueryServiceImpl(RestHighLevelClient restHighLevelClient) {
@@ -81,37 +88,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 		this.restHighLevelClient = restHighLevelClient;
 	}
 
-	/**
-	 * @param storeId
-	 * @param pageable
-	 */
-	/*
-	 * @Override public Page<Review> findAllReviews(String storeId, Pageable
-	 * pageable) {
-	 * 
-	 * SearchSourceBuilder builder = new SearchSourceBuilder();
-	 * 
-	 * 
-	 * String[] include = new String[] { "" };
-	 * 
-	 * String[] exclude = new String[] {};
-	 * 
-	 * builder.fetchSource(include, exclude);
-	 * 
-	 * 
-	 * builder.query(termQuery("store.regNo", storeId));
-	 * 
-	 * SearchRequest searchRequest = serviceUtility.generateSearchRequest("review",
-	 * pageable.getPageSize(), pageable.getPageNumber(), builder);
-	 * 
-	 * SearchResponse searchResponse = null;
-	 * 
-	 * try { searchResponse = restHighLevelClient.search(searchRequest,
-	 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-	 * e.printStackTrace(); } return serviceUtility.getPageResult(searchResponse,
-	 * pageable, new Review()); }
-	 */
-
+	
 	/**
 	 * @param regNo
 	 */
@@ -125,13 +102,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 		SearchResponse searchResponse = serviceUtility.searchResponseForObject("store", queryBuilder);
 		return serviceUtility.getObjectResult(searchResponse, new Store());
 
-		/*
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); }
-		 * 
-		 * return serviceUtility.getObjectResult(searchResponse, new Store());
-		 */
 	}
 
 	/*
@@ -147,7 +117,8 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
 	private List<DeliveryInfoDTO> findDeliveryInfoByStoreId(Long id) {
 
-		QueryBuilder queryBuilder = QueryBuilders.boolQuery().must(matchAllQuery()).filter(QueryBuilders.termQuery("store.id", id));
+		QueryBuilder queryBuilder = QueryBuilders.boolQuery().must(matchAllQuery())
+				.filter(QueryBuilders.termQuery("store.id", id));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
 
@@ -161,31 +132,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 			deliveryInfoDTOList.add(deliveryInfoDTO);
 		}
 		return deliveryInfoDTOList;
-		/*
-		 * builder.query(termQuery("store.id", id));
-		 * 
-		 * SearchRequest searchRequest = new SearchRequest("deliveryinfo");
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); }
-		 * 
-		 * SearchHit[] searchHit = searchResponse.getHits().getHits();
-		 * 
-		 * List<DeliveryInfoDTO> deliveryInfoDTOList = new ArrayList<>();
-		 * 
-		 * for (SearchHit hit : searchHit) { DeliveryInfo deliveryInfo =
-		 * objectMapper.convertValue(hit.getSourceAsMap(), DeliveryInfo.class);
-		 * DeliveryInfoDTO deliveryInfoDTO = deliveryInfoMapper.toDto(deliveryInfo);
-		 * deliveryInfoDTOList.add(deliveryInfoDTO); }
-		 * 
-		 * return deliveryInfoDTOList;
-		 */
-		// return serviceUtility.getPageResult(searchResponse, pageable, new
-		// DeliveryInfo());
-
+		
 	}
 
 	/*
@@ -201,11 +148,11 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
 	private List<TypeDTO> findAllDeliveryTypesByStoreId(String storeId) {
 
-		QueryBuilder queryBuilder = QueryBuilders.boolQuery()
-				.must(matchAllQuery()).filter(QueryBuilders.termQuery("store.regNo", storeId));
+		QueryBuilder queryBuilder = QueryBuilders.boolQuery().must(matchAllQuery())
+				.filter(QueryBuilders.termQuery("store.regNo", storeId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
-		
+
 		SearchResponse response = serviceUtility.searchResponseForSourceBuilder("deliveryinfo", builder);
 		SearchHit[] searchHit = response.getHits().getHits();
 		List<DeliveryInfo> deliveryInfos = new ArrayList<>();
@@ -222,36 +169,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
 		});
 		return typesDTOList;
-		
-		/*
-		 * builder.query(termQuery("store.regNo", storeId));
-		 * 
-		 * SearchRequest searchRequest = new SearchRequest("deliveryinfo");
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); }
-		 * 
-		 * SearchHit[] searchHit = searchResponse.getHits().getHits();
-		 * 
-		 * List<DeliveryInfo> deliveryInfos = new ArrayList<>();
-		 * 
-		 * for (SearchHit hit : searchHit) { DeliveryInfo deliveryInfo =
-		 * objectMapper.convertValue(hit.getSourceAsMap(), DeliveryInfo.class); //
-		 * DeliveryInfoDTO deliveryInfoDTO=deliveryInfoMapper.toDto(deliveryInfo);
-		 * deliveryInfos.add(deliveryInfo); }
-		 * 
-		 * List<TypeDTO> typesDTOList = new ArrayList<TypeDTO>();
-		 * 
-		 * deliveryInfos.forEach(deliveryInfo -> { Type result = deliveryInfo.getType();
-		 * TypeDTO typeDTO = typeMapper.toDto(result); typesDTOList.add(typeDTO);
-		 * 
-		 * });
-		 * 
-		 * return typesDTOList;
-		 */
 
 	}
 
@@ -266,8 +183,8 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 	 */
 
 	private List<StoreTypeDTO> findAllStoreTypesByStoreId(String regNo) {
-		QueryBuilder queryBuilder = QueryBuilders.boolQuery()
-				.must(matchAllQuery()).filter(QueryBuilders.termQuery("store.regNo.keyword", regNo));
+		QueryBuilder queryBuilder = QueryBuilders.boolQuery().must(matchAllQuery())
+				.filter(QueryBuilders.termQuery("store.regNo.keyword", regNo));
 
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
@@ -281,32 +198,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 		}
 
 		return storeTypeDTOList;
-		
-		/*
-		 * builder.query(termQuery("store.regNo", regNo));
-		 * 
-		 * SearchRequest searchRequest = new SearchRequest("storetype");
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); }
-		 * 
-		 * SearchHit[] searchHit = searchResponse.getHits().getHits();
-		 * 
-		 * List<StoreTypeDTO> storeTypeDTOList = new ArrayList<>();
-		 * 
-		 * for (SearchHit hit : searchHit) { StoreType storeType =
-		 * objectMapper.convertValue(hit.getSourceAsMap(), StoreType.class);
-		 * StoreTypeDTO storeTypeDTO = storeTypeMapper.toDto(storeType);
-		 * storeTypeDTOList.add(storeTypeDTO); }
-		 * 
-		 * return storeTypeDTOList;
-		 */
-		// return serviceUtility.getPageResult(searchResponse, pageable, new
-		// StoreType()).getContent();
-
 	}
 
 	/**
@@ -314,25 +205,12 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 	 */
 	@Override
 	public Page<Banner> findBannersByStoreId(String storeId, Pageable pageable) {
-		QueryBuilder queryBuilder = QueryBuilders.boolQuery()
-				.must(matchAllQuery()).filter(QueryBuilders.termQuery("store.regNo.keyword", storeId));
+		QueryBuilder queryBuilder = QueryBuilders.boolQuery().must(matchAllQuery())
+				.filter(QueryBuilders.termQuery("store.regNo.keyword", storeId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
 		SearchResponse response = serviceUtility.searchResponseForPage("banner", builder, pageable);
 		return serviceUtility.getPageResult(response, pageable, new Banner());
-
-		/*
-		 * builder.query(termQuery("store.regNo.keyword", storeId)); SearchRequest
-		 * searchRequest = serviceUtility.generateSearchRequest("banner",
-		 * pageable.getPageSize(), pageable.getPageNumber(), builder);
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); } return serviceUtility.getPageResult(searchResponse,
-		 * pageable, new DeliveryInfo());
-		 */
 
 	}
 
@@ -342,26 +220,14 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
 	private List<BannerDTO> findAllBannersByStoreId(String regNo) {
 
-		//QueryBuilder queryBuilder = QueryBuilders.termQuery("store.regNo.keyword", regNo);
-		QueryBuilder dslQuery = QueryBuilders.boolQuery()
-				.must(matchAllQuery()).filter(QueryBuilders.termQuery("store.regNo.keyword", regNo));
-		
+		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(matchAllQuery())
+				.filter(QueryBuilders.termQuery("store.regNo.keyword", regNo));
+
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
 		searchSourceBuilder.query(dslQuery);
-
-	//	SearchRequest searchRequest = new SearchRequest("banner");
-		//searchRequest.source(searchSourceBuilder);
 		SearchResponse searchResponse = serviceUtility.searchResponseForSourceBuilder("banner", searchSourceBuilder);
-		/*SearchResponse searchResponse = null;
-		try {
-			searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) { // TODO Auto-generated
-			e.printStackTrace();
-		}*/
-
 		SearchHit[] searchHit = searchResponse.getHits().getHits();
-
 
 		List<BannerDTO> bannerDTOList = new ArrayList<>();
 		for (SearchHit hit : searchHit) {
@@ -370,27 +236,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 			bannerDTOList.add(bannerDTO);
 		}
 		return bannerDTOList;
-		
-		/*
-		 * searchSourceBuilder.query(termQuery("store.regNo.keyword", regNo));
-		 * 
-		 * SearchRequest searchRequest = new SearchRequest("banner");
-		 * searchRequest.source(searchSourceBuilder); SearchResponse searchResponse =
-		 * null; try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); }
-		 * 
-		 * SearchHit[] searchHit = searchResponse.getHits().getHits();
-		 * 
-		 * 
-		 * List<BannerDTO> bannerDTOList = new ArrayList<>();
-		 * 
-		 * for (SearchHit hit : searchHit) { Banner banner =
-		 * objectMapper.convertValue(hit.getSourceAsMap(), Banner.class); BannerDTO
-		 * bannerDTO = bannerMapper.toDto(banner); bannerDTOList.add(bannerDTO); }
-		 * 
-		 * return bannerDTOList;
-		 */
 
 	}
 
@@ -398,26 +243,20 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 	public StoreDTO findStoreDTOByRegNo(String regNo) {
 		Store store = findStoreByRegNo(regNo);
 		return storeMapper.toDto(store);
-		// return storeResourceApi.getStoreUsingGET(store.getId()).getBody();
-	}
+		}
 
-	
 	private PreOrderSettingsDTO findPreOrderSettingsByRegNo(String regNo) {
-		//QueryBuilder queryBuilder = QueryBuilders.termQuery("regNo.keyword", regNo);
-		QueryBuilder dslQuery = QueryBuilders.boolQuery()
-				.must(matchAllQuery()).filter(QueryBuilders.termQuery("regNo.keyword", regNo));
+		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(matchAllQuery())
+				.filter(QueryBuilders.termQuery("regNo.keyword", regNo));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(dslQuery);
 
 		SearchResponse searchResponse = serviceUtility.searchResponseForObject("store", dslQuery);
-		Store store= serviceUtility.getObjectResult(searchResponse, new Store());
-		return preOrderSettingsMapper.toDto( store.getPreOrderSettings());
-		
+		Store store = serviceUtility.getObjectResult(searchResponse, new Store());
+		return preOrderSettingsMapper.toDto(store.getPreOrderSettings());
+
 	}
-	
-	
-	
-	
+
 	@Override
 	public ResponseEntity<StoreBundleDTO> getStoreBundle(String regNo) {
 
@@ -461,9 +300,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 			storeSettingsDTO = storeSettingsResourceApi.getStoreSettingsUsingGET(storeSettings.getId()).getBody();
 		}
 
-		
-		
-		
 		StoreBundleDTO bundle = new StoreBundleDTO();
 
 		bundle.setStore(storeDTO);
@@ -479,94 +315,23 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 		bundle.setStoreSettings(storeSettingsDTO);
 
 		bundle.setStoreAddress(storeAddressDTO);
-		
+
 		bundle.setPreOrderSettings(findPreOrderSettingsByRegNo(regNo));
 
 		return ResponseEntity.ok().body(bundle);
 
 	}
 
-	/*
-	 * public ResponseEntity<StoreBundleDTO> getStoreBundle(String regNo) {
-	 * 
-	 * Store store = findStoreByRegNo(regNo);
-	 * 
-	 * StoreAddress storeAdrress = store.getStoreAddress();
-	 * 
-	 * StoreSettings storeSettings = store.getStoreSettings();
-	 * 
-	 * StoreDTO storeDTO = new StoreDTO();
-	 * 
-	 * List<DeliveryInfoDTO> deliveryDTOs = new ArrayList<DeliveryInfoDTO>();
-	 * 
-	 * List<TypeDTO> typeDTOs = new ArrayList<TypeDTO>();
-	 * 
-	 * List<StoreTypeDTO> storeTypeDTO = new ArrayList<StoreTypeDTO>();
-	 * 
-	 * List<BannerDTO> bannerDTO = new ArrayList<BannerDTO>();
-	 * 
-	 * if (store != null) { storeDTO= storeMapper.toDto(store);
-	 * 
-	 * // storeDTO = storeResourceApi.getStoreUsingGET(store.getId()).getBody();
-	 * 
-	 * deliveryDTOs.addAll(deliveryInfoResourceApi
-	 * .listToDtoUsingPOST1(findDeliveryInfoByStoreId(storeDTO.getId()).getContent()
-	 * ).getBody());
-	 * 
-	 * typeDTOs.addAll(typeResourceApi.listToDtoUsingPOST3(
-	 * findAllDeliveryTypesByStoreId(regNo)).getBody());
-	 * 
-	 * storeTypeDTO.addAll(storeTypeResourceApi.listToDtoUsingPOST2(
-	 * findAllStoreTypesByStoreId(regNo)).getBody());
-	 * 
-	 * bannerDTO.addAll(bannerResourceApi.listToDtoUsingPOST(findAllBannersByStoreId
-	 * (regNo)).getBody()); } StoreAddressDTO storeAddressDTO = new
-	 * StoreAddressDTO(); if (storeAdrress != null) { storeAddressDTO =
-	 * storeAddressResourceApi.getStoreAddressUsingGET(storeAdrress.getId()).getBody
-	 * ();
-	 * 
-	 * }
-	 * 
-	 * StoreSettingsDTO storeSettingsDTO = new StoreSettingsDTO();
-	 * 
-	 * if (storeSettings != null) { storeSettingsDTO =
-	 * storeSettingsResourceApi.getStoreSettingsUsingGET(storeSettings.getId()).
-	 * getBody(); }
-	 * 
-	 * StoreBundleDTO bundle = new StoreBundleDTO();
-	 * 
-	 * bundle.setStore(storeDTO);
-	 * 
-	 * bundle.setDeliveryInfos(deliveryDTOs);
-	 * 
-	 * bundle.setTypes(typeDTOs);
-	 * 
-	 * bundle.setBanners(bannerDTO);
-	 * 
-	 * bundle.setStoreType(storeTypeDTO);
-	 * 
-	 * bundle.setStoreSettings(storeSettingsDTO);
-	 * 
-	 * bundle.setStoreAddress(storeAddressDTO);
-	 * 
-	 * return ResponseEntity.ok().body(bundle);
-	 * 
-	 * }
-	 * 
-	 * 
-	 */
 
 	@Override
-	public /* ResponseEntity<BannerDTO> */ BannerDTO findBanner(Long id) {
-		QueryBuilder dslQuery = QueryBuilders.boolQuery()
-				.must(matchAllQuery()).filter(termQuery("id", id));
+	public BannerDTO findBanner(Long id) {
+		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(matchAllQuery()).filter(termQuery("id", id));
 
 		SearchResponse searchResponse = serviceUtility.searchResponseForObject("banner", dslQuery);
 		Banner result = serviceUtility.getObjectResult(searchResponse, new Banner());
 
 		return bannerMapper.toDto(result);
 
-		// return bannerResourceApi.getBannerUsingGET(id);
 	}
 
 }

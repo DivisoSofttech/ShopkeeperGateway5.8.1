@@ -65,14 +65,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	@Autowired
 	QueryResourceApi queryResourceApi;
 	
-	/*
-	 * @Autowired
-	 * 
-	 * @Qualifier(value="queResourceApi")
-	 */
-	/*
-	 * @Autowired com.diviso.graeshoppe.clQueryResourceApi queResourceApi;
-	 */
+
 
 	public ReportQueryServiceImpl(RestHighLevelClient restHighLevelClient) {
 
@@ -86,14 +79,6 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	public OrderMaster findOrderMasterByOrderId(String orderId) {
 
 		SearchSourceBuilder builder = new SearchSourceBuilder();
-
-		/*
-		 * String[] include = new String[] { "" };
-		 * 
-		 * String[] exclude = new String[] {};
-		 * 
-		 * builder.fetchSource(include, exclude);
-		 */
 
 		builder.query(termQuery("orderNumber.keyword", orderId));
 
@@ -141,42 +126,6 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	}
 
-	/**
-	 * @param orderMasterId
-	 */
-	/*
-	 * @Override public Page<com.diviso.graeshoppe.client.report.model.OrderLine>
-	 * findOrderLineByOrderMasterId(Long orderMasterId, Pageable pageable) {
-	 * 
-	 * 
-	 * SearchSourceBuilder builder = new SearchSourceBuilder();
-	 * 
-	 * 
-	 * String[] include = new String[] { "" };
-	 * 
-	 * String[] exclude = new String[] {};
-	 * 
-	 * builder.fetchSource(include, exclude);
-	 * 
-	 * 
-	 * builder.query(termQuery("orderMaster.id", orderMasterId));
-	 * 
-	 * SearchRequest searchRequest =
-	 * serviceUtility.generateSearchRequest("comboitem", pageable.getPageSize(),
-	 * pageable.getPageNumber(), builder);
-	 * 
-	 * SearchResponse searchResponse = null;
-	 * 
-	 * try { searchResponse = restHighLevelClient.search(searchRequest,
-	 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-	 * e.printStackTrace(); }
-	 * 
-	 * return serviceUtility.getPageResult(searchResponse, pageable, new
-	 * com.diviso.graeshoppe.client.report.model.OrderLine());
-	 * 
-	 * 
-	 * }
-	 */
 	@Override
 	public ResponseEntity<PdfDTO> getAllCategories(String idpcode) {
 		PdfDTO pdf = new PdfDTO();
@@ -219,31 +168,13 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return pdf;
 	}
 
-	/*
-	 * @Override public ResponseEntity<ReportSummary> createReportSummary(String
-	 * fromDate,String toDate, String storeName) {
-	 * log.debug("< <<<<<<<<<createReportSummary >>>>>>{}{}{}",fromDate,storeName,
-	 * toDate);
-	 * 
-	 * return queryResourceApi.createReportSummaryUsingGET(fromDate, toDate,
-	 * storeName); }
-	 */
-
-	/*
-	 * @Override public ResponseEntity<OrderAggregator> getOrderAggregator(String
-	 * orderNumber) {
-	 * 
-	 * return queryResourceApi.getOrderAggregatorUsingGET(orderNumber); }
-	 */
+	
 	@Override
 	public Page<com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine> findOrderLineByOrderMasterId(Long orderMasterId, Pageable pageable) {
 		QueryBuilder queryBuilder = QueryBuilders.termQuery("ordermaster.id", orderMasterId);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
 		SearchResponse response = serviceUtility.searchResponseForPage("comboitem", builder, pageable);
-		// please check indexname(entity class name)may be change please change
-		// searchResponsePage 'indexname
-		// and getPageresult classname
 		return serviceUtility.getPageResult(response, pageable, new OrderLine());
 	}
 
@@ -271,16 +202,6 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return queryResourceApi.createReportSummaryUsingGET(date, storeId);
 	}
 
-	/*
-	 * @Override public ResponseEntity<PdfDTO>
-	 * getOrderSummaryBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate,
-	 * String storeName) {
-	 * log.debug("<<<<<<<<<< getOrderSummaryBetweenDatesAndStoreIdAsPdf>>>>>{}{}{}"
-	 * ,fromDate,storeName,toDate); PdfDTO pdfDto= new PdfDTO();
-	 * pdfDto.setPdf(queryResourceApi.getOrderSummaryBetweenDatesAsPdfUsingGET(
-	 * fromDate, storeName, toDate).getBody()); return
-	 * ResponseEntity.ok().body(pdfDto); }
-	 */
 
 	@Override
 	public ResponseEntity<PdfDTO> getOrderSummaryDetails(String date,String storeId) {
@@ -351,10 +272,5 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return queryResourceApi.getFootersUsingGET(orderNumber);
 	}
 
-	/*
-	 * @Override public ResponseEntity<String> EscPosDocket(String orderNumber) {
-	 * log.debug("<<<<<<<<<< EscPosDocket >>>>>>>{}",orderNumber); return
-	 * queryResourceApi.; }
-	 */
 
 }

@@ -113,15 +113,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		searchSourceBuilder.query(dslQuery);
 		searchSourceBuilder .sort(sortByDate);
 		searchResponse = serviceUtility.searchResponseForPage("order", searchSourceBuilder, pageable);
-		
-		/*searchRequest = serviceUtility.generateSearchRequest("order", pageable.getPageSize(),
-				pageable.getPageNumber(), builder);
 
-		try {
-			searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) { // TODO Auto-generated
-			e.printStackTrace();
-		}*/
 		return serviceUtility.getPageResult(searchResponse, pageable, new Order());
 
 		
@@ -142,7 +134,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	public Page<Order> findOrderByStoreId(String storeId, Pageable pageable) {
 
 		QueryBuilder dslQuery = QueryBuilders.boolQuery()
-				.must(QueryBuilders.matchAllQuery())
 				.filter(QueryBuilders.termQuery("storeId.keyword", storeId));
 		
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -153,30 +144,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
 		Page<Order> orderPage = serviceUtility.getPageResult(searchResponse, pageable, new Order());
 
-		/*
-		 * SearchSourceBuilder builder = new SearchSourceBuilder();
-		 * 
-		 * 
-		 * String[] include = new String[] { "" };
-		 * 
-		 * String[] exclude = new String[] {};
-		 * 
-		 * builder.fetchSource(include, exclude);
-		 * 
-		 * 
-		 * builder.query(termQuery("storeId.keyword", storeId)).sort("id",
-		 * SortOrder.DESC);
-		 * 
-		 * SearchRequest searchRequest = serviceUtility.generateSearchRequest("order",
-		 * pageable.getPageSize(), pageable.getPageNumber(), builder);
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); } Page<Order> orderPage =
-		 * serviceUtility.getPageResult(searchResponse, pageable, new Order());
-		 */
 		orderPage.forEach(order -> {
 
 			order.setOrderLines(new HashSet<OrderLine>(findOrderLinesByOrderId(order.getId())));
@@ -201,13 +168,10 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
 		
 		  QueryBuilder dslQuery=
-		  QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery())
+		  QueryBuilders.boolQuery()
 		  .filter(QueryBuilders.termQuery("orderId", orderId));
 			FieldSortBuilder sortById = SortBuilders.fieldSort("id").order(SortOrder.DESC);
-		//QueryBuilder queryDsl = termQuery("orderId", orderId);
-		
-	
-		
+
 		  SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		 	 
 		  searchSourceBuilder.query(dslQuery);
@@ -241,7 +205,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	public Page<Notification> findNotificationByReceiverId(String receiverId, Pageable pageable) {
 		log.debug("<<<<<<<<<<< findNotificationByReceiverId >>>>>>>>{}", receiverId);
 		QueryBuilder queryDsl = QueryBuilders.boolQuery()
-				.must(QueryBuilders.matchAllQuery())
 				.filter(QueryBuilders.termQuery("receiverId.keyword", receiverId));
 		FieldSortBuilder sortById = SortBuilders.fieldSort("id").order(SortOrder.DESC);
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -251,12 +214,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		Page<Notification> page = serviceUtility.getPageResult(searchResponse, pageable, new Notification());
 		return page;
 
-		/*
-		 
-		 * builder.query(termQuery("receiverId.keyword", receiverId)).sort("id",
-		 * SortOrder.DESC);
-		
-		 */
 	}
 
 //TO_DO @rafeek
@@ -320,31 +277,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		SearchResponse searchResponse =serviceUtility.searchResponseForPage("order", searchSourceBuilder, pageable);
 		Page<Order> page = serviceUtility.getPageResult(searchResponse, pageable, new Order());
 		return page;
-		
-		/*
-		 * SearchSourceBuilder builder = new SearchSourceBuilder();
-		 * 
-		 * 
-		 * String[] include = new String[] { "" };
-		 * 
-		 * String[] exclude = new String[] {};
-		 * 
-		 * builder.fetchSource(include, exclude);
-		 * 
-		 * 
-		 * builder.query(QueryBuilders.boolQuery().must(termQuery("storeId.keyword",
-		 * storeId)) .must(rangeQuery("date").gte(from).lte(to)));
-		 * 
-		 * SearchRequest searchRequest = serviceUtility.generateSearchRequest("order",
-		 * pageable.getPageSize(), pageable.getPageNumber(), builder);
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); } return serviceUtility.getPageResult(searchResponse,
-		 * pageable, new Order());
-		 */
 	}
 
 	/**
@@ -356,16 +288,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	public Long getNotificationCountByReceiveridAndStatus(String status, String receiverId) {
 		log.info(".............." + status + ".............." + receiverId);
 
-		/*
-		 * QueryBuilder queryDsl =
-		 * QueryBuilders.boolQuery().must(termQuery("status.keyword",status))
-		 * .must(termQuery("receiverId.keyword",receiverId)); SearchSourceBuilder searchSourceBuilder =
-		 * new SearchSourceBuilder(); searchSourceBuilder.query(queryDsl);
-		 * 
-		 * SearchResponse searchResponse = serviceUtility.searchResponseForObject("notification",
-		 * queryDsl); Notification result = serviceUtility.getObjectResult(searchResponse, new
-		 * Notification()); return ;
-		 */
 				
 		CountRequest countRequest = new CountRequest("notification");
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -382,74 +304,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		}
 
 		return countResponse.getCount();
-		/*
-		 * SearchSourceBuilder builder = new SearchSourceBuilder();
-		 * 
-		 * builder.query(QueryBuilders.boolQuery().must(termQuery("status.keyword",
-		 * status)) .must(QueryBuilders.matchQuery("receiverId", receiverId)));
-		 * 
-		 * SearchRequest searchRequest =
-		 * serviceUtility.generateSearchRequest("notification", pageable.getPageSize(),
-		 * pageable.getPageNumber(), builder);
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); } List<Notification> notifications =
-		 * serviceUtility.getPageResult(searchResponse, pageable, new Notification())
-		 * .getContent(); return (long) notifications.size();
-		 */
 	}
-
-	/**
-	 * @param receiverId
-	 * @param status
-	 */
-
-	/*@Override
-	public Long findNotificationCountByReceiverIdAndStatusName(String receiverId, String status) {
-		CountRequest countRequest = new CountRequest("notification");
-		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-
-		searchSourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("receiverId", receiverId))
-				.must(QueryBuilders.matchQuery("status", status)));
-
-		countRequest.source(searchSourceBuilder);
-		CountResponse countResponse = null;
-		try {
-			countResponse = restHighLevelClient.count(countRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) { // TODO Auto-generated
-			e.printStackTrace();
-		}
-
-		return countResponse.getCount();
-	}*/
-		/*
-		 * SearchSourceBuilder builder = new SearchSourceBuilder();
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * builder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery(
-		 * "receiverId", receiverId)) .must(QueryBuilders.matchQuery("status",
-		 * status)));
-		 * 
-		 * SearchRequest searchRequest =
-		 * serviceUtility.generateSearchRequest("notification", pageable.getPageSize(),
-		 * pageable.getPageNumber(), builder);
-		 * 
-		 * SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); } List<Notification> notifications =
-		 * serviceUtility.getPageResult(searchResponse, pageable, new Notification())
-		 * .getContent();
-		 * 
-		 * return (long) notifications.size();
-		 */
 
 
 	/*
@@ -472,25 +327,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		SearchResponse searchResponse = serviceUtility.searchResponseForObject("order", dslQuery);
 		return serviceUtility.getObjectResult(searchResponse, new Order());
 
-		/*
-		 * SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
-		 * 
-		 * String[] include = new String[] { "", "", "" };
-		 * 
-		 * searchBuilder.fetchSource(include, exclude);
-		 * 
-		 * searchBuilder.query(termQuery("orderId.keyword", orderId));
-		 * 
-		 * SearchRequest searchRequest = new SearchRequest("order");
-		 * 
-		 * searchRequest.source(searchBuilder); SearchResponse searchResponse = null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); }
-		 * 
-		 * return serviceUtility.getObjectResult(searchResponse, new Order());
-		 */
 	}
 
 	@Override
@@ -515,22 +351,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		long count = response.getCount();
 		return count;
 
-		/*
-		 * CountRequest countRequest = new CountRequest("order"); // <1>
-		 * SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); // <2>
-		 * searchSourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.
-		 * termQuery("customerId.keyword", customerId))
-		 * .must(QueryBuilders.termQuery("status.name.keyword",statusName ))); // <3>
-		 * countRequest.source(searchSourceBuilder);
-		 * 
-		 * CountResponse countResponse = null; try { countResponse =
-		 * restHighLevelClient.count(countRequest, RequestOptions.DEFAULT); } catch
-		 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
-		 * 
-		 * long count = countResponse.getCount();
-		 * 
-		 * return count;
-		 */
 	}
 
 	/*
@@ -564,9 +384,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	public Page<com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine> findAllOrderLinesByOrderId(Long orderId,
 			Pageable pageable) {
 		log.debug("<<<<<<<<<<< findAllOrderLinesByOrderId >>>>>>>>",orderId);
-	//	QueryBuilder queryBuilder = QueryBuilders.termQuery("order.id", orderId);
-		QueryBuilder dslQuery = QueryBuilders.boolQuery()
-				.must(QueryBuilders.matchAllQuery())
+			QueryBuilder dslQuery = QueryBuilders.boolQuery()
 				.filter(QueryBuilders.termQuery("order.id", orderId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(dslQuery);
@@ -577,9 +395,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	@Override
 	public Page<AuxilaryOrderLine> findAuxilaryOrderLineByOrderLineId(Long orderLineId, Pageable pageable) {
 		log.debug("<<<<<< findAuxilaryOrderLineByOrderLineId >>>>>>>>",orderLineId,pageable);
-		//QueryBuilder querybuilder = QueryBuilders.termQuery("orderLine.id", orderLineId);
 		QueryBuilder dslQuery = QueryBuilders.boolQuery()
-				.must(QueryBuilders.matchAllQuery())
 				.filter(QueryBuilders.termQuery("orderLine.id", orderLineId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(dslQuery);

@@ -1,10 +1,13 @@
 package com.diviso.graeshoppe.shopkeepergateway.service.impl;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.AddressResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.AuxilaryLineItemResourceApi;
@@ -13,6 +16,7 @@ import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ComboLineItemR
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.DiscountResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.EntryLineItemResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.LocationResourceApi;
+import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ProductLoadControllerApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ProductResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ReasonResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.StockCurrentResourceApi;
@@ -26,11 +30,14 @@ import com.diviso.graeshoppe.shopkeepergateway.client.product.model.DiscountDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.EntryLineItemDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.LocationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ProductDTO;
+import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ProductFile;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ReasonDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockCurrentDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockEntryDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.UOMDTO;
 import com.diviso.graeshoppe.shopkeepergateway.service.ProductCommandService;
+
+import io.swagger.annotations.ApiParam;
 
 
 @Service
@@ -40,6 +47,9 @@ public class ProductCommandServiceImpl implements ProductCommandService{
 	
 	@Autowired
 	private ProductResourceApi productResourceApi;
+	
+	@Autowired
+	ProductLoadControllerApi productLoadControllerApi;
 	
 	@Autowired
 	CategoryResourceApi categoryResourceApi;
@@ -294,6 +304,11 @@ public class ProductCommandServiceImpl implements ProductCommandService{
 	public ResponseEntity<Void> deleteProductAddress(Long id) {
 		
 		return addressResourceApi.deleteAddressUsingDELETE(id);
+	}
+
+	@Override
+	public ResponseEntity<Void> excelDatatoDBUsingPOST(ProductFile productFile){
+		return productLoadControllerApi.excelDatatoDBUsingPOST(productFile);
 	}
 
 	

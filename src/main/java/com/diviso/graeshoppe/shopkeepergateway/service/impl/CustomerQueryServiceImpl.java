@@ -73,34 +73,7 @@ public class CustomerQueryServiceImpl implements CustomerQueryService{
 		return page;
 		
 		
-	/*	SearchSourceBuilder builder = new SearchSourceBuilder();
-
-		
-		 * String[] include = new String[] { "" };
-		 * 
-		 * String[] exclude = new String[] {};
-		 * 
-		 * builder.fetchSource(include, exclude);
-		 
-
-		builder.query( matchQuery("name", searchTerm) );
-
-		SearchRequest searchRequest = serviceUtility.generateSearchRequest("customer", pageable.getPageSize(), pageable.getPageNumber(),
-				builder);
-
-		SearchResponse searchResponse = null;
-
-		try {
-			searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) { // TODO Auto-generated
-			e.printStackTrace();
-		}
-		return serviceUtility.getPageResult(searchResponse, pageable, new Customer());*/
-	}
-	
-	/**
-	 * @param
-	 */
+}
 	@Override
 	public Page<Customer> findAllCustomers(Pageable pageable) {
 		
@@ -113,30 +86,7 @@ public class CustomerQueryServiceImpl implements CustomerQueryService{
 		
 		return page;
 		
-		/*SearchSourceBuilder builder = new SearchSourceBuilder();
-		
-		
-		 * String[] include = new String[] { "" };
-		 * 
-		 * String[] exclude = new String[] {};
-		 * 
-		 * builder.fetchSource(include, exclude);
-		 
-
-		builder.query(matchAllQuery());
-
-		SearchRequest searchRequest = serviceUtility.generateSearchRequest("customer", pageable.getPageSize(), pageable.getPageNumber(),
-				builder);
-
-		SearchResponse searchResponse = null;
-
-		try {
-			searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-		} catch (IOException e) { // TODO Auto-generated
-			e.printStackTrace();
 		}
-		return serviceUtility.getPageResult(searchResponse, pageable, new Customer());*/
-	}
 	@Override
 	public CustomerDTO findCustomerById(Long id) {
 		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery())

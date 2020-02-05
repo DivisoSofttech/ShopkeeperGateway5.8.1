@@ -10,56 +10,33 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Discount
+ * ProductFile
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-05T11:48:18.646+05:30[Asia/Kolkata]")
 
-public class Discount   {
-  @JsonProperty("id")
-  private Long id = null;
+public class ProductFile   {
+  @JsonProperty("file")
+  private byte[] file = null;
 
-  @JsonProperty("rate")
-  private Double rate = null;
-
-  public Discount id(Long id) {
-    this.id = id;
+  public ProductFile file(byte[] file) {
+    this.file = file;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get file
+   * @return file
   **/
   @ApiModelProperty(value = "")
 
-
-  public Long getId() {
-    return id;
+@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
+  public byte[] getFile() {
+    return file;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Discount rate(Double rate) {
-    this.rate = rate;
-    return this;
-  }
-
-  /**
-   * Get rate
-   * @return rate
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Double getRate() {
-    return rate;
-  }
-
-  public void setRate(Double rate) {
-    this.rate = rate;
+  public void setFile(byte[] file) {
+    this.file = file;
   }
 
 
@@ -71,23 +48,21 @@ public class Discount   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Discount discount = (Discount) o;
-    return Objects.equals(this.id, discount.id) &&
-        Objects.equals(this.rate, discount.rate);
+    ProductFile productFile = (ProductFile) o;
+    return Objects.equals(this.file, productFile.file);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, rate);
+    return Objects.hash(file);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Discount {\n");
+    sb.append("class ProductFile {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
+    sb.append("    file: ").append(toIndentedString(file)).append("\n");
     sb.append("}");
     return sb.toString();
   }

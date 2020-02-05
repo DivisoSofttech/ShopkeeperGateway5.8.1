@@ -10,6 +10,7 @@ import com.diviso.graeshoppe.shopkeepergateway.client.product.model.DiscountDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.EntryLineItemDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.LocationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ProductDTO;
+import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ProductFile;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ReasonDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockCurrentDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockEntryDTO;
@@ -87,6 +88,8 @@ public interface ProductCommandService {
     public ResponseEntity<AddressDTO> updateProductAddress(AddressDTO addressDTO);
     
     public ResponseEntity<Void> deleteProductAddress(Long id);
+
+    public ResponseEntity<Void> excelDatatoDBUsingPOST(ProductFile productFile);
     
     
 }

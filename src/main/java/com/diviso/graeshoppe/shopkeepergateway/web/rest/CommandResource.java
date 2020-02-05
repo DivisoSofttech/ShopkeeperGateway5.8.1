@@ -4,6 +4,8 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ import com.diviso.graeshoppe.shopkeepergateway.client.order.model.OrderDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Order;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.EntryLineItemResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.LocationResourceApi;
+import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ProductLoadControllerApi;
+import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ProductResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.ReasonResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.StockEntryResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.AddressDTO;
@@ -37,6 +41,7 @@ import com.diviso.graeshoppe.shopkeepergateway.client.product.model.DiscountDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.EntryLineItemDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.LocationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ProductDTO;
+import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ProductFile;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.ReasonDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockCurrentDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.model.StockEntryDTO;
@@ -64,6 +69,8 @@ import com.diviso.graeshoppe.shopkeepergateway.service.OrderCommandService;
 import com.diviso.graeshoppe.shopkeepergateway.service.OrderQueryService;
 import com.diviso.graeshoppe.shopkeepergateway.service.ProductCommandService;
 import com.diviso.graeshoppe.shopkeepergateway.service.StoreCommandService;
+
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/api/command")
@@ -652,6 +659,12 @@ public class CommandResource {
 
 
 		return ResponseEntity.ok().body(storeBundle);
+	}
+
+	@PostMapping("/importexcelDatatoDB")
+	ResponseEntity<Void> importexcelDatatoDB(@RequestBody ProductFile product){
+		
+		return productCommandService.excelDatatoDBUsingPOST(product);
 	}
 
 }
