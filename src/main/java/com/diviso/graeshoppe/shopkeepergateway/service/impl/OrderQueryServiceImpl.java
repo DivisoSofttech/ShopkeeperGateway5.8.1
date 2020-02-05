@@ -95,7 +95,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		
 		
 
-		if (deliveryType.equals("all")) {
+		if (deliveryType.equalsIgnoreCase("all")) {
 
 			 dslQuery =QueryBuilders.boolQuery().must(QueryBuilders.termQuery("orderStatus.keyword", statusName))
 					.must(QueryBuilders.termQuery("storeIdpcode.keyword", storeId));
