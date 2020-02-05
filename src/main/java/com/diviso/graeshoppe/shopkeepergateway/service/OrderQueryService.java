@@ -10,6 +10,7 @@ import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Aux
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Notification;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Order;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine;
+import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OrderMaster;
 
 /**
  * 
@@ -24,7 +25,7 @@ public interface OrderQueryService {
 	 * @param deliveryType
 	 * @param pageable
 	 */
-	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(LocalDate date, String statusName, String storeId,
+	public Page<OrderMaster> findOrderByStatusNameAndStoreIdAndDeliveryType(LocalDate date, String statusName, String storeId,
 			String deliveryType, Pageable pageable);
 
 	/**

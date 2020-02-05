@@ -36,6 +36,7 @@ import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Not
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Order;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.OrderLine;
 import com.diviso.graeshoppe.shopkeepergateway.client.report.api.OrderMasterResourceApi;
+import com.diviso.graeshoppe.shopkeepergateway.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.shopkeepergateway.service.OrderQueryService;
 import com.diviso.graeshoppe.shopkeepergateway.web.rest.util.ServiceUtility;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -82,7 +83,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	 * @param deliverytype
 	 */
 	@Override
-	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(LocalDate date,String statusName, String storeId, String deliveryType,
+	public Page<OrderMaster> findOrderByStatusNameAndStoreIdAndDeliveryType(LocalDate date,String statusName, String storeId, String deliveryType,
 			Pageable pageable) {
 		log.debug("<<<<<<<<<< findOrderByStatusNameAndDeliveryType >>>>>>>>>{}{}",statusName,deliveryType);
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -96,28 +97,21 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
 		if (deliveryType.equals("all")) {
 
-			 dslQuery =QueryBuilders.boolQuery().must(QueryBuilders.termQuery("status.name.keyword", statusName))
-					.must(QueryBuilders.termQuery("storeId.keyword", storeId));
+			 dslQuery =QueryBuilders.boolQuery().must(QueryBuilders.termQuery("orderStatus.keyword", statusName))
+					.must(QueryBuilders.termQuery("storeIdpcode.keyword", storeId));
 			
 			
         }
 		else {
-
-			 dslQuery =	QueryBuilders.boolQuery().must(QueryBuilders.termQuery("status.name.keyword", statusName))
-					.must(QueryBuilders.termQuery("storeId.keyword", storeId))
-					.must(QueryBuilders.termQuery("deliveryInfo.deliveryType.keyword", deliveryType));
-			
-		
+			 dslQuery =	QueryBuilders.boolQuery().must(QueryBuilders.termQuery("orderStatus.keyword", statusName))
+					.must(QueryBuilders.termQuery("storeIdpcode.keyword", storeId))
+					.must(QueryBuilders.termQuery("methodOfOrder.keyword", deliveryType));
 		}
-		FieldSortBuilder sortByDate = SortBuilders.fieldSort("date").order(SortOrder.DESC);
+		FieldSortBuilder sortByDate = SortBuilders.fieldSort("orderPlaceAt").order(SortOrder.DESC);
 		searchSourceBuilder.query(dslQuery);
 		searchSourceBuilder .sort(sortByDate);
-		searchResponse = serviceUtility.searchResponseForPage("order", searchSourceBuilder, pageable);
-
-		return serviceUtility.getPageResult(searchResponse, pageable, new Order());
-
-		
-
+		searchResponse = serviceUtility.searchResponseForPage("ordermaster", searchSourceBuilder, pageable);
+		return serviceUtility.getPageResult(searchResponse, pageable, new OrderMaster());
 	}
 
 	/*
@@ -182,7 +176,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		  
 		  try { searchResponse = restHighLevelClient.search(searchRequest,
 		  RequestOptions.DEFAULT); }
-		  catch (IOException e) { // TODO Auto-generated
+		  catch (IOException e) { // 
 		  e.printStackTrace(); }
 		  SearchHit[] searchHit =searchResponse.getHits().getHits();
 		  
