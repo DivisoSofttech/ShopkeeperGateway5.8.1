@@ -145,6 +145,23 @@ public class OrderMaster   {
 
   @JsonProperty("zoneId")
   private String zoneId = null;
+  /**
+ * @return the nextTaskId
+ */
+public String getNextTaskId() {
+	return nextTaskId;
+}
+
+/**
+ * @param nextTaskId the nextTaskId to set
+ */
+public void setNextTaskId(String nextTaskId) {
+	this.nextTaskId = nextTaskId;
+}
+
+@JsonProperty("nextTaskId")
+  private String nextTaskId = null;
+  
 
   public OrderMaster addressType(String addressType) {
     this.addressType = addressType;
@@ -422,7 +439,7 @@ public class OrderMaster   {
   public String getLandmark() {
     return landmark;
   }
-
+  
   public void setLandmark(String landmark) {
     this.landmark = landmark;
   }
