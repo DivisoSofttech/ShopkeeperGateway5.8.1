@@ -756,6 +756,12 @@ public class QueryResource {
 	public List<Offer> findOfferLinesByOrderId(@PathVariable Long orderId) {
 		return offerQueryService.findOfferLinesByOrderId(orderId);
 	}
+	
+	@GetMapping("/findOfferLinesByOrderNumber/{orderNumber}")
+	public ResponseEntity<List<OfferLine>> findOfferLineByOrderNumber(String orderNumber) {
+	return reportQueryService.findOfferLineByOrderNumber(orderNumber);
+	
+	}
 
 	@GetMapping("/getDocketHeader/{orderNumber}")
 	public ResponseEntity<String> getDocketHeader(@PathVariable String orderNumber){
