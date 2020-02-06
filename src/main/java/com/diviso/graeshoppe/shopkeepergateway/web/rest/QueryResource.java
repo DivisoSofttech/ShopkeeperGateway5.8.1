@@ -621,7 +621,7 @@ public class QueryResource {
 	@GetMapping("/findOrderByStatusNameAndStoreIdAndDeliveryType/{date}/{statusName}/{storeId}/{deliveryType}") // 27 11 19 //
 																											// it's //
 																											// working
-	public Page<Order> findOrderByStatusNameAndStoreIdAndDeliveryType(@PathVariable LocalDate date,@PathVariable String statusName,
+	public Page<OrderMaster> findOrderByStatusNameAndStoreIdAndDeliveryType(@PathVariable LocalDate date,@PathVariable String statusName,
 			@PathVariable String storeId, @PathVariable String deliveryType, Pageable pageable) {
 		return orderQueryService.findOrderByStatusNameAndStoreIdAndDeliveryType(date,statusName, storeId, deliveryType,
 				pageable);

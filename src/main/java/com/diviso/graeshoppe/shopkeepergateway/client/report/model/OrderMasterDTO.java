@@ -19,8 +19,23 @@ import javax.validation.constraints.*;
 public class OrderMasterDTO   {
   @JsonProperty("addressType")
   private String addressType = null;
+  @JsonProperty("nextTaskId")
+  private String nextTaskId = null;
+  /**
+ * @return the nextTaskId
+ */
+public String getNextTaskId() {
+	return nextTaskId;
+}
 
-  @JsonProperty("allergyNote")
+/**
+ * @param nextTaskId the nextTaskId to set
+ */
+public void setNextTaskId(String nextTaskId) {
+	this.nextTaskId = nextTaskId;
+}
+
+@JsonProperty("allergyNote")
   private String allergyNote = null;
 
   @JsonProperty("alternatePhone")
