@@ -119,26 +119,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	AuxilaryLineItemMapper auxilaryLineItemMapper;
 	@Autowired
 	ComboLineItemMapper comboLineItemMapper;
-	/*@Autowired
-	UomResourceApi uomResourceApi;
 
-	@Autowired
-	CategoryResourceApi categoryResourceApi;
-
-	@Autowired
-	private ProductResourceApi productResourceApi;
-	@Autowired
-	StockCurrentResourceApi stockCurrentResourceApi;
-
-	@Autowired
-	private StockEntryResourceApi stockEntryResourceApi;
-
-	@Autowired
-	ComboLineItemResourceApi comboLineItemResourceApi;
-
-	@Autowired
-	private AuxilaryLineItemResourceApi auxilaryLineItemResourceApi;
-*/
 	private RestHighLevelClient restHighLevelClient;
 
 	public ProductQueryServiceImpl(RestHighLevelClient restHighLevelClient) {
@@ -150,7 +131,8 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 	 * @param storeId
 	 */
 	
-	private Page<Product> findProductByCategoryId(Long categoryId, String storeId, Pageable pageable) {
+	@Override
+	public Page<Product> findProductByCategoryId(Long categoryId, String storeId, Pageable pageable) {
 		log.debug("<<<<<<<<< findProductByCategoryId >>>>>>>>>", categoryId, storeId);
 		QueryBuilder queryDsl = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("category.id", categoryId)) .must(QueryBuilders.termQuery("iDPcode.keyword", storeId));
 
@@ -160,13 +142,6 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 
 		return serviceUtility.getPageResult(searchRespose, pageable, new Product());
 
-		/*
-		 * builder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery(
-		 * "category.id", categoryId)) .must(QueryBuilders.matchQuery("iDPcode",
-		 * storeId)));
-		 * 
-		 * 
-		 */
 	}
 
 	/**

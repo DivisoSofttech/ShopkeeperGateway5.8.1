@@ -813,20 +813,21 @@ public class QueryResource {
 		
 	}
 
-	/*
-	 * @GetMapping("/EscPosDocket/{orderNumber}") public ResponseEntity<String>
-	 * EscPosDocket(@PathVariable String orderNumber){
-	 * log.debug("<<<<<<<< EscPosDocket >>>>>>>>{}",orderNumber); return
-	 * reportQueryService.EscPosDocket(orderNumber);
-	 * 
-	 * }
-	 */
 	@GetMapping("/getFooter/{orderNumber}")
 	public ResponseEntity<String> getFooter(@PathVariable String orderNumber){
 		log.debug("<<<<<<<< EscPosDocket >>>>>>>>{}",orderNumber);
 		return reportQueryService.getFooter(orderNumber);
 		
 	}
+	
+	@GetMapping("/findProductByCategoryId/{categoryId}/{storeId}")
+	public Page<Product> findProductByCategoryId(@PathVariable Long categoryId, @PathVariable String storeId, Pageable pageable){
+		log.debug("<<<<<<<< findProductByCategoryId >>>>>>>>{}",categoryId);
+		return productQueryService.findProductByCategoryId(categoryId,storeId,pageable);
+		
+	}
+	
+	
 	
 
 }

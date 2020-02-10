@@ -56,6 +56,8 @@ public interface ProductQueryService {
 		public ProductBundle getProductBundleById( Long id);
 		public Page<EntryLineItem> findAllEntryLineItemsByIdpCode(String idpCode, Pageable pageable);
 
+		public Page<Product> findProductByCategoryId(Long categoryId, String storeId, Pageable pageable);
+
 		
 	
 
