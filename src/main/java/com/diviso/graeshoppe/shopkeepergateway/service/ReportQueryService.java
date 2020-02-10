@@ -79,6 +79,8 @@ public interface ReportQueryService {
 
 	public ResponseEntity<String> getFooter(String orderNumber);
 
+	public ResponseEntity<String> getOrderTimes(String orderNumber);
+
 	//public ResponseEntity<String> EscPosDocket(String orderNumber);
 
 //	public ResponseEntity<OrderAggregator> getOrderAggregator(String orderNumber);

@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * OrderMaster
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-01T15:31:36.359+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-10T13:29:41.284+05:30[Asia/Kolkata]")
 
 public class OrderMaster   {
   @JsonProperty("addressType")
@@ -68,6 +68,9 @@ public class OrderMaster   {
 
   @JsonProperty("methodOfOrder")
   private String methodOfOrder = null;
+
+  @JsonProperty("nextTaskId")
+  private String nextTaskId = null;
 
   @JsonProperty("notes")
   private String notes = null;
@@ -145,23 +148,6 @@ public class OrderMaster   {
 
   @JsonProperty("zoneId")
   private String zoneId = null;
-  /**
- * @return the nextTaskId
- */
-public String getNextTaskId() {
-	return nextTaskId;
-}
-
-/**
- * @param nextTaskId the nextTaskId to set
- */
-public void setNextTaskId(String nextTaskId) {
-	this.nextTaskId = nextTaskId;
-}
-
-@JsonProperty("nextTaskId")
-  private String nextTaskId = null;
-  
 
   public OrderMaster addressType(String addressType) {
     this.addressType = addressType;
@@ -439,7 +425,7 @@ public void setNextTaskId(String nextTaskId) {
   public String getLandmark() {
     return landmark;
   }
-  
+
   public void setLandmark(String landmark) {
     this.landmark = landmark;
   }
@@ -482,6 +468,26 @@ public void setNextTaskId(String nextTaskId) {
 
   public void setMethodOfOrder(String methodOfOrder) {
     this.methodOfOrder = methodOfOrder;
+  }
+
+  public OrderMaster nextTaskId(String nextTaskId) {
+    this.nextTaskId = nextTaskId;
+    return this;
+  }
+
+  /**
+   * Get nextTaskId
+   * @return nextTaskId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getNextTaskId() {
+    return nextTaskId;
+  }
+
+  public void setNextTaskId(String nextTaskId) {
+    this.nextTaskId = nextTaskId;
   }
 
   public OrderMaster notes(String notes) {
@@ -1031,6 +1037,7 @@ public void setNextTaskId(String nextTaskId) {
         Objects.equals(this.landmark, orderMaster.landmark) &&
         Objects.equals(this.loyaltyPoint, orderMaster.loyaltyPoint) &&
         Objects.equals(this.methodOfOrder, orderMaster.methodOfOrder) &&
+        Objects.equals(this.nextTaskId, orderMaster.nextTaskId) &&
         Objects.equals(this.notes, orderMaster.notes) &&
         Objects.equals(this.offerLines, orderMaster.offerLines) &&
         Objects.equals(this.orderAcceptedAt, orderMaster.orderAcceptedAt) &&
@@ -1060,7 +1067,7 @@ public void setNextTaskId(String nextTaskId) {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, cancellationRef, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
+    return Objects.hash(addressType, allergyNote, alternatePhone, cancellationRef, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, nextTaskId, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
@@ -1084,6 +1091,7 @@ public void setNextTaskId(String nextTaskId) {
     sb.append("    landmark: ").append(toIndentedString(landmark)).append("\n");
     sb.append("    loyaltyPoint: ").append(toIndentedString(loyaltyPoint)).append("\n");
     sb.append("    methodOfOrder: ").append(toIndentedString(methodOfOrder)).append("\n");
+    sb.append("    nextTaskId: ").append(toIndentedString(nextTaskId)).append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    offerLines: ").append(toIndentedString(offerLines)).append("\n");
     sb.append("    orderAcceptedAt: ").append(toIndentedString(orderAcceptedAt)).append("\n");

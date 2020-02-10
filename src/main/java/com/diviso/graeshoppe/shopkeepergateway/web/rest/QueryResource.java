@@ -815,8 +815,15 @@ public class QueryResource {
 
 	@GetMapping("/getFooter/{orderNumber}")
 	public ResponseEntity<String> getFooter(@PathVariable String orderNumber){
-		log.debug("<<<<<<<< EscPosDocket >>>>>>>>{}",orderNumber);
+		log.debug("<<<<<<<< getFooter >>>>>>>>{}",orderNumber);
 		return reportQueryService.getFooter(orderNumber);
+		
+	}
+	
+	@GetMapping("/getOrderTimes/{orderNumber}")
+	public ResponseEntity<String> getOrderTimes(@PathVariable String orderNumber){
+		log.debug("<<<<<<<< getOrderTimes >>>>>>>>{}",orderNumber);
+		return reportQueryService.getOrderTimes(orderNumber);
 		
 	}
 	
