@@ -329,31 +329,6 @@ public class CommandResource {
 		return storeCommandService.deleteReply(id);
 	}
 
-	/*
-	 * @PostMapping("/user-ratings") public ResponseEntity<UserRatingDTO>
-	 * createUserRating(@RequestBody UserRatingDTO userRatingDTO) { return
-	 * storeCommandService.createUserRating(userRatingDTO); }
-	 * 
-	 * @PutMapping("/user-ratings") public ResponseEntity<UserRatingDTO>
-	 * updateUserRating(@RequestBody UserRatingDTO userRatingDTO) { return
-	 * storeCommandService.updateUserRating(userRatingDTO); }
-	 * 
-	 * @DeleteMapping("/user-ratings/{id}") public ResponseEntity<Void>
-	 * deleteUserRating(@PathVariable Long id) { return
-	 * storeCommandService.deleteUserRating(id); }
-	 * 
-	 * @PostMapping("/reviews") public ResponseEntity<ReviewDTO>
-	 * createUserRating(@RequestBody ReviewDTO reviewDTO) { //change method name
-	 * return storeCommandService.createUserRating(reviewDTO); }
-	 * 
-	 * @PutMapping("/reviews") public ResponseEntity<ReviewDTO>
-	 * updateUserRating(@RequestBody ReviewDTO reviewDTO) { //change method name
-	 * return storeCommandService.updateUserRating(reviewDTO); }
-	 * 
-	 * @DeleteMapping("/reviews/{id}") public ResponseEntity<Void>
-	 * deleteReview(@PathVariable Long id) { return
-	 * storeCommandService.deleteReview(id); }
-	 */
 	@PostMapping("/delivery-infos")
 	public ResponseEntity<DeliveryInfoDTO> createDeliveryInfo(@RequestBody DeliveryInfoDTO deliveryInfoDTO) {
 		return storeCommandService.createDeliveryInfo(deliveryInfoDTO);
@@ -383,13 +358,6 @@ public class CommandResource {
 	public ResponseEntity<Void> deleteType(@PathVariable Long id) {
 		return storeCommandService.deleteType(id);
 	}
-
-	/*
-	 * @PostMapping("/load-products") public void loadProducts(@RequestParam("file")
-	 * MultipartFile file) throws IOException { // upload and save the file then
-	 * load log.info("::::::::::::::::::file:::::::::::::::::::::: "+ file);
-	 * loadControllerApi.loadUsingPOST(file.getBytes()); }
-	 */
 
 	@PostMapping("/auxilarylineitem")
 	public ResponseEntity<AuxilaryLineItemDTO> createAuxilaryLineItem(
@@ -649,15 +617,6 @@ public class CommandResource {
 			}
 		}
 		
-		if (storeType != null) {
-
-			storeType.forEach(storetype -> {
-				
-					savedStoreType.add(storeTypeResourceApi.updateStoreTypeUsingPUT(storetype).getBody());
-			});
-		}
-
-
 		return ResponseEntity.ok().body(storeBundle);
 	}
 
