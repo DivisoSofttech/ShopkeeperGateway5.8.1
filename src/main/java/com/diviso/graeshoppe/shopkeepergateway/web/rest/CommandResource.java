@@ -609,13 +609,14 @@ public class CommandResource {
 		storeDTO.setPreOrderSettingsId(preOrderSettingsDTO.getId());
 		storeDTO.setStoreAddressId(storeAddressDTO.getId());
 
-		if (storeDTO != null) {
+		/*if (storeDTO != null) {
 			if (storeDTO.getId() == null) {
 				storeDTO = storeResourceApi.createStoreUsingPOST(storeDTO).getBody();
-			} else {
+			} else {*/
 				storeDTO = storeResourceApi.updateStoreUsingPUT(storeDTO).getBody();
-			}
-		}
+		/*
+		 * } }
+		 */
 		
 		return ResponseEntity.ok().body(storeBundle);
 	}
