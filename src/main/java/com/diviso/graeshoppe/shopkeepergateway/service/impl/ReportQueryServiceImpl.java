@@ -272,5 +272,11 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return queryResourceApi.getFootersUsingGET(orderNumber);
 	}
 
+	@Override
+	public ResponseEntity<String> getOrderTimes(String orderNumber) {
+		log.debug("<<<<<<<< getFooter >>>>>>>>{}",orderNumber);
+		return queryResourceApi.getOrderTimesUsingGET(orderNumber);
+	}
+
 
 }
