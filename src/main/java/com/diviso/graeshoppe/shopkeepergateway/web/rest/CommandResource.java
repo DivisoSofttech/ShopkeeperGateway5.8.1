@@ -295,9 +295,14 @@ public class CommandResource {
 
 	@PostMapping("/markAsDelivered/{orderId}")
 	public void markOrderAsDelivered(@PathVariable String orderId) {
-		orderCommandResourceApi.markOrderAsDelivered(orderId);
+		orderCommandResourceApi.markOrderAsDeliveredUsingPOST(orderId);
 	}
 
+	@PostMapping("/markAsOutForDelivered/{orderId}")
+	public void markAsOutForDelivered(@PathVariable String orderId) {
+		orderCommandResourceApi.markAsOutForDeliveredUsingPOST(orderId);
+	}
+	
 	@PostMapping("/acceptOrder/{taskId}")
 	public ResponseEntity<com.diviso.graeshoppe.shopkeepergateway.client.order.model.CommandResource> acceptOrder(
 			@PathVariable String taskId, @RequestBody ApprovalDetailsDTO approvalDetailsDTO) {

@@ -2,16 +2,19 @@ package com.diviso.graeshoppe.shopkeepergateway.client.order.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * OrderDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T14:31:30.762+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-12T14:30:13.987392+05:30[Asia/Kolkata]")
 
 public class OrderDTO   {
   @JsonProperty("acceptOrderId")
@@ -22,6 +25,9 @@ public class OrderDTO   {
 
   @JsonProperty("approvalDetailsId")
   private Long approvalDetailsId = null;
+
+  @JsonProperty("cancellationRef")
+  private Long cancellationRef = null;
 
   @JsonProperty("customerId")
   private String customerId = null;
@@ -126,6 +132,26 @@ public class OrderDTO   {
 
   public void setApprovalDetailsId(Long approvalDetailsId) {
     this.approvalDetailsId = approvalDetailsId;
+  }
+
+  public OrderDTO cancellationRef(Long cancellationRef) {
+    this.cancellationRef = cancellationRef;
+    return this;
+  }
+
+  /**
+   * Get cancellationRef
+   * @return cancellationRef
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getCancellationRef() {
+    return cancellationRef;
+  }
+
+  public void setCancellationRef(Long cancellationRef) {
+    this.cancellationRef = cancellationRef;
   }
 
   public OrderDTO customerId(String customerId) {
@@ -443,6 +469,7 @@ public class OrderDTO   {
     return Objects.equals(this.acceptOrderId, orderDTO.acceptOrderId) &&
         Objects.equals(this.allergyNote, orderDTO.allergyNote) &&
         Objects.equals(this.approvalDetailsId, orderDTO.approvalDetailsId) &&
+        Objects.equals(this.cancellationRef, orderDTO.cancellationRef) &&
         Objects.equals(this.customerId, orderDTO.customerId) &&
         Objects.equals(this.date, orderDTO.date) &&
         Objects.equals(this.deliveryInfoId, orderDTO.deliveryInfoId) &&
@@ -462,7 +489,7 @@ public class OrderDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(acceptOrderId, allergyNote, approvalDetailsId, customerId, date, deliveryInfoId, email, grandTotal, id, orderId, paymentMode, paymentRef, preOrderDate, processId, statusId, storeId, subTotal, timeZone);
+    return Objects.hash(acceptOrderId, allergyNote, approvalDetailsId, cancellationRef, customerId, date, deliveryInfoId, email, grandTotal, id, orderId, paymentMode, paymentRef, preOrderDate, processId, statusId, storeId, subTotal, timeZone);
   }
 
   @Override
@@ -473,6 +500,7 @@ public class OrderDTO   {
     sb.append("    acceptOrderId: ").append(toIndentedString(acceptOrderId)).append("\n");
     sb.append("    allergyNote: ").append(toIndentedString(allergyNote)).append("\n");
     sb.append("    approvalDetailsId: ").append(toIndentedString(approvalDetailsId)).append("\n");
+    sb.append("    cancellationRef: ").append(toIndentedString(cancellationRef)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    deliveryInfoId: ").append(toIndentedString(deliveryInfoId)).append("\n");

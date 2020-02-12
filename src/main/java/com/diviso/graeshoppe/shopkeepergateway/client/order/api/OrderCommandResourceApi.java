@@ -8,16 +8,25 @@ package com.diviso.graeshoppe.shopkeepergateway.client.order.api;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.CommandResource;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.OrderDTO;
 import io.swagger.annotations.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T14:31:30.762+05:30[Asia/Kolkata]")
+import java.util.Map;
+import java.util.Optional;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-12T14:30:13.987392+05:30[Asia/Kolkata]")
 
 @Api(value = "OrderCommandResource", description = "the OrderCommandResource API")
 public interface OrderCommandResourceApi {
@@ -71,6 +80,30 @@ public interface OrderCommandResourceApi {
     ResponseEntity<OrderDTO> getOrderUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
 
 
+    @ApiOperation(value = "markAsOutForDelivered", nickname = "markAsOutForDeliveredUsingPOST", notes = "", tags={ "order-command-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/markAsOutForDelivered/{orderId}",
+        method = RequestMethod.POST)
+    ResponseEntity<Void> markAsOutForDeliveredUsingPOST(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") String orderId);
+
+
+    @ApiOperation(value = "markOrderAsDelivered", nickname = "markOrderAsDeliveredUsingPOST", notes = "", tags={ "order-command-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/markAsDelivered/{orderId}",
+        method = RequestMethod.POST)
+    ResponseEntity<Void> markOrderAsDeliveredUsingPOST(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") String orderId);
+
+
     @ApiOperation(value = "publishOrderToMessagebroker", nickname = "publishOrderToMessagebrokerUsingPOST", notes = "", tags={ "order-command-resource", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK"),
@@ -119,10 +152,4 @@ public interface OrderCommandResourceApi {
         method = RequestMethod.PUT)
     ResponseEntity<OrderDTO> updateOrderUsingPUT(@ApiParam(value = "orderDTO" ,required=true )  @Valid @RequestBody OrderDTO orderDTO);
 
-
-    @RequestMapping(value = "/api/markAsDelivered/{orderId}",
-        produces = "*/*", 
-        method = RequestMethod.POST)
-    ResponseEntity<Void> markOrderAsDelivered(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") String orderId);
-    
 }
