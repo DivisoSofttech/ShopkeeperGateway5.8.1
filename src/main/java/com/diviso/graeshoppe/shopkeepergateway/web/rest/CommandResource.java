@@ -145,7 +145,7 @@ public class CommandResource {
 	}
 
 	@PostMapping("/createOffer")
-	public void creatOffer(@RequestBody OfferModel offerModel) {
+	public void createOffer(@RequestBody OfferModel offerModel) {
 		this.offerResourceApi.createOfferUsingPOST(offerModel);
 	}
 	
