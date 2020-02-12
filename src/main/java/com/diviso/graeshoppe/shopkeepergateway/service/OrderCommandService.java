@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.ApprovalDetailsDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.CommandResource;
-import com.diviso.graeshoppe.shopkeepergateway.client.order.model.NotificationDTO;
+import com.diviso.graeshoppe.shopkeepergateway.client.report.model.NotificationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.OrderDTO;
 
 public interface OrderCommandService {

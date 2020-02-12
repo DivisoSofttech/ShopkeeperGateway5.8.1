@@ -24,7 +24,7 @@ import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.CustomerDTO
 import com.diviso.graeshoppe.shopkeepergateway.client.order.api.NotificationResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.api.OrderCommandResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.ApprovalDetailsDTO;
-import com.diviso.graeshoppe.shopkeepergateway.client.order.model.NotificationDTO;
+import com.diviso.graeshoppe.shopkeepergateway.client.report.model.NotificationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.OrderDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.aggregator.Order;
 import com.diviso.graeshoppe.shopkeepergateway.client.product.api.EntryLineItemResourceApi;

@@ -5,11 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.diviso.graeshoppe.shopkeepergateway.client.order.api.ApprovalDetailsResourceApi;
-import com.diviso.graeshoppe.shopkeepergateway.client.order.api.NotificationResourceApi;
+import com.diviso.graeshoppe.shopkeepergateway.client.report.api.NotificationResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.api.OrderCommandResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.ApprovalDetailsDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.CommandResource;
-import com.diviso.graeshoppe.shopkeepergateway.client.order.model.NotificationDTO;
+import com.diviso.graeshoppe.shopkeepergateway.client.report.model.NotificationDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.OrderDTO;
 import com.diviso.graeshoppe.shopkeepergateway.service.OrderCommandService;
 
