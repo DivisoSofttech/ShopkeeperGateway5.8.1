@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.diviso.graeshoppe.shopkeepergateway.client.aggregators.CustomerAggregator;
 import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.ContactDTO;
 import com.diviso.graeshoppe.shopkeepergateway.client.customer.model.CustomerDTO;
+import com.diviso.graeshoppe.shopkeepergateway.client.offer.api.AggregateCommandResourceApi;
+import com.diviso.graeshoppe.shopkeepergateway.client.offer.model.OfferModel;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.api.NotificationResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.api.OrderCommandResourceApi;
 import com.diviso.graeshoppe.shopkeepergateway.client.order.model.ApprovalDetailsDTO;
@@ -132,6 +134,9 @@ public class CommandResource {
 
 	@Autowired
 	private OrderCommandService orderCommandService;
+	
+	@Autowired
+	private AggregateCommandResourceApi offerResourceApi;
 
 	private final Logger log = LoggerFactory.getLogger(CommandResource.class);
 
@@ -139,6 +144,12 @@ public class CommandResource {
 		return entryLineItemResourceApi;
 	}
 
+	@PostMapping("/createOffer")
+	public void creatOffer(@RequestBody OfferModel offerModel) {
+		this.offerResourceApi.createOfferUsingPOST(offerModel);
+	}
+	
+	
 	public void setEntryLineItemResourceApi(EntryLineItemResourceApi entryLineItemResourceApi) {
 		this.entryLineItemResourceApi = entryLineItemResourceApi;
 	}
