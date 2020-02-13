@@ -245,7 +245,7 @@ sale:
    url: dev.ci1.divisosofttech.com:8086
    
 store:
-   url: dev.ci1.divisosofttech.com:8071		# 35.238.35.19:8071
+   url: STORE		# 35.238.35.19:8071
    
 report:
    url: dev.ci3.divisosofttech.com:8077
